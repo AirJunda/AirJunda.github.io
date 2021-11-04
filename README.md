@@ -2,4 +2,7 @@
 permalink: /index.html
 ---
 
-# AirJunda.github.io
+# Personal Blog
+
+Visit Here:
+https://airjunda.github.io/

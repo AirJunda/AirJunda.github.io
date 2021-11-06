@@ -5,7 +5,7 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
-  <meta name="generator" content="Hugo 0.89.0" />
+  <meta name="generator" content="Hugo 0.80.0" />
 
   <title>那些Hugo踩过的坑 &middot; Air Junda Space</title>
 
@@ -270,8 +270,8 @@
 <h2 id="那些年踩过的坑">那些年踩过的坑</h2>
 <p>人类的本质是复读机。万事开头，先搜攻略。于是搜到了这2个，觉得比较有用。未来如果忘了hugo部署也可以直接从这2个攻略复习。</p>
 <ul>
-<li><a href="https://zhuanlan.zhihu.com/p/57361697">如何利用 GitHub Pages 和 Hugo 轻松搭建个人博客？</a></li>
-<li><a href="https://zhuanlan.zhihu.com/p/105021100?utm_source=wechat_timeline&amp;utm_medium=social&amp;utm_oi=545850779622232064&amp;utm_content=first">使用 Hugo + Github 搭建个人博客</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/57361697">https://zhuanlan.zhihu.com/p/57361697</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/105021100?utm_source=wechat_timeline&amp;utm_medium=social&amp;utm_oi=545850779622232064&amp;utm_content=first">https://zhuanlan.zhihu.com/p/105021100?utm_source=wechat_timeline&amp;utm_medium=social&amp;utm_oi=545850779622232064&amp;utm_content=first</a></li>
 </ul>
 <p>下面开始说按照上面的步骤时遇到的坑和注意事项。</p>
 <h3 id="发布前的阶段">发布前的阶段</h3>
@@ -294,7 +294,7 @@
 <h3 id="发布阶段">发布阶段</h3>
 <p>文章写好，本地调试后就要部署了。我们本地写的md文章其实是需要生成html,css,js等网页的文件然后才能发布成一个网站。不过这个任务就是Hugo去做了。Hugo解放了我们，让我们可以专心写md而不用管html这些细节。</p>
 <p>生成网站文件的命令是 <code>hugo -D</code> 默认是在当前根目录下生成一个public文件夹。这个public里的内容才是部署需要的。到这一步时，项目文件的结构应该是这样的：</p>
-<pre tabindex="0"><code>├── archetypes # 存放生成博客的模版
+<pre><code>├── archetypes # 存放生成博客的模版
 ├── assets # 存放被 Hugo Pipes 处理的文件
 ├── config.toml # hugo 配置文件 
 ├── content # 存放 markdown 文件

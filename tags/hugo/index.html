@@ -7,7 +7,7 @@
   <meta name="description" content="">
   <meta name="generator" content="Hugo 0.80.0" />
 
-  <title>Posts &middot; Air Junda Space</title>
+  <title>Hugo &middot; Air Junda Space</title>
 
     
 
@@ -44,7 +44,7 @@
  
   
   <link rel="alternate" type="application/rss+xml" title="Air Junda Space"
-    href='https://airjunda.github.io/post/index.xml' />
+    href='https://airjunda.github.io/tags/hugo/index.xml' />
   
 
   
@@ -121,7 +121,7 @@
 
     
     <li class="pure-menu-item">
-      <a class="pure-menu-link" href='https://airjunda.github.io/post/index.xml'><i
+      <a class="pure-menu-link" href='https://airjunda.github.io/tags/hugo/index.xml'><i
           class="fas fa-rss fa-fw"></i>RSS</a>
     </li>
     
@@ -253,26 +253,60 @@
 
 
 <div class="header">
-  <h1>Posts</h1>
+  <h1>Hugo</h1>
 </div>
+
 <div class="content">
   
-  <h2>2021</h2>
-  <ul>
-  
-    <li><time>07 Nov 2021, 22:39</time> - <a href="https://airjunda.github.io/post/cicd-action/">CICD Action</a></li>
+    <article>
+  <header>
+    <h2><a href="https://airjunda.github.io/post/cicd-action/">CICD Action</a></h2>
+
+    <div class="post-meta">
+
+  <div>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>07 Nov 2021, 22:39</time>
+  </div>
 
   
-    <li><time>04 Nov 2021, 22:39</time> - <a href="https://airjunda.github.io/post/hugo/">那些Hugo踩过的坑</a></li>
 
   
-    <li><time>04 Nov 2021, 02:26</time> - <a href="https://airjunda.github.io/post/debut/">Where It All Began</a></li>
 
   
-    <li><time>04 Nov 2021, 02:26</time> - <a href="https://airjunda.github.io/post/my-first-post/">My First Post</a></li>
+  
+  
+  <div>
+    <i class="fa fa-tags fa-fw"></i>
+    
+      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/hugo">Hugo</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/tech">Tech</a>
+    
+  </div>
+  
+  
+
+</div>
+
+  </header>
+
+  <p>
+  使用GitHub Action 构建本博客的CICD发布流程 之前写Blgo, 每次发布前都需要Hugo -D 去生成发布后的files到Public文件下，然后手动去到Public路径下，commit再push上去。简单但枯燥。其实这个事情完全可以自动化做成流水线。每次Hugo workspace的repo发生commit，可以自动触发workflow去更新自己的page repo进而更新网站。
+构建的这个流水线就是本文要谈论的CICD workflow; 我这次使用的是github action这个CICD工具去构建
+他山之石 和以前一样，先搜了别人的攻略，复刻，再总结。这次参考的攻略是下面这个：
+ Hugo使用Github Action自动部署博客到Github Pages  注意事项：
+ 部署可以用personal token或者deploy key; 上面攻略是用personal token, 我最后也是用这个 原文提到&quot;在源码repo里新建一个github-actions分支&quot;, 这个不需要单独新建一个branch, 可以在原来的main branch里操作，添加 .github/workflows/confg.yaml; config.yaml的文件名可以随便取，反正是yaml/yml结尾就行 原文里生成html是用hugo --minify, 替换成 hugo -D  我最后成功部署的配置文件如下
+name: Deploy GitHub Page on: # 在push或pull请求事件上触发工作流 push: branches: - main jobs: # 此工作流程包含一个名为deploy的job deploy: name: deploy github page runs-on: ubuntu-latest # steps of the job steps: - uses: actions/checkout@v2 with: submodules: true fetch-depth: 0 # Fetch all history for .
+  </p>
 
   
-  </ul>
+  <footer>
+    <a href="https://airjunda.github.io/post/cicd-action/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
+  </footer>
+  
+</article>
+
   
 </div>
 
@@ -321,4 +355,3 @@
 
 </body>
 </html>
-

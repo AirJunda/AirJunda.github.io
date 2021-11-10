@@ -6,7 +6,19 @@
     <description>Recent content on Air Junda Space</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>&amp;copy; 2021. All rights reserved.</copyright>
-    <lastBuildDate>Sun, 07 Nov 2021 22:39:12 +0800</lastBuildDate><atom:link href="https://airjunda.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 11 Nov 2021 00:53:20 +0800</lastBuildDate><atom:link href="https://airjunda.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go_path</title>
+      <link>https://airjunda.github.io/post/go_path/</link>
+      <pubDate>Thu, 11 Nov 2021 00:53:20 +0800</pubDate>
+      
+      <guid>https://airjunda.github.io/post/go_path/</guid>
+      <description>安装Go的必要设置之GOPATH 这篇文章想讲一下GoPATH这个东西。每次新电脑安装go是需要设置GoPath的。现在的安装一般会默认设置好。但是很多教程里会手动修改GoPATH到自己喜欢的目录。那么这个GoPATh到底是做什么的呢？
+他山之石   Go语言GOPATH是什么
+  Create projects independent of $GOPATH using Go Modules
+  我的理解 TODO</description>
+    </item>
+    
     <item>
       <title>CICD Action</title>
       <link>https://airjunda.github.io/post/cicd-action/</link>

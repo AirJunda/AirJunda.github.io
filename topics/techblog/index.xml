@@ -6,7 +6,29 @@
     <description>Recent content in TechBlog on Air Junda Space</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>&amp;copy; 2021. All rights reserved.</copyright>
-    <lastBuildDate>Sun, 07 Nov 2021 22:39:12 +0800</lastBuildDate><atom:link href="https://airjunda.github.io/topics/techblog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 11 Nov 2021 00:53:20 +0800</lastBuildDate><atom:link href="https://airjunda.github.io/topics/techblog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GoPath和Go的包管理</title>
+      <link>https://airjunda.github.io/post/go_path/</link>
+      <pubDate>Thu, 11 Nov 2021 00:53:20 +0800</pubDate>
+      
+      <guid>https://airjunda.github.io/post/go_path/</guid>
+      <description>安装Go的必要设置之GoPath 这篇文章想讲一下GoPath这个东西。每次新电脑安装go是需要设置GoPath的。现在的安装一般会默认设置好。但是很多教程里会手动修改GoPATH到自己喜欢的目录。那么这个GoPath到底是做什么的呢？
+他山之石   Go语言GOPATH是什么
+  Create projects independent of $GOPATH using Go Modules
+  让你的Golang项目在IDE里跑起来
+  Go语言基本环境变量与依赖管理
+  我的理解 GoPath的古早时代（现在基本不用了。但是可以了解） 很久很久以前，在遥远的银河系&amp;hellip;..有一帮人整出了go语言。然后开始有人使用go开发。但是早期go开发需要把代码放到gopath路径中。gopath在安装时会自动设置。gopath下需要有3个文件夹，src,bin,pkg; 我们的每个project folder都放到src路径下。
+那时候，要导入一个go的dependency，需要使用go get命令。使用go get 拉取外部dependency会自动下载并安装到$GOPATH/src 目录下。
+不过go get无法解决导入的dependency的版本控制。因为go get会把同一个依赖都存在同一个路径下面。所以go get 拉取的都是最新版。如果dependency新版不兼容了，就很麻烦。为了解决版本控制，先是有了govendor,但是现在已经普遍使用go mod了。Govendor我们直接忽略讲解但后面会讲mod
+Project GoPath goland开启一个新的go的项目时，会让你设置global GoPath和Project GoPath。影响的主要是包的导入时该搜索哪里的问题。
+import导包规则是：
+  先去GOROOT/src/路径下找
+  如果1没有，就去Project GOPATH/src/路径下找
+  如果2还没找到，就去Global GOPATH路径下找(Global GOPATH一般是设置的系统变量里的那个GoPath)
+  Project GoPath 代表项目所使用的 GoPath，该设置会被保存在工作目录的 .idea目录下，不会被设置到环境变量的 GoPath 中，但会在编译时使用到这个目录。（注意，GoPath需要目录内有src文件夹, 因此一个gin项目文件应该放在Project GoPath/src下面。所以Project GoPath不是gin项目的root folder)</description>
+    </item>
+    
     <item>
       <title>CICD Action</title>
       <link>https://airjunda.github.io/post/cicd-action/</link>

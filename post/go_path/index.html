@@ -7,7 +7,7 @@
   <meta name="description" content="">
   <meta name="generator" content="Hugo 0.80.0" />
 
-  <title>GoPATH和Go的包管理 &middot; Air Junda Space</title>
+  <title>GoPath和Go的包管理 &middot; Air Junda Space</title>
 
     
 
@@ -257,7 +257,7 @@
 
 
 <div class="header">
-  <h1>GoPATH和Go的包管理</h1>
+  <h1>GoPath和Go的包管理</h1>
   <h2></h2>
 </div>
 <div class="content">
@@ -272,14 +272,36 @@
   
 
   
+  
+  
+  <div>
+    <i class="fa fa-folder fa-fw"></i>
+    
+      <a class="post-taxonomy-topic" href="https://airjunda.github.io/topics/techblog">TechBlog</a>
+    
+  </div>
+  
+  
 
+  
+  
+  
+  <div>
+    <i class="fa fa-tags fa-fw"></i>
+    
+      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/go">Go</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/tech">Tech</a>
+    
+  </div>
+  
   
 
 </div>
 
-  <h2 id="安装go的必要设置之gopath">安装Go的必要设置之GOPATH</h2>
-<p>这篇文章想讲一下GoPATH这个东西。每次新电脑安装go是需要设置GoPath的。现在的安装一般会默认设置好。但是很多教程里会手动修改GoPATH到自己喜欢的目录。那么这个GoPATh到底是做什么的呢？</p>
-<h3 id="他山之石">他山之石</h3>
+  <h1 id="安装go的必要设置之gopath">安装Go的必要设置之GoPath</h1>
+<p>这篇文章想讲一下GoPath这个东西。每次新电脑安装go是需要设置GoPath的。现在的安装一般会默认设置好。但是很多教程里会手动修改GoPATH到自己喜欢的目录。那么这个GoPath到底是做什么的呢？</p>
+<h2 id="他山之石">他山之石</h2>
 <ul>
 <li>
 <p><a href="https://www.cnblogs.com/ailiailan/p/13454139.html#:~:text=GOPATH%20%E6%98%AFGo%20%E8%AF%AD%E8%A8%80%E4%B8%AD,%E5%B0%B1%E6%98%AF%E4%BD%A0%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8C%BA%E3%80%82">Go语言GOPATH是什么</a></p>
@@ -294,8 +316,70 @@
 <p><a href="https://cloud.tencent.com/developer/article/1650021?from=article.detail.1596713">Go语言基本环境变量与依赖管理</a></p>
 </li>
 </ul>
-<h4 id="我的理解">我的理解</h4>
-<p>TODO</p>
+<h2 id="我的理解">我的理解</h2>
+<h4 id="gopath的古早时代现在基本不用了但是可以了解">GoPath的古早时代（现在基本不用了。但是可以了解）</h4>
+<p>很久很久以前，在遥远的银河系&hellip;..有一帮人整出了go语言。然后开始有人使用go开发。但是早期go开发需要把代码放到gopath路径中。gopath在安装时会自动设置。gopath下需要有3个文件夹，src,bin,pkg; 我们的每个project folder都放到src路径下。</p>
+<p>那时候，要导入一个go的dependency，需要使用go get命令。使用go get 拉取外部dependency会自动下载并安装到$GOPATH/src 目录下。</p>
+<p>不过go get无法解决导入的dependency的版本控制。因为go get会把同一个依赖都存在同一个路径下面。所以go get 拉取的都是最新版。如果dependency新版不兼容了，就很麻烦。为了解决版本控制，先是有了govendor,但是现在已经普遍使用go mod了。Govendor我们直接忽略讲解但后面会讲mod</p>
+<h4 id="project-gopath">Project GoPath</h4>
+<p>goland开启一个新的go的项目时，会让你设置global GoPath和Project GoPath。影响的主要是包的导入时该搜索哪里的问题。</p>
+<p>import导包规则是：</p>
+<ol>
+<li>
+<p>先去GOROOT/src/路径下找</p>
+</li>
+<li>
+<p>如果1没有，就去Project GOPATH/src/路径下找</p>
+</li>
+<li>
+<p>如果2还没找到，就去Global GOPATH路径下找(Global GOPATH一般是设置的系统变量里的那个GoPath)</p>
+</li>
+</ol>
+<p>Project GoPath 代表项目所使用的 GoPath，该设置会被保存在工作目录的 .idea目录下，不会被设置到环境变量的 GoPath 中，但会在编译时使用到这个目录。（注意，GoPath需要目录内有src文件夹, 因此一个gin项目文件应该放在Project GoPath/src下面。所以Project GoPath不是gin项目的root folder)</p>
+<p>对于Project GoPath 我其实还是不是有的地方不懂。网上提到说，如果下载了别人的go项目，但是提示cannot find package &ldquo;server/common/dbutil”，那就设置一下project GoPath。</p>
+<h4 id="gopath和import时的路径关系">GoPath和import时的路径关系</h4>
+<p>无论是哪种GoPath, GoPath就是我们导入包时的根目录。所以在代码里导入某个GoPath里存在的包时(第三方或者自定义的如/dao/db)，就不用写前面一大串路径了。比如 要使用$GOPATH/src/blue/red这个包,那代码里就是：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;blue/red&#34;</span>
+</code></pre></div><p>对于github下载的包，go get到本地时会保留github.com/xx/xx这样完整的路径。</p>
+<p>Packages that live in source code repositories, like GitHub and BitBucket, have the full location of the repository as part of their import path.</p>
+<p>For example, we would import the source code at <a href="https://github.com/gobuffalo/buffalo">https://github.com/gobuffalo/buffalo</a> using the following import path:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;github.com/gobuffalo/buffalo&#34;</span>
+</code></pre></div><p>Therefore, this source code would be in the following location on disk:</p>
+<pre><code>$GOPATH/src/github.com/gobuffalo/buffalo
+</code></pre><h4 id="go-modules">Go Modules</h4>
+<blockquote>
+<p><em>多年以后，奥雷连诺上校坐在显示器前，准会想起设置GoPath那个遥远的下午</em></p>
+</blockquote>
+<p>前面讲解了一堆关于GoPath的内容，其实在Module出现后都可以不关心了。Go mod的出现让我们可以不需要把project放到GoPath中，也不需要设置src/pkg/bin目录。甚至Go1.13开始不再推荐使用GoPath。</p>
+<p>Go modules是Go的一个包管理工具，最低Go版本要求1.11+。可以理解为Python的虚拟环境，或者Java的maven。启用go modules后，包都会下载到%GOPATH%/pkg/mod文件夹中。(go get则是下载到src文件夹)</p>
+<h5 id="go111module-参数">GO111MODULE 参数</h5>
+<p>这个环境变量是用来作为使用Go Modules 的开关。可以说这个变量是历史产物，很有肯能会在将来Go的新版本中去除掉。</p>
+<ul>
+<li>GO111MODULE=&ldquo;auto&rdquo; # 只要项目包含了go.mod 文件的话启用Go modules， 在Go1.11-1.14 中是默认</li>
+<li>GO111MODULE=&ldquo;on&rdquo;   # 启用</li>
+<li>Go ModulesGO111MODULE=&ldquo;off&rdquo;  # 禁用Go Modules， 对老的项目进行兼容</li>
+</ul>
+<h5 id="gomod-文件">Go.mod 文件</h5>
+<p>使用Go mod会在项目文件夹内生成go.mod文件。相当于requirement.txt文件，里面会声明一些所需要的依赖包。如如果在具有go.mod 的项目的文件夹下使用go get , 会将对应的依赖以及版本写入go.mod,并将包下载到%GOPATH%/pkg/mod。如果<code>go get</code>下载出错，用<code>go mod download</code></p>
+<p>任何一个新项目需要用 <code>go mod init modulename</code> 去生成go.mod 文件。如果project在gopath/src下，可以无参数 <code>go mod init</code>, 否则需要指定modulename。名字可以随便写，建议和当前文件夹名字一样。或者公司有命名要求按公司要求，比如&quot;tencent/pcg/project2021/v1&rdquo;</p>
+<h5 id="go-mod-常用命令">Go mod 常用命令</h5>
+<ul>
+<li>在当前文件夹下初始化一个新的 module，创建 go.mod 文件:go mod init name</li>
+<li>拉取缺少的模块，移除不用的模块:go mod tidy</li>
+<li>将依赖复制到 vendor 下:go mod vendor</li>
+<li>下载依赖:go mod download</li>
+<li>检验依赖:go mod verify</li>
+<li>显示模块依赖图:go mod graph</li>
+</ul>
+<h4 id="import的路径怎么写">Import的路径怎么写</h4>
+<p>import的路径可以是相对路径，比如那些在gopath/src的包;可以是modulename/xxx/xx; 可以是../或者./ 这样开头的路径;<br>
+具体看这篇吧：
+<a href="https://juejin.cn/post/6844904136056504327">一起弄明白go的依赖管理 Go Modues/ GOPATH</a></p>
+<h2 id="summary">Summary</h2>
+<p>本文总结了GoPath和Go Modules的使用。Go Modules的出现可以代替GoPath。除非是遇到了一些legacy的项目。<strong>有了Go Module将不需要在把项目放到$GOPATH/src下。</strong> 建议直接学习modules的使用</p>
+<h2 id="reference">Reference:</h2>
+<p><a href="https://www.digitalocean.com/community/tutorials/understanding-the-gopath">https://www.digitalocean.com/community/tutorials/understanding-the-gopath</a></p>
+<p><a href="https://cloud.tencent.com/developer/article/1778130">https://cloud.tencent.com/developer/article/1778130</a></p>
 
   
   <h4><i class="fas fa-share-alt" aria-hidden="true"></i>&nbsp;Share!</h4>

@@ -6,22 +6,40 @@
     <description>Recent content in Tags on Air Junda Space</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>&amp;copy; 2021. All rights reserved.</copyright>
-    <lastBuildDate>Thu, 11 Nov 2021 00:53:20 +0800</lastBuildDate><atom:link href="https://airjunda.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 23 Nov 2021 22:14:59 +0800</lastBuildDate><atom:link href="https://airjunda.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Go</title>
-      <link>https://airjunda.github.io/tags/go/</link>
-      <pubDate>Thu, 11 Nov 2021 00:53:20 +0800</pubDate>
+      <title>Redis</title>
+      <link>https://airjunda.github.io/tags/redis/</link>
+      <pubDate>Tue, 23 Nov 2021 22:14:59 +0800</pubDate>
       
-      <guid>https://airjunda.github.io/tags/go/</guid>
+      <guid>https://airjunda.github.io/tags/redis/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Tech</title>
       <link>https://airjunda.github.io/tags/tech/</link>
-      <pubDate>Thu, 11 Nov 2021 00:53:20 +0800</pubDate>
+      <pubDate>Tue, 23 Nov 2021 22:14:59 +0800</pubDate>
       
       <guid>https://airjunda.github.io/tags/tech/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Windows</title>
+      <link>https://airjunda.github.io/tags/windows/</link>
+      <pubDate>Tue, 23 Nov 2021 22:14:59 +0800</pubDate>
+      
+      <guid>https://airjunda.github.io/tags/windows/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Go</title>
+      <link>https://airjunda.github.io/tags/go/</link>
+      <pubDate>Thu, 11 Nov 2021 00:53:20 +0800</pubDate>
+      
+      <guid>https://airjunda.github.io/tags/go/</guid>
       <description></description>
     </item>
     

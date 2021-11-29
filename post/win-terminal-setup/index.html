@@ -7,7 +7,7 @@
   <meta name="description" content="">
   <meta name="generator" content="Hugo 0.80.0" />
 
-  <title>Redis &middot; Air Junda Space</title>
+  <title>Win Terminal Setup &middot; Air Junda Space</title>
 
     
 
@@ -42,9 +42,6 @@
   <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
  
-  
-  <link rel="alternate" type="application/rss+xml" title="Air Junda Space"
-    href='https://airjunda.github.io/tags/redis/index.xml' />
   
 
   
@@ -131,11 +128,6 @@
   <div class="pure-menu social">
   <ul class="pure-menu-list">
 
-    
-    <li class="pure-menu-item">
-      <a class="pure-menu-link" href='https://airjunda.github.io/tags/redis/index.xml'><i
-          class="fas fa-rss fa-fw"></i>RSS</a>
-    </li>
     
 
     
@@ -241,20 +233,16 @@
 
 
 <div class="header">
-  <h1>Redis</h1>
+  <h1>Win Terminal Setup</h1>
+  <h2></h2>
 </div>
-
 <div class="content">
-  
-    <article>
-  <header>
-    <h2><a href="https://airjunda.github.io/post/redis/">Redis Get Started on Windows 10</a></h2>
 
-    <div class="post-meta">
+  <div class="post-meta">
 
   <div>
     <i class="fa fa-calendar fa-fw"></i>
-    <time>23 Nov 2021, 22:14</time>
+    <time>29 Nov 2021, 21:10</time>
   </div>
 
   
@@ -277,11 +265,13 @@
   <div>
     <i class="fa fa-tags fa-fw"></i>
     
-      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/redis">Redis</a>&nbsp;&#47;
+      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/terminal">Terminal</a>&nbsp;&#47;
     
       <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/tech">Tech</a>&nbsp;&#47;
     
-      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/windows">Windows</a>
+      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/windows">Windows</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/setup">Setup</a>
     
   </div>
   
@@ -289,24 +279,134 @@
 
 </div>
 
-  </header>
-
-  <p>
-  Win10安装Redis 这篇记录下win10上安装redis的一些要点
-他山之石  win10下安装redis服务  要点   按照上文的启动redis后，打开一个新的cmd窗口，设置redis as service
-  把redis的解压目录添加到环境变量中。然后重启一下terminal，之后就不用每次都进到redis安装目录才能运行redis-cli
-  上面2步都做了后，以后启动redis只需要cmd里敲：
-  redis-server --service-start 然后进入redis的CLI界面就敲：
-redis-cli -h 127.0.0.1 -p 6379 停止redis service:
-redis-server --service-stop Redis GUI 我用的是Another Redis Desktop Manager; 免费，Win/Mac都可以用
-设置connection的话，默认的端口一般是6379
-Redis分别式集群 看这篇了解下。以后再尝试： redis的安装和分布式配置简洁教程
-  </p>
+  <h2 id="win10-terminal-美化工程">Win10 Terminal 美化工程</h2>
+<p>这篇记录下win10上美化Terminal的步骤</p>
+<h2 id="他山之石">他山之石</h2>
+<ul>
+<li><a href="https://moedev.net/nice-winterminal/">攻略</a></li>
+<li><a href="https://juejin.cn/post/6933384126363877384">Windows Terminal 主题美化</a></li>
+</ul>
+<h2 id="记录">记录</h2>
+<ol>
+<li>先按上文第一篇安装了字体。解压后进入ttf文件夹。打开CascadiaMonoPL安装就好</li>
+<li>然后powershell里执行下面3个命令</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">Install-Module posh-git -Scope CurrentUser
+Install-Module oh-my-posh -Scope CurrentUser
+Get-PoshThemes
+</code></pre></div><p>输入下面这个命令可以随时替换theme;但是terminal重启后就失效。</p>
+<pre><code>Set-PoshPrompt -Theme agnoster # 我现在用的paradox
+</code></pre><ol start="3">
+<li>要想不失效，需要手动修改下面这个配置文件, 在cmd里敲</li>
+</ol>
+<pre><code>notepad $PROFILE
+</code></pre><p>然后profile文件里添加这3行
+Import-Module posh-git
+Import-Module oh-my-posh
+Set-Theme Agnoster/paradox/你想要的theme name</p>
+<h3 id="到这一步遇到的坑">到这一步遇到的坑</h3>
+<p>设置完发现有乱码。paradox好一些，只有error符号乱码。其他主题连 ~ 都显示不出。试了各种PL字体都没用。最后解决方案是安装了Nerd字体就解决了。参考的是这篇：<a href="https://tokisaki.top/blog/beautify-windows-terminal/">攻略</a>。其中windows 官方攻略也提到了安装nerd字体库可以解决。nerd网站下有很多字体，我最后安装的是Caskaydia Cove Nerd Font</p>
+<h3 id="windows-terminal的进一步配置">Windows Terminal的进一步配置</h3>
+<p>原文攻略还有后续的。但是我就没就继续做了。因为对目前效果已经满意。</p>
+<h2 id="side-effect">Side Effect</h2>
+<p>修改了windows terminal的样式会导致IDE中的集成terminal出现色彩不协调或者乱码。需要单独设置。</p>
+<h2 id="vs-code中terminal乱码解决">VS Code中Terminal乱码解决</h2>
+<p>TODO</p>
+<h2 id="goland中terminal美化">Goland中Terminal美化</h2>
+<p>TODO</p>
 
   
-</article>
+  <h4><i class="fas fa-share-alt" aria-hidden="true"></i>&nbsp;Share!</h4>
+<ul class="share-buttons">
+	<li><a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fairjunda.github.io%2fpost%2fwin-terminal-setup%2f" target="_blank" title="Share on Facebook"><i class="fab fa-facebook" aria-hidden="true"></i><span class="sr-only">Share on Facebook</span></a>
+	</li>&nbsp;&nbsp;&nbsp;
+	<li><a href="https://twitter.com/intent/tweet?source=https%3a%2f%2fairjunda.github.io%2fpost%2fwin-terminal-setup%2f" target="_blank" title="Tweet"><i class="fab fa-twitter" aria-hidden="true"></i><span class="sr-only">Tweet</span></a>
+	</li>&nbsp;&nbsp;&nbsp;
+	<li><a href="https://plus.google.com/share?url=https%3a%2f%2fairjunda.github.io%2fpost%2fwin-terminal-setup%2f" target="_blank" title="Share on Google+"><i class="fab fa-google-plus" aria-hidden="true"></i><span class="sr-only">Share on Google+</span></a>
+	</li>&nbsp;&nbsp;&nbsp;
+	<li><a href="http://www.tumblr.com/share?v=3&u=https%3a%2f%2fairjunda.github.io%2fpost%2fwin-terminal-setup%2f" target="_blank" title="Post to Tumblr"><i class="fab fa-tumblr" aria-hidden="true"></i><span class="sr-only">Post to Tumblr</span></a>
+	</li>&nbsp;&nbsp;&nbsp;
+	<li><a href="http://pinterest.com/pin/create/button/?url=https%3a%2f%2fairjunda.github.io%2fpost%2fwin-terminal-setup%2f" target="_blank" title="Pin it"><i class="fab fa-pinterest-p" aria-hidden="true"></i><span class="sr-only">Pin it</span></a>
+	</li>&nbsp;&nbsp;&nbsp;
+	<li><a href="http://www.reddit.com/submit?url=https%3a%2f%2fairjunda.github.io%2fpost%2fwin-terminal-setup%2f" target="_blank" title="Submit to Reddit"><i class="fab fa-reddit-alien" aria-hidden="true"></i><span class="sr-only">Submit to Reddit</span></a>
+	</li>
+</ul>
+
+
+<style>
+	ul.share-buttons{
+	  list-style: none;
+	  padding: 0;
+	}
+
+	ul.share-buttons li{
+	  display: inline;
+	}
+
+	ul.share-buttons .sr-only{
+	  position: absolute;
+	  clip: rect(1px 1px 1px 1px);
+	  clip: rect(1px, 1px, 1px, 1px);
+	  padding: 0;
+	  border: 0;
+	  height: 1px;
+	  width: 1px;
+	  overflow: hidden;
+	}
+</style>
+
 
   
+<div class="prev-next-post pure-g">
+  <div class="pure-u-1-24" style="text-align: left;">
+    
+    <a href="https://airjunda.github.io/post/redis/"><i class="fa fa-chevron-left"></i></a>
+    
+  </div>
+  <div class="pure-u-10-24">
+    
+    <nav class="prev">
+      <a href="https://airjunda.github.io/post/redis/">Redis Get Started on Windows 10</a>
+    </nav>
+    
+  </div>
+  <div class="pure-u-2-24">
+    &nbsp;
+  </div>
+  <div class="pure-u-10-24">
+    
+  </div>
+  <div class="pure-u-1-24" style="text-align: right;">
+    
+  </div>
+</div>
+
+
+  
+  
+  
+  
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+
+(function() {
+    
+    
+    if (window.location.hostname == "localhost")
+        return;
+
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    var disqus_shortname = 'AirJunda';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+  
+
 </div>
 
 </div>
@@ -350,7 +450,11 @@ Redis分别式集群 看这篇了解下。以后再尝试： redis的安装和�
 
 
 
+<script src="https://airjunda.github.io/js/math-code.js"></script>
+  <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  
 
 
 </body>
 </html>
+

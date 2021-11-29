@@ -7,7 +7,7 @@
   <meta name="description" content="">
   <meta name="generator" content="Hugo 0.80.0" />
 
-  <title>Tech &middot; Air Junda Space</title>
+  <title>Terminal &middot; Air Junda Space</title>
 
     
 
@@ -44,7 +44,7 @@
  
   
   <link rel="alternate" type="application/rss+xml" title="Air Junda Space"
-    href='https://airjunda.github.io/tags/tech/index.xml' />
+    href='https://airjunda.github.io/tags/terminal/index.xml' />
   
 
   
@@ -133,7 +133,7 @@
 
     
     <li class="pure-menu-item">
-      <a class="pure-menu-link" href='https://airjunda.github.io/tags/tech/index.xml'><i
+      <a class="pure-menu-link" href='https://airjunda.github.io/tags/terminal/index.xml'><i
           class="fas fa-rss fa-fw"></i>RSS</a>
     </li>
     
@@ -241,7 +241,7 @@
 
 
 <div class="header">
-  <h1>Tech</h1>
+  <h1>Terminal</h1>
 </div>
 
 <div class="content">
@@ -304,195 +304,6 @@ VS Code中Terminal乱码解决 TODO
 Goland中Terminal美化 TODO
   </p>
 
-  
-</article>
-
-  
-    <article>
-  <header>
-    <h2><a href="https://airjunda.github.io/post/redis/">Redis Get Started on Windows 10</a></h2>
-
-    <div class="post-meta">
-
-  <div>
-    <i class="fa fa-calendar fa-fw"></i>
-    <time>23 Nov 2021, 22:14</time>
-  </div>
-
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-folder fa-fw"></i>
-    
-      <a class="post-taxonomy-topic" href="https://airjunda.github.io/topics/techblog">TechBlog</a>
-    
-  </div>
-  
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-tags fa-fw"></i>
-    
-      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/redis">Redis</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/tech">Tech</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/windows">Windows</a>
-    
-  </div>
-  
-  
-
-</div>
-
-  </header>
-
-  <p>
-  Win10安装Redis 这篇记录下win10上安装redis的一些要点
-他山之石  win10下安装redis服务  要点   按照上文的启动redis后，打开一个新的cmd窗口，设置redis as service
-  把redis的解压目录添加到环境变量中。然后重启一下terminal，之后就不用每次都进到redis安装目录才能运行redis-cli
-  上面2步都做了后，以后启动redis只需要cmd里敲：
-  redis-server --service-start 然后进入redis的CLI界面就敲：
-redis-cli -h 127.0.0.1 -p 6379 停止redis service:
-redis-server --service-stop Redis GUI 我用的是Another Redis Desktop Manager; 免费，Win/Mac都可以用
-设置connection的话，默认的端口一般是6379
-Redis分别式集群 看这篇了解下。以后再尝试： redis的安装和分布式配置简洁教程
-  </p>
-
-  
-</article>
-
-  
-    <article>
-  <header>
-    <h2><a href="https://airjunda.github.io/post/go_path/">GoPath和Go的包管理</a></h2>
-
-    <div class="post-meta">
-
-  <div>
-    <i class="fa fa-calendar fa-fw"></i>
-    <time>11 Nov 2021, 00:53</time>
-  </div>
-
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-folder fa-fw"></i>
-    
-      <a class="post-taxonomy-topic" href="https://airjunda.github.io/topics/techblog">TechBlog</a>
-    
-  </div>
-  
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-tags fa-fw"></i>
-    
-      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/go">Go</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/tech">Tech</a>
-    
-  </div>
-  
-  
-
-</div>
-
-  </header>
-
-  <p>
-  安装Go的必要设置之GoPath 这篇文章想讲一下GoPath这个东西。每次新电脑安装go是需要设置GoPath的。现在的安装一般会默认设置好。但是很多教程里会手动修改GoPATH到自己喜欢的目录。那么这个GoPath到底是做什么的呢？
-他山之石   Go语言GOPATH是什么
-  Create projects independent of $GOPATH using Go Modules
-  让你的Golang项目在IDE里跑起来
-  Go语言基本环境变量与依赖管理
-  我的理解 GoPath的古早时代（现在基本不用了。但是可以了解） 很久很久以前，在遥远的银河系&hellip;..有一帮人整出了go语言。然后开始有人使用go开发。但是早期go开发需要把代码放到gopath路径中。gopath在安装时会自动设置。gopath下需要有3个文件夹，src,bin,pkg; 我们的每个project folder都放到src路径下。
-那时候，要导入一个go的dependency，需要使用go get命令。使用go get 拉取外部dependency会自动下载并安装到$GOPATH/src 目录下。
-不过go get无法解决导入的dependency的版本控制。因为go get会把同一个依赖都存在同一个路径下面。所以go get 拉取的都是最新版。如果dependency新版不兼容了，就很麻烦。为了解决版本控制，先是有了govendor,但是现在已经普遍使用go mod了。Govendor我们直接忽略讲解但后面会讲mod
-Project GoPath goland开启一个新的go的项目时，会让你设置global GoPath和Project GoPath。影响的主要是包的导入时该搜索哪里的问题。
-import导包规则是：
-  先去GOROOT/src/路径下找
-  如果1没有，就去Project GOPATH/src/路径下找
-  如果2还没找到，就去Global GOPATH路径下找(Global GOPATH一般是设置的系统变量里的那个GoPath)
-  Project GoPath 代表项目所使用的 GoPath，该设置会被保存在工作目录的 .idea目录下，不会被设置到环境变量的 GoPath 中，但会在编译时使用到这个目录。（注意，GoPath需要目录内有src文件夹, 因此一个gin项目文件应该放在Project GoPath/src下面。所以Project GoPath不是gin项目的root folder)
-  </p>
-
-  
-  <footer>
-    <a href="https://airjunda.github.io/post/go_path/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
-  </footer>
-  
-</article>
-
-  
-    <article>
-  <header>
-    <h2><a href="https://airjunda.github.io/post/cicd-action/">CICD Action</a></h2>
-
-    <div class="post-meta">
-
-  <div>
-    <i class="fa fa-calendar fa-fw"></i>
-    <time>07 Nov 2021, 22:39</time>
-  </div>
-
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-folder fa-fw"></i>
-    
-      <a class="post-taxonomy-topic" href="https://airjunda.github.io/topics/techblog">TechBlog</a>
-    
-  </div>
-  
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-tags fa-fw"></i>
-    
-      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/hugo">Hugo</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/tech">Tech</a>
-    
-  </div>
-  
-  
-
-</div>
-
-  </header>
-
-  <p>
-  使用GitHub Action 构建本博客的CICD发布流程 之前写Blgo, 每次发布前都需要Hugo -D 去生成发布后的files到Public文件下，然后手动去到Public路径下，commit再push上去。简单但枯燥。其实这个事情完全可以自动化做成流水线。每次Hugo workspace的repo发生commit，可以自动触发workflow去更新自己的page repo进而更新网站。
-构建的这个流水线就是本文要谈论的CICD workflow; 我这次使用的是github action这个CICD工具去构建
-他山之石 和以前一样，先搜了别人的攻略，复刻，再总结。这次参考的攻略是下面这个：
- Hugo使用Github Action自动部署博客到Github Pages  注意事项：
- 部署可以用personal token或者deploy key; 上面攻略是用personal token, 我最后也是用这个 原文提到&quot;在源码repo里新建一个github-actions分支&quot;, 这个不需要单独新建一个branch, 可以在原来的main branch里操作，添加 .github/workflows/confg.yaml; config.yaml的文件名可以随便取，反正是yaml/yml结尾就行 原文里生成html是用hugo --minify, 替换成 hugo -D  我最后成功部署的配置文件如下
-name: Deploy GitHub Page on: # 在push或pull请求事件上触发工作流 push: branches: - main jobs: # 此工作流程包含一个名为deploy的job deploy: name: deploy github page runs-on: ubuntu-latest # steps of the job steps: - uses: actions/checkout@v2 with: submodules: true fetch-depth: 0 # Fetch all history for .
-  </p>
-
-  
-  <footer>
-    <a href="https://airjunda.github.io/post/cicd-action/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
-  </footer>
   
 </article>
 

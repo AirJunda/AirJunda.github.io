@@ -6,7 +6,23 @@
     <description>Recent content on Air Junda Space</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>&amp;copy; 2021. All rights reserved.</copyright>
-    <lastBuildDate>Tue, 23 Nov 2021 22:14:59 +0800</lastBuildDate><atom:link href="https://airjunda.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 29 Nov 2021 21:10:13 +0800</lastBuildDate><atom:link href="https://airjunda.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Win Terminal Setup</title>
+      <link>https://airjunda.github.io/post/win-terminal-setup/</link>
+      <pubDate>Mon, 29 Nov 2021 21:10:13 +0800</pubDate>
+      
+      <guid>https://airjunda.github.io/post/win-terminal-setup/</guid>
+      <description>Win10 Terminal 美化工程 这篇记录下win10上美化Terminal的步骤
+他山之石  攻略 Windows Terminal 主题美化  记录  先按上文第一篇安装了字体。解压后进入ttf文件夹。打开CascadiaMonoPL安装就好 然后powershell里执行下面3个命令  Install-Module posh-git -Scope CurrentUser Install-Module oh-my-posh -Scope CurrentUser Get-PoshThemes 输入下面这个命令可以随时替换theme;但是terminal重启后就失效。
+Set-PoshPrompt -Theme agnoster # 我现在用的paradox 要想不失效，需要手动修改下面这个配置文件, 在cmd里敲  notepad $PROFILE 然后profile文件里添加这3行 Import-Module posh-git Import-Module oh-my-posh Set-Theme Agnoster/paradox/你想要的theme name
+到这一步遇到的坑 设置完发现有乱码。paradox好一些，只有error符号乱码。其他主题连 ~ 都显示不出。试了各种PL字体都没用。最后解决方案是安装了Nerd字体就解决了。参考的是这篇：攻略。其中windows 官方攻略也提到了安装nerd字体库可以解决。nerd网站下有很多字体，我最后安装的是Caskaydia Cove Nerd Font
+Windows Terminal的进一步配置 原文攻略还有后续的。但是我就没就继续做了。因为对目前效果已经满意。
+Side Effect 修改了windows terminal的样式会导致IDE中的集成terminal出现色彩不协调或者乱码。需要单独设置。
+VS Code中Terminal乱码解决 TODO
+Goland中Terminal美化 TODO</description>
+    </item>
+    
     <item>
       <title>Redis Get Started on Windows 10</title>
       <link>https://airjunda.github.io/post/redis/</link>
@@ -14,14 +30,14 @@
       
       <guid>https://airjunda.github.io/post/redis/</guid>
       <description>Win10安装Redis 这篇记录下win10上安装redis的一些要点
-他山之石  win10下安装redis 服务  要点   按照上文的启动redis后，打开一个新的cmd窗口，设置redis as service
+他山之石  win10下安装redis服务  要点   按照上文的启动redis后，打开一个新的cmd窗口，设置redis as service
   把redis的解压目录添加到环境变量中。然后重启一下terminal，之后就不用每次都进到redis安装目录才能运行redis-cli
   上面2步都做了后，以后启动redis只需要cmd里敲：
   redis-server --service-start 然后进入redis的CLI界面就敲：
 redis-cli -h 127.0.0.1 -p 6379 停止redis service:
 redis-server --service-stop Redis GUI 我用的是Another Redis Desktop Manager; 免费，Win/Mac都可以用
 设置connection的话，默认的端口一般是6379
-Redis分别式集群 看这篇了解下。以后再尝试;redis的安装和分布式配置简洁教程</description>
+Redis分别式集群 看这篇了解下。以后再尝试： redis的安装和分布式配置简洁教程</description>
     </item>
     
     <item>

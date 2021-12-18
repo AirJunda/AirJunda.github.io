@@ -22,7 +22,7 @@ VOLUME [&amp;#34;/filepath_in_container&amp;#34;]容器启动后，会在host中
 这样方式有一个缺点，就是每次容器创建时都会创建一个新的volume。如果我们想修改image后，运行的容器依然是使用同样的volume, (比如mysql 的容器重新部署后，依然使用原来已经持久化的DB数据) 那么我们需要在container run时指定volume的名字。首次运行会创建一个该名字的volume。之后每次的运行都会指向同名的volume而非再次创立新的volume。需要加上 -v vol_name: path_in_container
 例子如下：
 docker container run --name volume-mysql -e -v mysql-data:/var/lib/mysql mysql:5.7 注意：需要dockfile里声明
-VOLUME [&amp;quot;/var/lib/mysql&amp;quot;] Bind Mount 这种方式就是指定host上的一个filepath和容器里的某个路径做映射。类似于vagrant里把vagrant file目录和VM里的/vagrant做映射。这个方式在Windows上比使用data volume好用多了。不过需要额外设置下window上的docker for desktop里file share设置。具体看回udemy的视频。</description>
+VOLUME [&amp;#34;/var/lib/mysql&amp;#34;]Bind Mount 这种方式就是指定host上的一个filepath和容器里的某个路径做映射。类似于vagrant里把vagrant file目录和VM里的/vagrant做映射。这个方式在Windows上比使用data volume好用多了。不过需要额外设置下window上的docker for desktop里file share设置。具体看回udemy的视频。</description>
     </item>
     
     <item>

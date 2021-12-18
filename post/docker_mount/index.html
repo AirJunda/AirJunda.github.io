@@ -298,12 +298,12 @@
 <p>例子如下：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">docker container run --name volume-mysql -e  -v mysql-data:/var/lib/mysql mysql:5.7
 </code></pre></div><p><strong>注意</strong>：需要dockfile里声明</p>
-<pre><code class="language-dockfile" data-lang="dockfile">VOLUME [&quot;/var/lib/mysql&quot;]
-</code></pre><h2 id="bind-mount">Bind Mount</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dockerfile" data-lang="dockerfile"><span style="color:#66d9ef">VOLUME</span> [<span style="color:#e6db74">&#34;/var/lib/mysql&#34;</span>]<span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><h2 id="bind-mount">Bind Mount</h2>
 <p>这种方式就是指定host上的一个filepath和容器里的某个路径做映射。类似于vagrant里把vagrant file目录和VM里的/vagrant做映射。这个方式在Windows上比使用data volume好用多了。不过需要额外设置下window上的docker for desktop里file share设置。具体看回udemy的视频。</p>
 <p>用法：<code>-v  path_in_host: path_in_container</code></p>
 <p>上课演示的命令如下：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">docker container run --name mount-mysql -e MYSQL_ROOT_PASSWORD<span style="color:#f92672">=</span>my-secret-pw -d -v /vagrant/mount:/var/lib/mysql mysql:5.7
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">docker container run --name mount-mysql -e  -d -v /vagrant/mount:/var/lib/mysql mysql:5.7
 </code></pre></div><p>注意上面的 -v 的写法是 /vagrant/mount:/var/lib/mysql
 前面是host的mount文件夹路径。“:”后面跟着的是容器里的target path</p>
 <h3 id="bind-mount的实践例子">Bind Mount的实践例子</h3>

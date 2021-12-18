@@ -7,7 +7,7 @@
   <meta name="description" content="">
   <meta name="generator" content="Hugo 0.80.0" />
 
-  <title>Win Terminal Setup &middot; Air Junda Space</title>
+  <title>Docker: Mount and Volume &middot; Air Junda Space</title>
 
     
 
@@ -233,7 +233,7 @@
 
 
 <div class="header">
-  <h1>Win Terminal Setup</h1>
+  <h1>Docker: Mount and Volume</h1>
   <h2></h2>
 </div>
 <div class="content">
@@ -242,7 +242,7 @@
 
   <div>
     <i class="fa fa-calendar fa-fw"></i>
-    <time>29 Nov 2021, 21:10</time>
+    <time>17 Dec 2021, 22:39</time>
   </div>
 
   
@@ -265,13 +265,11 @@
   <div>
     <i class="fa fa-tags fa-fw"></i>
     
-      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/terminal">Terminal</a>&nbsp;&#47;
+      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/docker">Docker</a>&nbsp;&#47;
     
       <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/tech">Tech</a>&nbsp;&#47;
     
-      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/windows">Windows</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/setup">Setup</a>
+      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/container">Container</a>
     
   </div>
   
@@ -279,59 +277,60 @@
 
 </div>
 
-  <h2 id="win10-terminal-美化工程">Win10 Terminal 美化工程</h2>
-<p>这篇记录下win10上美化Terminal的步骤。</p>
-<h2 id="他山之石">他山之石</h2>
+  <h2 id="docker数据持久化">Docker数据持久化</h2>
+<p>默认情况下，在运行中的容器里创建的文件，被保存在一个可写的容器层。如果container只是停止。容器里写入的数据依然在。但是如果把容器给停了。容器里的数据就会丢失。为了永久保存容器里的数据(日志, DB etc.), 我们需要持久化容器里的数据到local host上，或者remote machine上，比如另一台服务器或者AWS S3</p>
+<p>Docker主要提供了两种方式做数据的持久化</p>
 <ul>
-<li><a href="https://moedev.net/nice-winterminal/">攻略</a></li>
-<li><a href="https://juejin.cn/post/6933384126363877384">Windows Terminal 主题美化</a></li>
+<li>Data Volume, 由Docker管理，(/var/lib/docker/volumes/ Linux), 持久化数据的最好方式</li>
+<li>Bind Mount，由用户指定存储的数据具体mount在系统什么位置</li>
 </ul>
-<h2 id="记录">记录</h2>
-<ol>
-<li>先按上文第一篇安装了字体。解压后进入ttf文件夹。打开CascadiaMonoPL安装就好</li>
-<li>然后powershell里执行下面3个命令</li>
-</ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">Install-Module posh-git -Scope CurrentUser
-Install-Module oh-my-posh -Scope CurrentUser
-Get-PoshThemes
-</code></pre></div><p>输入下面这个命令可以随时替换theme;但是terminal重启后就失效。</p>
-<pre><code>Set-PoshPrompt -Theme agnoster # 我现在用的paradox
-</code></pre><ol start="3">
-<li>要想不失效，需要手动修改下面这个配置文件, 在cmd里敲</li>
-</ol>
-<pre><code>notepad $PROFILE
-</code></pre><p>然后profile文件里添加这3行
-Import-Module posh-git
-Import-Module oh-my-posh
-Set-Theme Agnoster/paradox/你想要的theme name</p>
-<h3 id="到这一步遇到的坑">到这一步遇到的坑</h3>
-<p>设置完发现有乱码。paradox好一些，只有error符号乱码。其他主题连 ~ 都显示不出。试了各种PL字体都没用。最后解决方案是安装了Nerd字体就解决了。参考的是这篇：<a href="https://tokisaki.top/blog/beautify-windows-terminal/">攻略</a>。其中windows 官方攻略也提到了安装nerd字体库可以解决。nerd网站下有很多字体，我最后安装的是Caskaydia Cove Nerd Font</p>
-<h3 id="windows-terminal的进一步配置">Windows Terminal的进一步配置</h3>
-<p>原文攻略还有后续的。但是我就没就继续做了。因为对目前效果已经满意。</p>
-<h2 id="side-effect">Side Effect</h2>
-<p>修改了windows terminal的样式会导致IDE中的集成terminal出现色彩不协调或者乱码。需要单独设置。</p>
-<h2 id="vs-code中terminal乱码解决">VS Code中Terminal乱码解决</h2>
-<p>需要在File/Preference/Settings中设置Terminal Font. 在settings的搜索box中输入Terminal Font就能找到填写字体的框框。我Win Terminal用的是CaskaydiaCove NF，所以我在VS Code中也设置的是这个字体。但是也可以使用其他的。设置教程可以参考这篇：
-<a href="https://dreamhomes.top/posts/202006222027/">解决 VScode 终端 Zsh 主题乱码的问题</a></p>
-<h2 id="goland中terminal美化">Goland中Terminal美化</h2>
-<p>Goland中也会因为terminal字体美化而在内置terminal中出现不同的颜色。目前似乎没发现兼容方案。</p>
-<h2 id="extra-reading">Extra Reading</h2>
-<p><a href="https://www.i4k.xyz/article/xuchaoxin1375/118269272">基于posh字体乱码问题修复</a></p>
+<p>本笔记主要记录的是2种持久化方式。Data Volume和Bind Mount</p>
+<h2 id="data-volume">Data Volume</h2>
+<p>volume在host上创建。创建和管理是由docker负责的。每个容器持久化的数据存到各自的volume。使用volume方式时，需要在容器的dockfile里添加 下面这样的命令：  <br>
+<code>VOLUME [&quot;/filepath_in_container&quot;]</code>  <br>
+容器启动后，会在host中生成一个volume。可以通过 <code>docker volume ls</code>  查看到新创建的volume。常用命令：</p>
+<ul>
+<li>docker volume ls</li>
+<li>docker volume inspect xxxx (xxx is volume name)</li>
+</ul>
+<p>inspect命令可以给出这个volume在host上的path, linux下cd 到那个path就可以看到容器里持久化目录的内容。windows则看不到。因为windows下其实是存放到一个VM中。</p>
+<p>这样方式有一个缺点，就是每次容器创建时都会创建一个新的volume。如果我们想修改image后，运行的容器依然是使用同样的volume, (比如mysql 的容器重新部署后，依然使用原来已经持久化的DB数据) 那么我们需要在container run时指定volume的名字。首次运行会创建一个该名字的volume。之后每次的运行都会指向同名的volume而非再次创立新的volume。需要加上 <code>-v vol_name: path_in_container</code></p>
+<p>例子如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">docker container run --name volume-mysql -e  -v mysql-data:/var/lib/mysql mysql:5.7
+</code></pre></div><p><strong>注意</strong>：需要dockfile里声明 <code>VOLUME [&quot;/var/lib/mysql&quot;] </code></p>
+<h2 id="bind-mount">Bind Mount</h2>
+<p>这种方式就是指定host上的一个filepath和容器里的某个路径做映射。类似于vagrant里把vagrant file目录和VM里的/vagrant做映射。这个方式在Windows上比使用data volume好用多了。不过需要额外设置下window上的docker for desktop里file share设置。具体看回udemy的视频。</p>
+<p>用法：<code>-v  path_in_host: path_in_container</code></p>
+<p>上课演示的命令如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">docker container run --name mount-mysql -e MYSQL_ROOT_PASSWORD<span style="color:#f92672">=</span>my-secret-pw -d -v /vagrant/mount:/var/lib/mysql mysql:5.7
+</code></pre></div><p>注意上面的 -v 的写法是 /vagrant/mount:/var/lib/mysql
+前面是host的mount文件夹路径。“:”后面跟着的是容器里的target path</p>
+<h3 id="bind-mount的实践例子">Bind Mount的实践例子</h3>
+<p>上课演示的例子是这样的。host机没有C++编译环境。但是我们有一个C++的编译环境。我们可以运行一个C++编译环境的容器，bind mount到本地目录。把需要编译的代码放到本地Mount目录里。在container中调试编译。然后生成的bin文件在host中也能获取到。直接可运行。</p>
+<h2 id="vs-code-remote-container插件">VS Code Remote Container插件</h2>
+<p>安装这插件能极大帮到涉及container开发时的体验。课上的例子是基于windows环境下直接开发的例子。我目前是在win的VM下运行容器。暂时用不到。但是我个人觉得可以帮到我在mac下开发的情景。</p>
+<h2 id="环境清理">环境清理</h2>
+<p>强制删除所有容器，系统清理和volume清理</p>
+<ul>
+<li>docker rm -f $(docker container ps -aq)</li>
+<li>docker system prune -f</li>
+<li>docker volume prune -f</li>
+</ul>
 
   
   <h4><i class="fas fa-share-alt" aria-hidden="true"></i>&nbsp;Share!</h4>
 <ul class="share-buttons">
-	<li><a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fairjunda.github.io%2fpost%2fwin-terminal-setup%2f" target="_blank" title="Share on Facebook"><i class="fab fa-facebook" aria-hidden="true"></i><span class="sr-only">Share on Facebook</span></a>
+	<li><a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fairjunda.github.io%2fpost%2fdocker_mount%2f" target="_blank" title="Share on Facebook"><i class="fab fa-facebook" aria-hidden="true"></i><span class="sr-only">Share on Facebook</span></a>
 	</li>&nbsp;&nbsp;&nbsp;
-	<li><a href="https://twitter.com/intent/tweet?source=https%3a%2f%2fairjunda.github.io%2fpost%2fwin-terminal-setup%2f" target="_blank" title="Tweet"><i class="fab fa-twitter" aria-hidden="true"></i><span class="sr-only">Tweet</span></a>
+	<li><a href="https://twitter.com/intent/tweet?source=https%3a%2f%2fairjunda.github.io%2fpost%2fdocker_mount%2f" target="_blank" title="Tweet"><i class="fab fa-twitter" aria-hidden="true"></i><span class="sr-only">Tweet</span></a>
 	</li>&nbsp;&nbsp;&nbsp;
-	<li><a href="https://plus.google.com/share?url=https%3a%2f%2fairjunda.github.io%2fpost%2fwin-terminal-setup%2f" target="_blank" title="Share on Google+"><i class="fab fa-google-plus" aria-hidden="true"></i><span class="sr-only">Share on Google+</span></a>
+	<li><a href="https://plus.google.com/share?url=https%3a%2f%2fairjunda.github.io%2fpost%2fdocker_mount%2f" target="_blank" title="Share on Google+"><i class="fab fa-google-plus" aria-hidden="true"></i><span class="sr-only">Share on Google+</span></a>
 	</li>&nbsp;&nbsp;&nbsp;
-	<li><a href="http://www.tumblr.com/share?v=3&u=https%3a%2f%2fairjunda.github.io%2fpost%2fwin-terminal-setup%2f" target="_blank" title="Post to Tumblr"><i class="fab fa-tumblr" aria-hidden="true"></i><span class="sr-only">Post to Tumblr</span></a>
+	<li><a href="http://www.tumblr.com/share?v=3&u=https%3a%2f%2fairjunda.github.io%2fpost%2fdocker_mount%2f" target="_blank" title="Post to Tumblr"><i class="fab fa-tumblr" aria-hidden="true"></i><span class="sr-only">Post to Tumblr</span></a>
 	</li>&nbsp;&nbsp;&nbsp;
-	<li><a href="http://pinterest.com/pin/create/button/?url=https%3a%2f%2fairjunda.github.io%2fpost%2fwin-terminal-setup%2f" target="_blank" title="Pin it"><i class="fab fa-pinterest-p" aria-hidden="true"></i><span class="sr-only">Pin it</span></a>
+	<li><a href="http://pinterest.com/pin/create/button/?url=https%3a%2f%2fairjunda.github.io%2fpost%2fdocker_mount%2f" target="_blank" title="Pin it"><i class="fab fa-pinterest-p" aria-hidden="true"></i><span class="sr-only">Pin it</span></a>
 	</li>&nbsp;&nbsp;&nbsp;
-	<li><a href="http://www.reddit.com/submit?url=https%3a%2f%2fairjunda.github.io%2fpost%2fwin-terminal-setup%2f" target="_blank" title="Submit to Reddit"><i class="fab fa-reddit-alien" aria-hidden="true"></i><span class="sr-only">Submit to Reddit</span></a>
+	<li><a href="http://www.reddit.com/submit?url=https%3a%2f%2fairjunda.github.io%2fpost%2fdocker_mount%2f" target="_blank" title="Submit to Reddit"><i class="fab fa-reddit-alien" aria-hidden="true"></i><span class="sr-only">Submit to Reddit</span></a>
 	</li>
 </ul>
 
@@ -363,13 +362,13 @@ Set-Theme Agnoster/paradox/你想要的theme name</p>
 <div class="prev-next-post pure-g">
   <div class="pure-u-1-24" style="text-align: left;">
     
-    <a href="https://airjunda.github.io/post/redis/"><i class="fa fa-chevron-left"></i></a>
+    <a href="https://airjunda.github.io/post/win-terminal-setup/"><i class="fa fa-chevron-left"></i></a>
     
   </div>
   <div class="pure-u-10-24">
     
     <nav class="prev">
-      <a href="https://airjunda.github.io/post/redis/">Redis Get Started on Windows 10</a>
+      <a href="https://airjunda.github.io/post/win-terminal-setup/">Win Terminal Setup</a>
     </nav>
     
   </div>
@@ -378,14 +377,8 @@ Set-Theme Agnoster/paradox/你想要的theme name</p>
   </div>
   <div class="pure-u-10-24">
     
-    <nav class="next">
-      <a href="https://airjunda.github.io/post/docker_mount/">Docker: Mount and Volume</a>
-    </nav>
-    
   </div>
   <div class="pure-u-1-24" style="text-align: right;">
-    
-    <a href="https://airjunda.github.io/post/docker_mount/"><i class="fa fa-chevron-right"></i></a>
     
   </div>
 </div>

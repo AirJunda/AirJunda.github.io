@@ -7,7 +7,7 @@
   <meta name="description" content="">
   <meta name="generator" content="Hugo 0.80.0" />
 
-  <title>Posts &middot; Air Junda Space</title>
+  <title>Container &middot; Air Junda Space</title>
 
     
 
@@ -44,7 +44,7 @@
  
   
   <link rel="alternate" type="application/rss+xml" title="Air Junda Space"
-    href='https://airjunda.github.io/post/index.xml' />
+    href='https://airjunda.github.io/tags/container/index.xml' />
   
 
   
@@ -133,7 +133,7 @@
 
     
     <li class="pure-menu-item">
-      <a class="pure-menu-link" href='https://airjunda.github.io/post/index.xml'><i
+      <a class="pure-menu-link" href='https://airjunda.github.io/tags/container/index.xml'><i
           class="fas fa-rss fa-fw"></i>RSS</a>
     </li>
     
@@ -241,38 +241,74 @@
 
 
 <div class="header">
-  <h1>Posts</h1>
+  <h1>Container</h1>
 </div>
+
 <div class="content">
   
-  <h2>2021</h2>
-  <ul>
-  
-    <li><time>17 Dec 2021, 22:39</time> - <a href="https://airjunda.github.io/post/docker_mount/">Docker: Mount and Volume</a></li>
+    <article>
+  <header>
+    <h2><a href="https://airjunda.github.io/post/docker_mount/">Docker: Mount and Volume</a></h2>
+
+    <div class="post-meta">
+
+  <div>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>17 Dec 2021, 22:39</time>
+  </div>
 
   
-    <li><time>29 Nov 2021, 21:10</time> - <a href="https://airjunda.github.io/post/win-terminal-setup/">Win Terminal Setup</a></li>
 
   
-    <li><time>23 Nov 2021, 22:14</time> - <a href="https://airjunda.github.io/post/redis/">Redis Get Started on Windows 10</a></li>
+  
+  
+  <div>
+    <i class="fa fa-folder fa-fw"></i>
+    
+      <a class="post-taxonomy-topic" href="https://airjunda.github.io/topics/techblog">TechBlog</a>
+    
+  </div>
+  
+  
 
   
-    <li><time>11 Nov 2021, 00:53</time> - <a href="https://airjunda.github.io/post/go_path/">GoPath和Go的包管理</a></li>
+  
+  
+  <div>
+    <i class="fa fa-tags fa-fw"></i>
+    
+      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/docker">Docker</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/tech">Tech</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/container">Container</a>
+    
+  </div>
+  
+  
+
+</div>
+
+  </header>
+
+  <p>
+  Docker数据持久化 默认情况下，在运行中的容器里创建的文件，被保存在一个可写的容器层。如果container只是停止。容器里写入的数据依然在。但是如果把容器给停了。容器里的数据就会丢失。为了永久保存容器里的数据(日志, DB etc.), 我们需要持久化容器里的数据到local host上，或者remote machine上，比如另一台服务器或者AWS S3
+Docker主要提供了两种方式做数据的持久化
+ Data Volume, 由Docker管理，(/var/lib/docker/volumes/ Linux), 持久化数据的最好方式 Bind Mount，由用户指定存储的数据具体mount在系统什么位置  本笔记主要记录的是2种持久化方式。Data Volume和Bind Mount
+Data Volume volume在host上创建。创建和管理是由docker负责的。每个容器持久化的数据存到各自的volume。使用volume方式时，需要在容器的dockfile里添加 下面这样的命令： VOLUME [&quot;/filepath_in_container&quot;] 容器启动后，会在host中生成一个volume。可以通过 docker volume ls 查看到新创建的volume。常用命令：
+ docker volume ls docker volume inspect xxxx (xxx is volume name)  inspect命令可以给出这个volume在host上的path, linux下cd 到那个path就可以看到容器里持久化目录的内容。windows则看不到。因为windows下其实是存放到一个VM中。
+这样方式有一个缺点，就是每次容器创建时都会创建一个新的volume。如果我们想修改image后，运行的容器依然是使用同样的volume, (比如mysql 的容器重新部署后，依然使用原来已经持久化的DB数据) 那么我们需要在container run时指定volume的名字。首次运行会创建一个该名字的volume。之后每次的运行都会指向同名的volume而非再次创立新的volume。需要加上 -v vol_name: path_in_container
+例子如下：
+docker container run --name volume-mysql -e -v mysql-data:/var/lib/mysql mysql:5.7 注意：需要dockfile里声明 VOLUME [&quot;/var/lib/mysql&quot;]
+  </p>
 
   
-    <li><time>07 Nov 2021, 22:39</time> - <a href="https://airjunda.github.io/post/cicd-action/">CICD Action</a></li>
-
+  <footer>
+    <a href="https://airjunda.github.io/post/docker_mount/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
+  </footer>
   
-    <li><time>04 Nov 2021, 22:39</time> - <a href="https://airjunda.github.io/post/hugo/">那些Hugo踩过的坑</a></li>
+</article>
 
-  
-    <li><time>04 Nov 2021, 02:26</time> - <a href="https://airjunda.github.io/post/debut/">Where It All Began</a></li>
-
-  
-    <li><time>04 Nov 2021, 02:26</time> - <a href="https://airjunda.github.io/post/my-first-post/">My First Post</a></li>
-
-  
-  </ul>
   
 </div>
 
@@ -321,4 +357,3 @@
 
 </body>
 </html>
-

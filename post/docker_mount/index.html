@@ -286,9 +286,9 @@
 </ul>
 <p>本笔记主要记录的是2种持久化方式。Data Volume和Bind Mount</p>
 <h2 id="data-volume">Data Volume</h2>
-<p>volume在host上创建。创建和管理是由docker负责的。每个容器持久化的数据存到各自的volume。使用volume方式时，需要在容器的dockfile里添加 下面这样的命令：  <br>
-<code>VOLUME [&quot;/filepath_in_container&quot;]</code>  <br>
-容器启动后，会在host中生成一个volume。可以通过 <code>docker volume ls</code>  查看到新创建的volume。常用命令：</p>
+<p>volume在host上创建。创建和管理是由docker负责的。每个容器持久化的数据存到各自的volume。使用volume方式时，需要在容器的dockfile里添加 下面这样的命令：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dockerfile" data-lang="dockerfile"><span style="color:#66d9ef">VOLUME</span> [<span style="color:#e6db74">&#34;/filepath_in_container&#34;</span>]<span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><p>容器启动后，会在host中生成一个volume。可以通过 <code>docker volume ls</code>  查看到新创建的volume。常用命令：</p>
 <ul>
 <li>docker volume ls</li>
 <li>docker volume inspect xxxx (xxx is volume name)</li>
@@ -297,8 +297,9 @@
 <p>这样方式有一个缺点，就是每次容器创建时都会创建一个新的volume。如果我们想修改image后，运行的容器依然是使用同样的volume, (比如mysql 的容器重新部署后，依然使用原来已经持久化的DB数据) 那么我们需要在container run时指定volume的名字。首次运行会创建一个该名字的volume。之后每次的运行都会指向同名的volume而非再次创立新的volume。需要加上 <code>-v vol_name: path_in_container</code></p>
 <p>例子如下：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">docker container run --name volume-mysql -e  -v mysql-data:/var/lib/mysql mysql:5.7
-</code></pre></div><p><strong>注意</strong>：需要dockfile里声明 <code>VOLUME [&quot;/var/lib/mysql&quot;] </code></p>
-<h2 id="bind-mount">Bind Mount</h2>
+</code></pre></div><p><strong>注意</strong>：需要dockfile里声明</p>
+<pre><code class="language-dockfile" data-lang="dockfile">VOLUME [&quot;/var/lib/mysql&quot;]
+</code></pre><h2 id="bind-mount">Bind Mount</h2>
 <p>这种方式就是指定host上的一个filepath和容器里的某个路径做映射。类似于vagrant里把vagrant file目录和VM里的/vagrant做映射。这个方式在Windows上比使用data volume好用多了。不过需要额外设置下window上的docker for desktop里file share设置。具体看回udemy的视频。</p>
 <p>用法：<code>-v  path_in_host: path_in_container</code></p>
 <p>上课演示的命令如下：</p>

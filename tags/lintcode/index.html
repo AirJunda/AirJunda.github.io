@@ -7,7 +7,7 @@
   <meta name="description" content="">
   <meta name="generator" content="Hugo 0.80.0" />
 
-  <title>Tags &middot; Air Junda Space</title>
+  <title>Lintcode &middot; Air Junda Space</title>
 
     
 
@@ -44,7 +44,7 @@
  
   
   <link rel="alternate" type="application/rss+xml" title="Air Junda Space"
-    href='https://airjunda.github.io/tags/index.xml' />
+    href='https://airjunda.github.io/tags/lintcode/index.xml' />
   
 
   
@@ -133,7 +133,7 @@
 
     
     <li class="pure-menu-item">
-      <a class="pure-menu-link" href='https://airjunda.github.io/tags/index.xml'><i
+      <a class="pure-menu-link" href='https://airjunda.github.io/tags/lintcode/index.xml'><i
           class="fas fa-rss fa-fw"></i>RSS</a>
     </li>
     
@@ -241,68 +241,74 @@
 
 
 <div class="header">
-  <h1>Tags</h1>
+  <h1>Lintcode</h1>
 </div>
+
 <div class="content">
-  <ul>
+  
+    <article>
+  <header>
+    <h2><a href="https://airjunda.github.io/post/lru/">LRU算法复习笔记</a></h2>
+
+    <div class="post-meta">
+
+  <div>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>30 Dec 2021, 22:39</time>
+  </div>
+
+  
+
   
   
-    <li>
-      <a href="tech">tech</a>
-      <span>&#40;7&#41;</span>
-    </li>
   
-    <li>
-      <a href="container">container</a>
-      <span>&#40;2&#41;</span>
-    </li>
+  <div>
+    <i class="fa fa-folder fa-fw"></i>
+    
+      <a class="post-taxonomy-topic" href="https://airjunda.github.io/topics/techblog">TechBlog</a>
+    
+  </div>
   
-    <li>
-      <a href="docker">docker</a>
-      <span>&#40;2&#41;</span>
-    </li>
   
-    <li>
-      <a href="windows">windows</a>
-      <span>&#40;2&#41;</span>
-    </li>
+
   
-    <li>
-      <a href="algo">algo</a>
-      <span>&#40;1&#41;</span>
-    </li>
   
-    <li>
-      <a href="go">go</a>
-      <span>&#40;1&#41;</span>
-    </li>
   
-    <li>
-      <a href="hugo">hugo</a>
-      <span>&#40;1&#41;</span>
-    </li>
+  <div>
+    <i class="fa fa-tags fa-fw"></i>
+    
+      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/algo">Algo</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/tech">Tech</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/lintcode">Lintcode</a>
+    
+  </div>
   
-    <li>
-      <a href="lintcode">lintcode</a>
-      <span>&#40;1&#41;</span>
-    </li>
   
-    <li>
-      <a href="redis">redis</a>
-      <span>&#40;1&#41;</span>
-    </li>
+
+</div>
+
+  </header>
+
+  <p>
+  LRU算法 这篇是记录下LRU算法写起来时候的一些注意事项。LRU算法在OS, DB中都有涉及。在Redis也有涉及。面试也是高频的一个考察。 LRU 的全称是 Least Recently Used，也就是说我们认为最近使用过的数据应该是是「有用的」，很久都没用过的数据应该是无用的，内存满了就优先删那些很久没用过的数据。
+他山之石  labuladong解析   分析 LeetCode的LRU需要下面2个这样的借口。要求：
+ o(1)操作 满了capacity时，set() 时候需要踢掉最久未使用的key-value pair来腾空间 每次get, 需要把key-value挪到某种排序的最前面。  def __init__(self, capacity): pass def get(self, key): pass def set(self, key, value): pass 那么，什么数据结构同时符合上述条件呢？哈希表set/get快，但是数据无固定顺序；链表有顺序之分，set插入快，但是get慢。所以结合一下，形成一种新的数据结构：哈希链表。
+哈希链表就是一个双向linkedlist + hashmap；hashmap的key是key, value是链表里的node。这样可以直接通过某个Key访问到node
+实施 为了写起来方便。记得下面这几点：
+ Node里同时存key和value的值 整2个dummy, 一个叫head，一个叫tail; 初始化双向linked list时就包含这2个dummy。之后set的新node都夹在head和tail之间 可以单独建个类叫DoubleLinkedList做一些封装。也可以只定义node。其他所有的helper method全放到Class LRU里  使用OrderDict的偷懒实现 OrderDict是Python中的特殊哈希表。会按插入先后顺序维持一个序列。最先添加的位于最左，后面的加到右边。这个版本里需要记忆orderdict丢弃第一个key的特殊用法： dict.popitem(last=False)
+from collections import OrderedDict class LRUCache: &#34;&#34;&#34; @param: capacity: An integer &#34;&#34;&#34; def __init__(self, capacity): self.
+  </p>
+
   
-    <li>
-      <a href="setup">setup</a>
-      <span>&#40;1&#41;</span>
-    </li>
+  <footer>
+    <a href="https://airjunda.github.io/post/lru/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
+  </footer>
   
-    <li>
-      <a href="terminal">terminal</a>
-      <span>&#40;1&#41;</span>
-    </li>
+</article>
+
   
-  </ul>
 </div>
 
 </div>

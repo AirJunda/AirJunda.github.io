@@ -301,13 +301,6 @@ LRU 的全称是 Least Recently Used，也就是说我们认为最近使用过�
 </code></pre></div><p>那么，什么数据结构同时符合上述条件呢？哈希表set/get快，但是数据无固定顺序；链表有顺序之分，set插入快，但是get慢。所以结合一下，形成一种新的数据结构：哈希链表。</p>
 <p><img src="https://pic.leetcode-cn.com/b84cf65debb43b28bd212787ca63d34c9962696ed427f638763be71a3cb8f89d.jpg" alt="哈希链表"></p>
 <p>哈希链表就是一个双向linkedlist + hashmap；hashmap的key是key, value是链表里的node。这样可以直接通过某个Key访问到node</p>
-<h2 id="实施">实施</h2>
-<p>为了写起来方便。记得下面这几点：</p>
-<ul>
-<li>Node里同时存key和value的值</li>
-<li>整2个dummy, 一个叫head，一个叫tail; 初始化双向linked list时就包含这2个dummy。之后set的新node都夹在head和tail之间</li>
-<li>可以单独建个类叫DoubleLinkedList做一些封装。也可以只定义node。其他所有的helper method全放到Class LRU里</li>
-</ul>
 <h2 id="使用orderdict的偷懒实现">使用OrderDict的偷懒实现</h2>
 <p>OrderDict是Python中的特殊哈希表。会按插入先后顺序维持一个序列。最先添加的位于最左，后面的加到右边。<strong>这个版本里需要记忆orderdict丢弃第一个key的特殊用法： dict.popitem(last=False)</strong></p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> collections <span style="color:#f92672">import</span> OrderedDict
@@ -340,20 +333,185 @@ LRU 的全称是 Least Recently Used，也就是说我们认为最近使用过�
     <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">set</span>(self, key, value):
         <span style="color:#75715e"># 1. check key在不在</span>
         <span style="color:#75715e"># 2. check 有么有满了</span>
-
-
         <span style="color:#66d9ef">if</span> key <span style="color:#f92672">not</span> <span style="color:#f92672">in</span> self<span style="color:#f92672">.</span>maps:
             <span style="color:#66d9ef">if</span> len(self<span style="color:#f92672">.</span>maps<span style="color:#f92672">.</span>keys()) <span style="color:#f92672">==</span> self<span style="color:#f92672">.</span>capacity:
                 <span style="color:#75715e">#  orderdict中丢弃最左的第一个k-v的特殊写法</span>
                 self<span style="color:#f92672">.</span>maps<span style="color:#f92672">.</span>popitem(last<span style="color:#f92672">=</span>False)
-
         <span style="color:#66d9ef">else</span>:
             self<span style="color:#f92672">.</span>maps<span style="color:#f92672">.</span>pop(key)
         self<span style="color:#f92672">.</span>maps[key] <span style="color:#f92672">=</span> value
-            
 </code></pre></div><p>但是面试时候，通常会让你从头用双端队列实现。</p>
 <h2 id="double-linked-list实现">Double Linked List实现</h2>
+<p>我思维习惯把后面添加的node放到list的右边。左边是最早入列 aka 出局时第一个死的。
+为了写起来方便。记得下面这几点：</p>
+<ul>
+<li>Node里同时存key和value的值</li>
+<li>整2个dummy, 一个叫head，一个叫tail; 初始化双向linked list时就包含这2个dummy。之后set的新node都夹在head和tail之间。<strong>head和tail并不是队列里的head和tail,而是dummy</strong></li>
+<li>可以单独建个类叫DoubleLinkedList做一些封装。也可以只定义node。其他所有的helper method全放到Class LRU里</li>
+<li>size建议直接获取hashmap的size 而不是自己维护size变量</li>
+<li>除了set/get外的辅助函数：add(k,v OR node), pop(node), move2tail(node), popfront()</li>
+<li>pop(node)不需要把这个node的prev, next都砍掉</li>
+</ul>
+<p>写的时候我有自己思考过，hashmap的del/set是放到set(), get()里，还是放到add(), pop(), popfront() ?  我觉得其实都可以。如果封装一个doubleList 的类。就放到set/get里。因为hashmap的维护是LRU这个类才去做。</p>
+<p>这一版我写的。我是把hashmap操作写在pop(), add(), move2tail() 这些helper里</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Node</span>:
+    <span style="color:#66d9ef">def</span> __init__(self, key, val):
+        self<span style="color:#f92672">.</span>key <span style="color:#f92672">=</span> key
+        self<span style="color:#f92672">.</span>val <span style="color:#f92672">=</span> val
+        self<span style="color:#f92672">.</span>next <span style="color:#f92672">=</span> None
+        self<span style="color:#f92672">.</span>prev <span style="color:#f92672">=</span> None
 
+    <span style="color:#66d9ef">def</span> __str__(self):
+        <span style="color:#66d9ef">return</span> str(self<span style="color:#f92672">.</span>key) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;: &#34;</span> <span style="color:#f92672">+</span> str(self<span style="color:#f92672">.</span>val)
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">LRUCache</span>:
+ 
+    <span style="color:#66d9ef">def</span> __init__(self, capacity):
+        self<span style="color:#f92672">.</span>capacity <span style="color:#f92672">=</span> capacity
+        self<span style="color:#f92672">.</span>key2node <span style="color:#f92672">=</span> dict()
+        self<span style="color:#f92672">.</span>head <span style="color:#f92672">=</span> Node(<span style="color:#e6db74">&#39;h&#39;</span>, <span style="color:#e6db74">&#39;head&#39;</span>)
+        self<span style="color:#f92672">.</span>tail <span style="color:#f92672">=</span> Node(<span style="color:#e6db74">&#39;t&#39;</span>, <span style="color:#e6db74">&#39;tail&#39;</span>)
+        self<span style="color:#f92672">.</span>head<span style="color:#f92672">.</span>next <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>tail
+        self<span style="color:#f92672">.</span>tail<span style="color:#f92672">.</span>prev <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>head
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">getsize</span>(self):
+        <span style="color:#66d9ef">return</span> len(self<span style="color:#f92672">.</span>key2node)
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">popleft</span>(self):
+        self<span style="color:#f92672">.</span>pop(self<span style="color:#f92672">.</span>head<span style="color:#f92672">.</span>next)
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">pop</span>(self, node):
+        prevn <span style="color:#f92672">=</span> node<span style="color:#f92672">.</span>prev
+        nextn <span style="color:#f92672">=</span> node<span style="color:#f92672">.</span>next
+        prevn<span style="color:#f92672">.</span>next <span style="color:#f92672">=</span> nextn
+        nextn<span style="color:#f92672">.</span>prev <span style="color:#f92672">=</span> prevn
+
+        <span style="color:#75715e">#node.next, node.prev = None, None #不必要的砍断</span>
+        <span style="color:#66d9ef">del</span> self<span style="color:#f92672">.</span>key2node[node<span style="color:#f92672">.</span>key]
+        <span style="color:#66d9ef">return</span> node
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">add</span>(self, node):
+        <span style="color:#75715e"># assume the key not in the LRU</span>
+        lastnode <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>tail<span style="color:#f92672">.</span>prev
+        lastnode<span style="color:#f92672">.</span>next <span style="color:#f92672">=</span> node
+        node<span style="color:#f92672">.</span>prev <span style="color:#f92672">=</span> lastnode
+        self<span style="color:#f92672">.</span>tail<span style="color:#f92672">.</span>prev <span style="color:#f92672">=</span> node
+        node<span style="color:#f92672">.</span>next <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>tail
+
+        self<span style="color:#f92672">.</span>key2node[node<span style="color:#f92672">.</span>key] <span style="color:#f92672">=</span> node
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">move2tail</span>(self, node):
+        self<span style="color:#f92672">.</span>pop(node)
+        lastnode <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>tail<span style="color:#f92672">.</span>prev
+        lastnode<span style="color:#f92672">.</span>next <span style="color:#f92672">=</span> node
+        node<span style="color:#f92672">.</span>prev <span style="color:#f92672">=</span> lastnode
+        self<span style="color:#f92672">.</span>tail<span style="color:#f92672">.</span>prev <span style="color:#f92672">=</span> node
+        node<span style="color:#f92672">.</span>next <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>tail
+
+        self<span style="color:#f92672">.</span>key2node[node<span style="color:#f92672">.</span>key] <span style="color:#f92672">=</span> node
+
+    <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">    @return: An integer
+</span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get</span>(self, key):
+        <span style="color:#66d9ef">if</span> key <span style="color:#f92672">not</span> <span style="color:#f92672">in</span> self<span style="color:#f92672">.</span>key2node: <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+        targetnode <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>key2node[key]
+        self<span style="color:#f92672">.</span>move2tail(targetnode)
+
+        <span style="color:#66d9ef">return</span> targetnode<span style="color:#f92672">.</span>val
+
+    <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">    @return: nothing
+</span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">set</span>(self, key, value):
+        <span style="color:#75715e"># if key not in LRU</span>
+        <span style="color:#66d9ef">if</span> key <span style="color:#f92672">not</span> <span style="color:#f92672">in</span> self<span style="color:#f92672">.</span>key2node:
+            <span style="color:#75715e"># if capcity is full</span>
+            <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>capacity <span style="color:#f92672">==</span> self<span style="color:#f92672">.</span>getsize():
+                self<span style="color:#f92672">.</span>popleft()
+            self<span style="color:#f92672">.</span>add( Node(key,value) )
+        <span style="color:#66d9ef">else</span>: <span style="color:#75715e"># key in LRU</span>
+            node <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>key2node[key]
+            node<span style="color:#f92672">.</span>val <span style="color:#f92672">=</span> value
+            self<span style="color:#f92672">.</span>move2tail(node)
+            
+</code></pre></div><p> </p>
+<h2 id="另一种写法">另一种写法</h2>
+<p>下面这个是labuladong的思路。把double linked list单独封装。把pop(node), add(node)，popfront()放到double linked list，把map的操作放到LRU里</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Node</span>:
+    <span style="color:#66d9ef">def</span> __init__(self, key, val, next<span style="color:#f92672">=</span>None, prev<span style="color:#f92672">=</span>None):
+        self<span style="color:#f92672">.</span>key <span style="color:#f92672">=</span> key
+        self<span style="color:#f92672">.</span>val <span style="color:#f92672">=</span> val
+        self<span style="color:#f92672">.</span>next <span style="color:#f92672">=</span> next
+        self<span style="color:#f92672">.</span>prev <span style="color:#f92672">=</span> prev
+
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DoubleList</span>:
+    <span style="color:#66d9ef">def</span> __init__(self):
+        <span style="color:#75715e"># self.head和self.tail都充当dummy节点（哨兵节点）</span>
+        self<span style="color:#f92672">.</span>head <span style="color:#f92672">=</span> Node(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
+        self<span style="color:#f92672">.</span>tail <span style="color:#f92672">=</span> Node(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
+        self<span style="color:#f92672">.</span>head<span style="color:#f92672">.</span>next <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>tail
+        self<span style="color:#f92672">.</span>tail<span style="color:#f92672">.</span>prev <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>head
+        self<span style="color:#f92672">.</span>size <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">addFirst</span>(self, x):
+        <span style="color:#e6db74">&#34;&#34;&#34;在最前面加个节点x，注意语句顺序，很经典！&#34;&#34;&#34;</span>
+        x<span style="color:#f92672">.</span>next <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>head<span style="color:#f92672">.</span>next
+        x<span style="color:#f92672">.</span>prev <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>head
+        self<span style="color:#f92672">.</span>head<span style="color:#f92672">.</span>next<span style="color:#f92672">.</span>prev <span style="color:#f92672">=</span> x
+        self<span style="color:#f92672">.</span>head<span style="color:#f92672">.</span>next <span style="color:#f92672">=</span> x
+        self<span style="color:#f92672">.</span>size <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">remove</span>(self, x):
+        <span style="color:#e6db74">&#34;&#34;&#34;删除节点x，assume调用时说明x一定存在&#34;&#34;&#34;</span>
+        x<span style="color:#f92672">.</span>prev<span style="color:#f92672">.</span>next <span style="color:#f92672">=</span> x<span style="color:#f92672">.</span>next  <span style="color:#75715e"># 像一个顺时针</span>
+        x<span style="color:#f92672">.</span>next<span style="color:#f92672">.</span>prev <span style="color:#f92672">=</span> x<span style="color:#f92672">.</span>prev
+        self<span style="color:#f92672">.</span>size <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1</span>
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">removeLast</span>(self):
+        <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">        删除链表中最后一个节点，并返回该节点
+</span><span style="color:#e6db74">        注意双向链表的删除时间复杂度是O(1)的，因为立刻能找到该删除节点的前驱
+</span><span style="color:#e6db74">        &#34;&#34;&#34;</span>
+        <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>size <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+            <span style="color:#66d9ef">return</span> None
+        last_node <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>tail<span style="color:#f92672">.</span>prev
+        self<span style="color:#f92672">.</span>remove(last_node)
+        <span style="color:#66d9ef">return</span> last_node
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">getSize</span>(self):
+        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>size
+
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">LRUCache</span>:
+
+    <span style="color:#66d9ef">def</span> __init__(self, capacity: int):
+        self<span style="color:#f92672">.</span>capacity <span style="color:#f92672">=</span> capacity
+        self<span style="color:#f92672">.</span>map <span style="color:#f92672">=</span> {}
+        self<span style="color:#f92672">.</span>cache <span style="color:#f92672">=</span> DoubleList()
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get</span>(self, key: int) <span style="color:#f92672">-&gt;</span> int:
+        <span style="color:#66d9ef">if</span> key <span style="color:#f92672">not</span> <span style="color:#f92672">in</span> self<span style="color:#f92672">.</span>map:
+            <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+        val <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>map[key]<span style="color:#f92672">.</span>val
+        self<span style="color:#f92672">.</span>put(key, val)
+        <span style="color:#66d9ef">return</span> val
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">put</span>(self, key: int, value: int) <span style="color:#f92672">-&gt;</span> None:
+        new_item <span style="color:#f92672">=</span> Node(key, value)
+        <span style="color:#66d9ef">if</span> key <span style="color:#f92672">in</span> self<span style="color:#f92672">.</span>map:
+            self<span style="color:#f92672">.</span>cache<span style="color:#f92672">.</span>remove(self<span style="color:#f92672">.</span>map[key])
+            self<span style="color:#f92672">.</span>cache<span style="color:#f92672">.</span>addFirst(new_item)
+            self<span style="color:#f92672">.</span>map[key] <span style="color:#f92672">=</span> new_item
+        <span style="color:#66d9ef">else</span>:
+            <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>capacity <span style="color:#f92672">==</span> self<span style="color:#f92672">.</span>cache<span style="color:#f92672">.</span>getSize():
+                last_node <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>cache<span style="color:#f92672">.</span>removeLast()
+                self<span style="color:#f92672">.</span>map<span style="color:#f92672">.</span>pop(last_node<span style="color:#f92672">.</span>key)
+            self<span style="color:#f92672">.</span>cache<span style="color:#f92672">.</span>addFirst(new_item)
+            self<span style="color:#f92672">.</span>map[key] <span style="color:#f92672">=</span> new_item
+
+</code></pre></div>
   
   <h4><i class="fas fa-share-alt" aria-hidden="true"></i>&nbsp;Share!</h4>
 <ul class="share-buttons">

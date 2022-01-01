@@ -297,9 +297,8 @@
 他山之石  labuladong解析   分析 LeetCode的LRU需要下面2个这样的借口。要求：
  o(1)操作 满了capacity时，set() 时候需要踢掉最久未使用的key-value pair来腾空间 每次get, 需要把key-value挪到某种排序的最前面。  def __init__(self, capacity): pass def get(self, key): pass def set(self, key, value): pass 那么，什么数据结构同时符合上述条件呢？哈希表set/get快，但是数据无固定顺序；链表有顺序之分，set插入快，但是get慢。所以结合一下，形成一种新的数据结构：哈希链表。
 哈希链表就是一个双向linkedlist + hashmap；hashmap的key是key, value是链表里的node。这样可以直接通过某个Key访问到node
-实施 为了写起来方便。记得下面这几点：
- Node里同时存key和value的值 整2个dummy, 一个叫head，一个叫tail; 初始化双向linked list时就包含这2个dummy。之后set的新node都夹在head和tail之间 可以单独建个类叫DoubleLinkedList做一些封装。也可以只定义node。其他所有的helper method全放到Class LRU里  使用OrderDict的偷懒实现 OrderDict是Python中的特殊哈希表。会按插入先后顺序维持一个序列。最先添加的位于最左，后面的加到右边。这个版本里需要记忆orderdict丢弃第一个key的特殊用法： dict.popitem(last=False)
-from collections import OrderedDict class LRUCache: &#34;&#34;&#34; @param: capacity: An integer &#34;&#34;&#34; def __init__(self, capacity): self.
+使用OrderDict的偷懒实现 OrderDict是Python中的特殊哈希表。会按插入先后顺序维持一个序列。最先添加的位于最左，后面的加到右边。这个版本里需要记忆orderdict丢弃第一个key的特殊用法： dict.popitem(last=False)
+from collections import OrderedDict class LRUCache: &#34;&#34;&#34; @param: capacity: An integer &#34;&#34;&#34; def __init__(self, capacity): self.capacity = capacity self.maps = OrderedDict() &#34;&#34;&#34; @param: key: An integer @return: An integer &#34;&#34;&#34; def get(self, key): if key not in self.
   </p>
 
   

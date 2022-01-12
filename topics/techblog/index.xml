@@ -6,7 +6,19 @@
     <description>Recent content in TechBlog on Air Junda Space</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>&amp;copy; 2021. All rights reserved.</copyright>
-    <lastBuildDate>Thu, 30 Dec 2021 22:39:12 +0800</lastBuildDate><atom:link href="https://airjunda.github.io/topics/techblog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 12 Jan 2022 18:38:33 +0800</lastBuildDate><atom:link href="https://airjunda.github.io/topics/techblog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Comparator</title>
+      <link>https://airjunda.github.io/post/comparator/</link>
+      <pubDate>Wed, 12 Jan 2022 18:38:33 +0800</pubDate>
+      
+      <guid>https://airjunda.github.io/post/comparator/</guid>
+      <description>Python中自定义comparator 有的题目需要排序时基于自定义的规则去排序。自定义规则通过手写comparator去实现。sorted(), sort()都可以传入自定义的compartor, 但是python3的使用上有点点不一样。因为没有了cmp参数。
+Lintcode相关题目  184 Largest Number  comparator 对于函数 comp(left, right)： 1. return a negative value (&amp;lt; 0) when the left item should be sorted before the right item 2. return a positive value (&amp;gt; 0) when the left item should be sorted after the right item 3. return 0 if left and right input is equal
+实战（184 最大数） 给出一组非负整数，重新排列他们的顺序把他们组成一个最大的整数。
+Input: [1, 20, 23, 4, 8] Output: &amp;#34;8423201&amp;#34; Python2</description>
+    </item>
+    
     <item>
       <title>LRU算法复习笔记</title>
       <link>https://airjunda.github.io/post/lru/</link>

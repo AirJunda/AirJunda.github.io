@@ -13,11 +13,6 @@
   </url>
   
   <url>
-    <loc>https://airjunda.github.io/post/comparator/</loc>
-    <lastmod>2022-01-12T18:38:33+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://airjunda.github.io/tags/lintcode/</loc>
     <lastmod>2022-01-12T18:38:33+08:00</lastmod>
   </url>
@@ -29,6 +24,11 @@
   
   <url>
     <loc>https://airjunda.github.io/tags/python/</loc>
+    <lastmod>2022-01-12T18:38:33+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://airjunda.github.io/post/comparator/</loc>
     <lastmod>2022-01-12T18:38:33+08:00</lastmod>
   </url>
   

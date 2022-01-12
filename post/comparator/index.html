@@ -321,9 +321,7 @@ Output: <span style="color:#e6db74">&#34;8423201&#34;</span>
 参入comparator 不能再用cmp=mycmp; 使用的是key参数，但是key不能传入函数。所以需要functools.cmp_to_key(func)去把函数转成key</p>
 <p>因此需要<strong>import functools</strong>, 最后使用如下</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python">nums <span style="color:#f92672">=</span> sorted(num,key<span style="color:#f92672">=</span>functools<span style="color:#f92672">.</span>cmp_to_key(mycmp), reverse<span style="color:#f92672">=</span>True)
-</code></pre></div><h2 id="相关练习">相关练习</h2>
-<p>Lintcode182 <a href="https://www.lintcode.com/problem/182">Delete Digits</a></p>
-
+</code></pre></div>
   
   <h4><i class="fas fa-share-alt" aria-hidden="true"></i>&nbsp;Share!</h4>
 <ul class="share-buttons">

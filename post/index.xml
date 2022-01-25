@@ -6,7 +6,23 @@
     <description>Recent content in Posts on Air Junda Space</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>&amp;copy; 2021. All rights reserved.</copyright>
-    <lastBuildDate>Wed, 12 Jan 2022 18:38:33 +0800</lastBuildDate><atom:link href="https://airjunda.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 25 Jan 2022 18:10:21 +0800</lastBuildDate><atom:link href="https://airjunda.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Binary Search易错难点</title>
+      <link>https://airjunda.github.io/post/binary_search/</link>
+      <pubDate>Tue, 25 Jan 2022 18:10:21 +0800</pubDate>
+      
+      <guid>https://airjunda.github.io/post/binary_search/</guid>
+      <description>二分法本身不难。不过有几类类问题我还不是特别熟练。容易卡住/出错。这个文章就是记录下相关的题。方便以后复习。
+倍增法  447 在大数组中查找  二分答案 二分答案容易出Hard. 这类题难的是要么想不到可以用二分法做，要么就是二分用的helper()不知道做什么。二分答案的helper()很多题里都是一种greedy的思路。
+931这题号称集二分法之大成的经典题
+二分答案合集
+旋转数组相关 寻找旋转排序数组中的最小值
+ 159 160  搜索旋转数组中的值
+ 62 63  159 寻找旋转排序数组中的最小值（无重复） 159这题 我觉得难点是思考的全面性。比如binary search里判断条件是 &amp;gt; 还是 &amp;gt;=；但是这题是假设no repeated elements, 所以其实不难。
+class Solution: &amp;#34;&amp;#34;&amp;#34; @param nums: a rotated sorted array @return: the minimum number in the array &amp;#34;&amp;#34;&amp;#34; def findMin(self, nums): # 159 solution l, r = 0, len(nums)-1 leftmin, rightmax = nums[0], nums[-1] while l + 1 &amp;lt; r: m = (l + r) // 2 if nums[m] &amp;gt;= rightmax: l = m elif nums[m] &amp;lt; rightmax: r = m return min(nums[r],nums[l],leftmin) 160 寻找旋转排序数组中的最小值（有重复） 160这题的坑是这样的：如果沿用159的做法会错。因为有重复元素后，如果旋转点刚好是在一群repeated element中间。就会形成新的nums里nums[-1]==nums[0]</description>
+    </item>
+    
     <item>
       <title>Python自定义Comparator</title>
       <link>https://airjunda.github.io/post/comparator/</link>

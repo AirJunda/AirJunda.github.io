@@ -7,7 +7,7 @@
   <meta name="description" content="">
   <meta name="generator" content="Hugo 0.80.0" />
 
-  <title>Python自定义Comparator &middot; Air Junda Space</title>
+  <title>Binary Search易错难点 &middot; Air Junda Space</title>
 
     
 
@@ -233,7 +233,7 @@
 
 
 <div class="header">
-  <h1>Python自定义Comparator</h1>
+  <h1>Binary Search易错难点</h1>
   <h2></h2>
 </div>
 <div class="content">
@@ -242,100 +242,99 @@
 
   <div>
     <i class="fa fa-calendar fa-fw"></i>
-    <time>12 Jan 2022, 18:38</time>
+    <time>25 Jan 2022, 18:10</time>
   </div>
 
   
 
   
-  
-  
-  <div>
-    <i class="fa fa-folder fa-fw"></i>
-    
-      <a class="post-taxonomy-topic" href="https://airjunda.github.io/topics/techblog">TechBlog</a>
-    
-  </div>
-  
-  
 
-  
-  
-  
-  <div>
-    <i class="fa fa-tags fa-fw"></i>
-    
-      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/algo">Algo</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/tech">Tech</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/lintcode">Lintcode</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/python">Python</a>
-    
-  </div>
-  
   
 
 </div>
 
-  <h2 id="python中自定义comparator">Python中自定义comparator</h2>
-<p>有的题目需要排序时基于自定义的规则去排序。自定义规则通过手写comparator去实现。sorted(), sort()都可以传入自定义的compartor, 但是python3的使用上有点点不一样。因为没有了cmp参数。</p>
-<h3 id="lintcode相关题目">Lintcode相关题目</h3>
+  <p>二分法本身不难。不过有几类类问题我还不是特别熟练。容易卡住/出错。这个文章就是记录下相关的题。方便以后复习。</p>
+<h2 id="倍增法">倍增法</h2>
 <ul>
-<li><a href="https://www.lintcode.com/problem/184/description">184 Largest Number</a></li>
+<li><a href="https://www.lintcode.com/problem/447/note">447  在大数组中查找</a></li>
 </ul>
-<h3 id="comparator">comparator</h3>
-<p>对于函数 comp(left, right)：</p>
+<h2 id="二分答案">二分答案</h2>
+<p>二分答案容易出Hard. 这类题难的是要么想不到可以用二分法做，要么就是二分用的helper()不知道做什么。二分答案的helper()很多题里都是一种greedy的思路。</p>
+<p><a href="https://www.lintcode.com/problem/931/">931</a>这题号称集二分法之大成的经典题</p>
+<p><a href="https://www.lintcode.com/problem-tag/419/">二分答案合集</a></p>
+<h2 id="旋转数组相关">旋转数组相关</h2>
+<p>寻找旋转排序数组中的最小值</p>
 <ul>
-<li>return a negative value (&lt; 0) when the left item should be sorted before the right item</li>
-<li>return a positive value (&gt; 0) when the left item should be sorted after the right item</li>
-<li>return 0 if left and right input is equal</li>
+<li><a href="https://www.lintcode.com/problem/159/">159</a></li>
+<li><a href="https://www.lintcode.com/problem/160/">160</a></li>
 </ul>
-<h3 id="实战184-最大数">实战（184 最大数）</h3>
-<p>给出一组非负整数，重新排列他们的顺序把他们组成一个最大的整数。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">Input: [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">23</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">8</span>]
-Output: <span style="color:#e6db74">&#34;8423201&#34;</span>
-</code></pre></div><p>Python2</p>
+<p>搜索旋转数组中的值</p>
+<ul>
+<li><a href="https://www.lintcode.com/problem/62/">62</a></li>
+<li><a href="https://www.lintcode.com/problem/63/description">63</a></li>
+</ul>
+<h3 id="159-寻找旋转排序数组中的最小值无重复">159 寻找旋转排序数组中的最小值（无重复）</h3>
+<p>159这题 我觉得难点是思考的全面性。比如binary search里判断条件是 &gt; 还是 &gt;=；但是这题是假设no repeated elements, 所以其实不难。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span>:
     <span style="color:#e6db74">&#34;&#34;&#34;
-</span><span style="color:#e6db74">    @param nums: A list of non negative integers
-</span><span style="color:#e6db74">    @return: A string
+</span><span style="color:#e6db74">    @param nums: a rotated sorted array
+</span><span style="color:#e6db74">    @return: the minimum number in the array
 </span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">largestNumber</span>(self, num):
-        <span style="color:#75715e">#更简单写法 nums = sorted(num, cmp=lambda x, y: 1 if str(x) + str(y) &lt; str(y) + str(x) else -1)</span>
-        nums <span style="color:#f92672">=</span> sorted(num,cmp<span style="color:#f92672">=</span>self<span style="color:#f92672">.</span>mycmp, reverse<span style="color:#f92672">=</span>True)
-        <span style="color:#66d9ef">if</span> nums[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
-            <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;0&#39;</span>
-        tmp <span style="color:#f92672">=</span> [str(x) <span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> nums]
-        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;&#34;</span><span style="color:#f92672">.</span>join(tmp)
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">findMin</span>(self, nums):
+        <span style="color:#75715e"># 159 solution</span>
+        l, r <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, len(nums)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+        leftmin, rightmax <span style="color:#f92672">=</span> nums[<span style="color:#ae81ff">0</span>], nums[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
+        <span style="color:#66d9ef">while</span> l <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;</span> r:
+            m <span style="color:#f92672">=</span> (l <span style="color:#f92672">+</span> r) <span style="color:#f92672">//</span> <span style="color:#ae81ff">2</span>
+            <span style="color:#66d9ef">if</span> nums[m] <span style="color:#f92672">&gt;=</span> rightmax:
+                l <span style="color:#f92672">=</span> m
+            <span style="color:#66d9ef">elif</span> nums[m] <span style="color:#f92672">&lt;</span> rightmax:
+                r <span style="color:#f92672">=</span> m
 
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">mycmp</span>(self,a,b):
-        <span style="color:#75715e"># a &lt; b return 1, &gt; -1, equal,1</span>
-        <span style="color:#66d9ef">if</span> str(a) <span style="color:#f92672">+</span> str(b) <span style="color:#f92672">&lt;</span> str(b) <span style="color:#f92672">+</span> str(a):
-            <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
-        <span style="color:#66d9ef">elif</span> str(a) <span style="color:#f92672">+</span> str(b) <span style="color:#f92672">&gt;</span> str(b) <span style="color:#f92672">+</span> str(a):
-            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>
-        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>
-</code></pre></div><p>Python3
-参入comparator 不能再用cmp=mycmp; 使用的是key参数，但是key不能传入函数。所以需要functools.cmp_to_key(func)去把函数转成key</p>
-<p>因此需要<strong>import functools</strong>, 最后使用如下</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Python" data-lang="Python">nums <span style="color:#f92672">=</span> sorted(num,key<span style="color:#f92672">=</span>functools<span style="color:#f92672">.</span>cmp_to_key(mycmp), reverse<span style="color:#f92672">=</span>True)
+        <span style="color:#66d9ef">return</span> min(nums[r],nums[l],leftmin)
+
+</code></pre></div><h3 id="160-寻找旋转排序数组中的最小值有重复">160 寻找旋转排序数组中的最小值（有重复）</h3>
+<p>160这题的坑是这样的：如果沿用159的做法会错。因为有重复元素后，如果旋转点刚好是在一群repeated element中间。就会形成新的nums里nums[-1]==nums[0]</p>
+<p>比如：
+[1,1,-1,1]
+[999,999,1000,1000,10000,0,999,999,999]</p>
+<p>出错的原因是当<code>nums[mid] == v</code>时，我们无法确定mid是在断点左边的山坡还是右边的山坡。</p>
+<p>解决办法
+假设这个左右都出现的重复元素是v,我们先把nums左或者右的任意一边的v全消掉。这样就避免了当<code>nums[mid] == v</code>时，我们无法订位在哪个坡的问题。
+我的方法是在进入二分前，先把左边的v全砍掉：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">findMin</span>(self, nums):
+        <span style="color:#75715e"># 160</span>
+        arr <span style="color:#f92672">=</span> nums
+        l, r <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, len(nums)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+        <span style="color:#66d9ef">while</span> l  <span style="color:#f92672">&lt;</span> r <span style="color:#f92672">and</span>  nums[l] <span style="color:#f92672">==</span> nums[r]:
+            <span style="color:#75715e"># 砍掉左边的v</span>
+            l <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+
+        rightmax <span style="color:#f92672">=</span> nums[r]
+        <span style="color:#66d9ef">while</span> l <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;</span> r:
+            m <span style="color:#f92672">=</span> (l <span style="color:#f92672">+</span> r) <span style="color:#f92672">//</span> <span style="color:#ae81ff">2</span>
+            <span style="color:#66d9ef">if</span> nums[m] <span style="color:#f92672">&gt;</span> rightmax:
+                l <span style="color:#f92672">=</span> m
+            <span style="color:#66d9ef">elif</span> nums[m] <span style="color:#f92672">&lt;=</span> rightmax:
+                <span style="color:#75715e"># 有了上面的砍断，这里用 &lt;=就是安全的</span>
+                r <span style="color:#f92672">=</span> m
+
+        <span style="color:#66d9ef">return</span> min(rightmax,arr[l],arr[r])
 </code></pre></div>
   
   <h4><i class="fas fa-share-alt" aria-hidden="true"></i>&nbsp;Share!</h4>
 <ul class="share-buttons">
-	<li><a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fairjunda.github.io%2fpost%2fcomparator%2f" target="_blank" title="Share on Facebook"><i class="fab fa-facebook" aria-hidden="true"></i><span class="sr-only">Share on Facebook</span></a>
+	<li><a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fairjunda.github.io%2fpost%2fbinary_search%2f" target="_blank" title="Share on Facebook"><i class="fab fa-facebook" aria-hidden="true"></i><span class="sr-only">Share on Facebook</span></a>
 	</li>&nbsp;&nbsp;&nbsp;
-	<li><a href="https://twitter.com/intent/tweet?source=https%3a%2f%2fairjunda.github.io%2fpost%2fcomparator%2f" target="_blank" title="Tweet"><i class="fab fa-twitter" aria-hidden="true"></i><span class="sr-only">Tweet</span></a>
+	<li><a href="https://twitter.com/intent/tweet?source=https%3a%2f%2fairjunda.github.io%2fpost%2fbinary_search%2f" target="_blank" title="Tweet"><i class="fab fa-twitter" aria-hidden="true"></i><span class="sr-only">Tweet</span></a>
 	</li>&nbsp;&nbsp;&nbsp;
-	<li><a href="https://plus.google.com/share?url=https%3a%2f%2fairjunda.github.io%2fpost%2fcomparator%2f" target="_blank" title="Share on Google+"><i class="fab fa-google-plus" aria-hidden="true"></i><span class="sr-only">Share on Google+</span></a>
+	<li><a href="https://plus.google.com/share?url=https%3a%2f%2fairjunda.github.io%2fpost%2fbinary_search%2f" target="_blank" title="Share on Google+"><i class="fab fa-google-plus" aria-hidden="true"></i><span class="sr-only">Share on Google+</span></a>
 	</li>&nbsp;&nbsp;&nbsp;
-	<li><a href="http://www.tumblr.com/share?v=3&u=https%3a%2f%2fairjunda.github.io%2fpost%2fcomparator%2f" target="_blank" title="Post to Tumblr"><i class="fab fa-tumblr" aria-hidden="true"></i><span class="sr-only">Post to Tumblr</span></a>
+	<li><a href="http://www.tumblr.com/share?v=3&u=https%3a%2f%2fairjunda.github.io%2fpost%2fbinary_search%2f" target="_blank" title="Post to Tumblr"><i class="fab fa-tumblr" aria-hidden="true"></i><span class="sr-only">Post to Tumblr</span></a>
 	</li>&nbsp;&nbsp;&nbsp;
-	<li><a href="http://pinterest.com/pin/create/button/?url=https%3a%2f%2fairjunda.github.io%2fpost%2fcomparator%2f" target="_blank" title="Pin it"><i class="fab fa-pinterest-p" aria-hidden="true"></i><span class="sr-only">Pin it</span></a>
+	<li><a href="http://pinterest.com/pin/create/button/?url=https%3a%2f%2fairjunda.github.io%2fpost%2fbinary_search%2f" target="_blank" title="Pin it"><i class="fab fa-pinterest-p" aria-hidden="true"></i><span class="sr-only">Pin it</span></a>
 	</li>&nbsp;&nbsp;&nbsp;
-	<li><a href="http://www.reddit.com/submit?url=https%3a%2f%2fairjunda.github.io%2fpost%2fcomparator%2f" target="_blank" title="Submit to Reddit"><i class="fab fa-reddit-alien" aria-hidden="true"></i><span class="sr-only">Submit to Reddit</span></a>
+	<li><a href="http://www.reddit.com/submit?url=https%3a%2f%2fairjunda.github.io%2fpost%2fbinary_search%2f" target="_blank" title="Submit to Reddit"><i class="fab fa-reddit-alien" aria-hidden="true"></i><span class="sr-only">Submit to Reddit</span></a>
 	</li>
 </ul>
 
@@ -367,13 +366,13 @@ Output: <span style="color:#e6db74">&#34;8423201&#34;</span>
 <div class="prev-next-post pure-g">
   <div class="pure-u-1-24" style="text-align: left;">
     
-    <a href="https://airjunda.github.io/post/lru/"><i class="fa fa-chevron-left"></i></a>
+    <a href="https://airjunda.github.io/post/comparator/"><i class="fa fa-chevron-left"></i></a>
     
   </div>
   <div class="pure-u-10-24">
     
     <nav class="prev">
-      <a href="https://airjunda.github.io/post/lru/">LRU算法复习笔记</a>
+      <a href="https://airjunda.github.io/post/comparator/">Python自定义Comparator</a>
     </nav>
     
   </div>
@@ -382,14 +381,8 @@ Output: <span style="color:#e6db74">&#34;8423201&#34;</span>
   </div>
   <div class="pure-u-10-24">
     
-    <nav class="next">
-      <a href="https://airjunda.github.io/post/binary_search/">Binary Search易错难点</a>
-    </nav>
-    
   </div>
   <div class="pure-u-1-24" style="text-align: right;">
-    
-    <a href="https://airjunda.github.io/post/binary_search/"><i class="fa fa-chevron-right"></i></a>
     
   </div>
 </div>

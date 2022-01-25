@@ -249,6 +249,46 @@
   
     <article>
   <header>
+    <h2><a href="https://airjunda.github.io/post/binary_search/">Binary Search易错难点</a></h2>
+
+    <div class="post-meta">
+
+  <div>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>25 Jan 2022, 18:10</time>
+  </div>
+
+  
+
+  
+
+  
+
+</div>
+
+  </header>
+
+  <p>
+  二分法本身不难。不过有几类类问题我还不是特别熟练。容易卡住/出错。这个文章就是记录下相关的题。方便以后复习。
+倍增法  447 在大数组中查找  二分答案 二分答案容易出Hard. 这类题难的是要么想不到可以用二分法做，要么就是二分用的helper()不知道做什么。二分答案的helper()很多题里都是一种greedy的思路。
+931这题号称集二分法之大成的经典题
+二分答案合集
+旋转数组相关 寻找旋转排序数组中的最小值
+ 159 160  搜索旋转数组中的值
+ 62 63  159 寻找旋转排序数组中的最小值（无重复） 159这题 我觉得难点是思考的全面性。比如binary search里判断条件是 &gt; 还是 &gt;=；但是这题是假设no repeated elements, 所以其实不难。
+class Solution: &#34;&#34;&#34; @param nums: a rotated sorted array @return: the minimum number in the array &#34;&#34;&#34; def findMin(self, nums): # 159 solution l, r = 0, len(nums)-1 leftmin, rightmax = nums[0], nums[-1] while l + 1 &lt; r: m = (l + r) // 2 if nums[m] &gt;= rightmax: l = m elif nums[m] &lt; rightmax: r = m return min(nums[r],nums[l],leftmin) 160 寻找旋转排序数组中的最小值（有重复） 160这题的坑是这样的：如果沿用159的做法会错。因为有重复元素后，如果旋转点刚好是在一群repeated element中间。就会形成新的nums里nums[-1]==nums[0]
+  </p>
+
+  
+  <footer>
+    <a href="https://airjunda.github.io/post/binary_search/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
+  </footer>
+  
+</article>
+
+  
+    <article>
+  <header>
     <h2><a href="https://airjunda.github.io/post/comparator/">Python自定义Comparator</a></h2>
 
     <div class="post-meta">
@@ -787,35 +827,6 @@ name: Deploy GitHub Page on: # 在push或pull请求事件上触发工作流 push
   <footer>
     <a href="https://airjunda.github.io/post/hugo/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
   </footer>
-  
-</article>
-
-  
-    <article>
-  <header>
-    <h2><a href="https://airjunda.github.io/post/my-first-post/">My First Post</a></h2>
-
-    <div class="post-meta">
-
-  <div>
-    <i class="fa fa-calendar fa-fw"></i>
-    <time>04 Nov 2021, 02:26</time>
-  </div>
-
-  
-
-  
-
-  
-
-</div>
-
-  </header>
-
-  <p>
-  Hello Hugo! 你好 Hugo! 
-  </p>
-
   
 </article>
 

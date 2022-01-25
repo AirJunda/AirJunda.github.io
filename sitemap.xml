@@ -4,7 +4,17 @@
   
   <url>
     <loc>https://airjunda.github.io/</loc>
-    <lastmod>2022-01-12T18:38:33+08:00</lastmod>
+    <lastmod>2022-01-25T18:10:21+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://airjunda.github.io/post/binary_search/</loc>
+    <lastmod>2022-01-25T18:10:21+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://airjunda.github.io/post/</loc>
+    <lastmod>2022-01-25T18:10:21+08:00</lastmod>
   </url>
   
   <url>
@@ -14,11 +24,6 @@
   
   <url>
     <loc>https://airjunda.github.io/tags/lintcode/</loc>
-    <lastmod>2022-01-12T18:38:33+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://airjunda.github.io/post/</loc>
     <lastmod>2022-01-12T18:38:33+08:00</lastmod>
   </url>
   

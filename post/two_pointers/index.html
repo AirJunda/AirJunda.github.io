@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="generator" content="Hugo 0.80.0" />
+
+  <title>Two_pointers &middot; Air Junda Space</title>
+
+    
+
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/pure-min.css">
+
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/grids-responsive-old-ie-min.css">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/grids-responsive-min.css">
+  <!--<![endif]-->
+
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="https://airjunda.github.io/css/side-menu-old-ie.css">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="https://airjunda.github.io/css/side-menu.css">
+  <!--<![endif]-->
+
+  <link rel="stylesheet" href="https://airjunda.github.io/css/blackburn.css">
+
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet" type="text/css">
+
+  
+  <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+ 
+  
+
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/androidstudio.min.css">
+  <script async src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js"></script>
+  
+  <script async src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/languages/yaml.min.js"></script>
+  
+  <script>hljs.initHighlightingOnLoad();</script>
+  
+
+  <link rel="shortcut icon" href="https://airjunda.github.io/img/favicon.ico" type="image/x-icon" />
+
+  
+    
+        <link rel="stylesheet" href="https://airjunda.github.io/css/my.css">
+    
+  
+  
+    
+        <script src="https://airjunda.github.io/js/my.js"></script>
+    
+  
+
+</head>
+
+
+<body>
+<div id="layout">
+
+  
+<a href="#menu" id="menuLink" class="menu-link">
+  
+  <span></span>
+</a>
+<div id="menu">
+
+  
+  <a class="pure-menu-heading brand" href="https://airjunda.github.io/">Air Junda</a>
+
+
+  <div class="pure-menu">
+    <ul class="pure-menu-list">
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="https://airjunda.github.io/"><i class='fa fa-home fa-fw'></i>Home</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="https://airjunda.github.io/post/"><i class='fa fa-list fa-fw'></i>Articles</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="https://airjunda.github.io/tags/"><i class='fa fa-tags fa-fw'></i>Tags</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="https://airjunda.github.io/topics/"><i class='fa fa-book fa-fw'></i>Topics</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="https://airjunda.github.io/about/"><i class='fa fa-user fa-fw'></i>About</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="https://airjunda.github.io/contact/"><i class='fa fa-phone fa-fw'></i>Contact</a>
+      
+        </li>
+      
+    </ul>
+  </div>
+
+  <div class="pure-menu social">
+  <ul class="pure-menu-list">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://instagram.com/*" rel="me" target="_blank"><i class="fab fa-instagram fa-fw"></i>Instagram</a>
+    </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://linkedin.com/in/jundali" rel="me" target="_blank"><i class="fab fa-linkedin fa-fw"></i>LinkedIn</a>
+    </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://github.com/airjunda" rel="me" target="_blank"><i class="fab fa-github-square fa-fw"></i>GitHub</a>
+    </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+  </ul>
+</div>
+
+
+  <div>
+  <div class="small-print">
+    <small>&copy; 2021. All rights reserved.</small>
+  </div>
+  <div class="small-print">
+    <small>Built with&nbsp;<a href="https://gohugo.io/" target="_blank">Hugo</a></small>
+    <small>Theme&nbsp;<a href="https://github.com/yoshiharuyamashita/blackburn" target="_blank">Blackburn</a></small>
+  </div>
+</div>
+
+</div>
+
+
+  <div id="main">
+
+
+<div class="header">
+  <h1>Two_pointers</h1>
+  <h2></h2>
+</div>
+<div class="content">
+
+  <div class="post-meta">
+
+  <div>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>01 Feb 2022, 17:51</time>
+  </div>
+
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-folder fa-fw"></i>
+    
+      <a class="post-taxonomy-topic" href="https://airjunda.github.io/topics/techblog">TechBlog</a>
+    
+  </div>
+  
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-tags fa-fw"></i>
+    
+      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/algo">Algo</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/tech">Tech</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/lintcode">Lintcode</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/two-pointers">Two Pointers</a>
+    
+  </div>
+  
+  
+
+</div>
+
+  <h2 id="two-pointers问题">Two Pointers问题</h2>
+<p>严格来说two pointers不是一种算法。是一类问题。主要是可以分成 背向，双向，同向。</p>
+<h3 id="背向双指针">背向双指针</h3>
+<p>用这题复习就好了：<a href="https://www.lintcode.com/problem/200/solution/16578">最长回文字串</a></p>
+<h3 id="双向双指针">双向双指针</h3>
+<p>经典例题是two sum，但是 双向双指针其实可以细分为3类。</p>
+<ol>
+<li>Reverse 类（较少）</li>
+<li>Two Sum 类（最多）</li>
+<li>Partition 类（较多）</li>
+</ol>
+<h5 id="reverse-类">Reverse 类</h5>
+<p>复习一下三步翻转法就好: <a href="https://www.lintcode.com/problem/1334/description">旋转数组</a></p>
+<p>图解如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">nums <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;-----&gt;--&gt;&#34;</span><span style="color:#f92672">;</span> k <span style="color:#f92672">=</span>3
+result <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;--&gt;-----&gt;&#34;</span><span style="color:#f92672">;</span>
+reverse <span style="color:#e6db74">&#34;-----&gt;--&gt;&#34;</span> we can get <span style="color:#e6db74">&#34;&lt;--&lt;-----&#34;</span>
+reverse <span style="color:#e6db74">&#34;&lt;--&#34;</span> we can get <span style="color:#e6db74">&#34;--&gt;&lt;-----&#34;</span>
+reverse <span style="color:#e6db74">&#34;&lt;-----&#34;</span> we can get <span style="color:#e6db74">&#34;--&gt;-----&gt;&#34;</span>
+</code></pre></div><h5 id="two-sum-类">Two Sum 类</h5>
+<p>TwoSum原题：给一组整数arr和目标值，是否存在任意一对数字之和等于这个值
+原题很简单，但是如果输入有重复元素应该如何处理呢？那么就看这题：
+<a href="https://www.lintcode.com/problem/587">Two Sum - Unique pairs</a></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">twoSum6</span>(self, nums, target):
+        <span style="color:#75715e"># write your code here</span>
+        nums<span style="color:#f92672">.</span>sort()
+        ans <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+        i,j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> , len(nums)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+        <span style="color:#66d9ef">while</span> i <span style="color:#f92672">&lt;</span> j:
+            tsum <span style="color:#f92672">=</span> nums[i] <span style="color:#f92672">+</span> nums[j]
+            <span style="color:#66d9ef">if</span> tsum <span style="color:#f92672">&gt;</span> target: j <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1</span>
+            <span style="color:#66d9ef">elif</span> tsum <span style="color:#f92672">&lt;</span> target: i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+            <span style="color:#66d9ef">else</span>:
+                ans <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+                i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+                j <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1</span>
+                <span style="color:#66d9ef">while</span> i <span style="color:#f92672">&lt;</span> j <span style="color:#f92672">and</span> nums[i] <span style="color:#f92672">==</span> nums[i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]:
+                    i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+                <span style="color:#66d9ef">while</span> i <span style="color:#f92672">&lt;</span> j <span style="color:#f92672">and</span> nums[j] <span style="color:#f92672">==</span> nums[j<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]:
+                    j <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1</span>
+
+        <span style="color:#66d9ef">return</span> ans
+</code></pre></div><p><a href="https://www.lintcode.com/problem/57/">3Sum with repeated elements</a></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">threeSum</span>(self, numbers):
+        numbers<span style="color:#f92672">.</span>sort()
+        ans <span style="color:#f92672">=</span> []
+        <span style="color:#66d9ef">for</span> k <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">2</span>,len(numbers)):
+            <span style="color:#66d9ef">if</span> k <span style="color:#f92672">&lt;</span> len(numbers)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">and</span> numbers[k<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">==</span> numbers[k]:
+                <span style="color:#75715e"># 枚举c, 这里是c的去重</span>
+                <span style="color:#66d9ef">continue</span>
+
+            target <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">*</span> numbers[k]
+            i,j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>,k<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+            <span style="color:#66d9ef">while</span> i <span style="color:#f92672">&lt;</span> j:
+                <span style="color:#66d9ef">if</span> numbers[i] <span style="color:#f92672">+</span> numbers[j] <span style="color:#f92672">==</span> target:
+                    ans<span style="color:#f92672">.</span>append((numbers[i],numbers[j],numbers[k]))
+                    i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+                    j <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1</span>
+                    <span style="color:#75715e"># 下面这里是a,b的去重</span>
+                    <span style="color:#66d9ef">while</span> i <span style="color:#f92672">&lt;</span> j <span style="color:#f92672">and</span> numbers[i] <span style="color:#f92672">==</span> numbers[i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]:
+                        i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+                    <span style="color:#66d9ef">while</span> i <span style="color:#f92672">&lt;</span> j <span style="color:#f92672">and</span> numbers[j] <span style="color:#f92672">==</span> numbers[j<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]:
+                        j <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1</span>
+                <span style="color:#66d9ef">elif</span> numbers[i] <span style="color:#f92672">+</span> numbers[j] <span style="color:#f92672">&lt;</span> target:
+                    i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+                <span style="color:#66d9ef">else</span>:
+                    j <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1</span>
+
+        <span style="color:#66d9ef">return</span> ans
+</code></pre></div><p>另外还有一些题目是找离target最近的pair/pair个数/diff:</p>
+<ul>
+<li><a href="https://www.lintcode.com/problem/533/">两数和的最接近值</a></li>
+<li><a href="https://www.lintcode.com/problem/609/">两数和-小于或等于目标值</a></li>
+<li><a href="https://www.lintcode.com/problem/59/"> 最接近的三数之和</a></li>
+</ul>
+<h5 id="partition-类">Partition 类</h5>
+
+  
+  <h4><i class="fas fa-share-alt" aria-hidden="true"></i>&nbsp;Share!</h4>
+<ul class="share-buttons">
+	<li><a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fairjunda.github.io%2fpost%2ftwo_pointers%2f" target="_blank" title="Share on Facebook"><i class="fab fa-facebook" aria-hidden="true"></i><span class="sr-only">Share on Facebook</span></a>
+	</li>&nbsp;&nbsp;&nbsp;
+	<li><a href="https://twitter.com/intent/tweet?source=https%3a%2f%2fairjunda.github.io%2fpost%2ftwo_pointers%2f" target="_blank" title="Tweet"><i class="fab fa-twitter" aria-hidden="true"></i><span class="sr-only">Tweet</span></a>
+	</li>&nbsp;&nbsp;&nbsp;
+	<li><a href="https://plus.google.com/share?url=https%3a%2f%2fairjunda.github.io%2fpost%2ftwo_pointers%2f" target="_blank" title="Share on Google+"><i class="fab fa-google-plus" aria-hidden="true"></i><span class="sr-only">Share on Google+</span></a>
+	</li>&nbsp;&nbsp;&nbsp;
+	<li><a href="http://www.tumblr.com/share?v=3&u=https%3a%2f%2fairjunda.github.io%2fpost%2ftwo_pointers%2f" target="_blank" title="Post to Tumblr"><i class="fab fa-tumblr" aria-hidden="true"></i><span class="sr-only">Post to Tumblr</span></a>
+	</li>&nbsp;&nbsp;&nbsp;
+	<li><a href="http://pinterest.com/pin/create/button/?url=https%3a%2f%2fairjunda.github.io%2fpost%2ftwo_pointers%2f" target="_blank" title="Pin it"><i class="fab fa-pinterest-p" aria-hidden="true"></i><span class="sr-only">Pin it</span></a>
+	</li>&nbsp;&nbsp;&nbsp;
+	<li><a href="http://www.reddit.com/submit?url=https%3a%2f%2fairjunda.github.io%2fpost%2ftwo_pointers%2f" target="_blank" title="Submit to Reddit"><i class="fab fa-reddit-alien" aria-hidden="true"></i><span class="sr-only">Submit to Reddit</span></a>
+	</li>
+</ul>
+
+
+<style>
+	ul.share-buttons{
+	  list-style: none;
+	  padding: 0;
+	}
+
+	ul.share-buttons li{
+	  display: inline;
+	}
+
+	ul.share-buttons .sr-only{
+	  position: absolute;
+	  clip: rect(1px 1px 1px 1px);
+	  clip: rect(1px, 1px, 1px, 1px);
+	  padding: 0;
+	  border: 0;
+	  height: 1px;
+	  width: 1px;
+	  overflow: hidden;
+	}
+</style>
+
+
+  
+<div class="prev-next-post pure-g">
+  <div class="pure-u-1-24" style="text-align: left;">
+    
+    <a href="https://airjunda.github.io/post/dfs/"><i class="fa fa-chevron-left"></i></a>
+    
+  </div>
+  <div class="pure-u-10-24">
+    
+    <nav class="prev">
+      <a href="https://airjunda.github.io/post/dfs/">DFS 复习</a>
+    </nav>
+    
+  </div>
+  <div class="pure-u-2-24">
+    &nbsp;
+  </div>
+  <div class="pure-u-10-24">
+    
+  </div>
+  <div class="pure-u-1-24" style="text-align: right;">
+    
+  </div>
+</div>
+
+
+  
+  
+  
+  
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+
+(function() {
+    
+    
+    if (window.location.hostname == "localhost")
+        return;
+
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    var disqus_shortname = 'AirJunda';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+  
+
+</div>
+
+</div>
+</div>
+<script src="https://airjunda.github.io/js/ui.js"></script>
+<script src="https://airjunda.github.io/js/menus.js"></script>
+
+
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=Your%20Google%20Analytics%20tracking%20ID"></script>
+<script>
+  
+  if (window.location.hostname != "localhost") {
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'Your Google Analytics tracking ID');
+  }
+</script>
+
+
+
+
+
+<script type="text/javascript">
+  var _paq = _paq || [];
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="\/\/analytics.example.com\/";
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setSiteId',  2 ]);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<noscript><p><img src="//analytics.example.com/piwik.php?idsite=2" style="border:0;" alt="" /></p></noscript>
+
+
+
+
+
+</body>
+</html>
+

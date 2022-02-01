@@ -6,7 +6,22 @@
     <description>Recent content on Air Junda Space</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>&amp;copy; 2021. All rights reserved.</copyright>
-    <lastBuildDate>Tue, 01 Feb 2022 15:49:36 +0800</lastBuildDate><atom:link href="https://airjunda.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 01 Feb 2022 17:51:43 +0800</lastBuildDate><atom:link href="https://airjunda.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Two_pointers</title>
+      <link>https://airjunda.github.io/post/two_pointers/</link>
+      <pubDate>Tue, 01 Feb 2022 17:51:43 +0800</pubDate>
+      
+      <guid>https://airjunda.github.io/post/two_pointers/</guid>
+      <description>Two Pointers问题 严格来说two pointers不是一种算法。是一类问题。主要是可以分成 背向，双向，同向。
+背向双指针 用这题复习就好了：最长回文字串
+双向双指针 经典例题是two sum，但是 双向双指针其实可以细分为3类。
+ Reverse 类（较少） Two Sum 类（最多） Partition 类（较多）  Reverse 类 复习一下三步翻转法就好: 旋转数组
+图解如下：
+nums = &amp;#34;-----&amp;gt;--&amp;gt;&amp;#34;; k =3 result = &amp;#34;--&amp;gt;-----&amp;gt;&amp;#34;; reverse &amp;#34;-----&amp;gt;--&amp;gt;&amp;#34; we can get &amp;#34;&amp;lt;--&amp;lt;-----&amp;#34; reverse &amp;#34;&amp;lt;--&amp;#34; we can get &amp;#34;--&amp;gt;&amp;lt;-----&amp;#34; reverse &amp;#34;&amp;lt;-----&amp;#34; we can get &amp;#34;--&amp;gt;-----&amp;gt;&amp;#34; Two Sum 类 TwoSum原题：给一组整数arr和目标值，是否存在任意一对数字之和等于这个值 原题很简单，但是如果输入有重复元素应该如何处理呢？那么就看这题： Two Sum - Unique pairs
+def twoSum6(self, nums, target): # write your code here nums.</description>
+    </item>
+    
     <item>
       <title>DFS 复习</title>
       <link>https://airjunda.github.io/post/dfs/</link>

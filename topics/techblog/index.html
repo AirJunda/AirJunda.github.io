@@ -248,6 +248,136 @@
   
     <article>
   <header>
+    <h2><a href="https://airjunda.github.io/post/dfs/">DFS 复习</a></h2>
+
+    <div class="post-meta">
+
+  <div>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>01 Feb 2022, 15:49</time>
+  </div>
+
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-folder fa-fw"></i>
+    
+      <a class="post-taxonomy-topic" href="https://airjunda.github.io/topics/techblog">TechBlog</a>
+    
+  </div>
+  
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-tags fa-fw"></i>
+    
+      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/algo">Algo</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/tech">Tech</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/lintcode">Lintcode</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/dfs">DFS</a>
+    
+  </div>
+  
+  
+
+</div>
+
+  </header>
+
+  <p>
+  DFS 这篇是记录下DFS相关的题写起来时候的一些注意事项。DFS个人觉得VO中考察少，主要是OA, 而且OA中的运用很多时候是找不到最优解时的暴力解的手段。但是通过pruning是可以加速这个暴力搜索的过程的。DFS题主要是2大类，排列和组合。其中一个我觉得的难点是面对有重复元素的array的排列和组合的去重问题。
+常见注意事项 DFS问题开始写代码之前，一定要先把问题抽象成一个图的遍历问题。然后再开始做。这样思路会清晰很多，也方便自己逻辑debug
+另外我觉得DFS题自己做的时候内心要问自己下面几个问题：
+ 原始输入需要排序吗？ 要去重吗？ 形成中的中间态序列是一个array还是string或者是个数字  排列 排列题需要一个hashamp叫visited, 记录哪些元素已经被选中了。 排列的个数是n！
+16 · 带重复元素的排列
+class Solution: &#34;&#34;&#34; @param nums: A list of integers @return: A list of unique permutations &#34;&#34;&#34; def permuteUnique(self, nums: List[int]) -&gt; List[List[int]]: # write your code here self.res = [] nums.sort() vis = [False] *len(nums) self.dfs(nums, [],vis) return self.res def dfs(self,nums,comb,visited): if len(comb) == len(nums): self.res.append(comb[:]) return for i in range(len(nums)): if visited[i] == True: continue # 去重做法 if i &gt;= 1 and nums[i-1] == nums[i] and visited[i-1] == False: continue comb.
+  </p>
+
+  
+  <footer>
+    <a href="https://airjunda.github.io/post/dfs/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
+  </footer>
+  
+</article>
+
+  
+    <article>
+  <header>
+    <h2><a href="https://airjunda.github.io/post/binary_search/">Binary Search易错难点</a></h2>
+
+    <div class="post-meta">
+
+  <div>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>25 Jan 2022, 18:10</time>
+  </div>
+
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-folder fa-fw"></i>
+    
+      <a class="post-taxonomy-topic" href="https://airjunda.github.io/topics/techblog">TechBlog</a>
+    
+  </div>
+  
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-tags fa-fw"></i>
+    
+      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/algo">Algo</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/tech">Tech</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/lintcode">Lintcode</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/binary-search">Binary Search</a>
+    
+  </div>
+  
+  
+
+</div>
+
+  </header>
+
+  <p>
+  二分法本身不难。不过有几类类问题我还不是特别熟练。容易卡住/出错。这个文章就是记录下相关的题。方便以后复习。
+倍增法  447 在大数组中查找  二分答案 二分答案容易出Hard. 这类题难的是要么想不到可以用二分法做，要么就是二分用的helper()不知道做什么。二分答案的helper()很多题里都是一种greedy的思路。
+931这题号称集二分法之大成的经典题
+二分答案合集
+旋转数组相关 寻找旋转排序数组中的最小值
+ 159 160  搜索旋转数组中的值
+ 62 63  159 寻找旋转排序数组中的最小值（无重复） 159这题 我觉得难点是思考的全面性。比如binary search里判断条件是 &gt; 还是 &gt;=；但是这题是假设no repeated elements, 所以其实不难。
+class Solution: &#34;&#34;&#34; @param nums: a rotated sorted array @return: the minimum number in the array &#34;&#34;&#34; def findMin(self, nums): # 159 solution l, r = 0, len(nums)-1 leftmin, rightmax = nums[0], nums[-1] while l + 1 &lt; r: m = (l + r) // 2 if nums[m] &gt;= rightmax: l = m elif nums[m] &lt; rightmax: r = m return min(nums[r],nums[l],leftmin) 160 寻找旋转排序数组中的最小值（有重复） 160这题的坑是这样的：如果沿用159的做法会错。因为有重复元素后，如果旋转点刚好是在一群repeated element中间。就会形成新的nums里nums[-1]==nums[0]
+  </p>
+
+  
+  <footer>
+    <a href="https://airjunda.github.io/post/binary_search/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
+  </footer>
+  
+</article>
+
+  
+    <article>
+  <header>
     <h2><a href="https://airjunda.github.io/post/comparator/">Python自定义Comparator</a></h2>
 
     <div class="post-meta">

@@ -249,6 +249,70 @@
   
     <article>
   <header>
+    <h2><a href="https://airjunda.github.io/post/dfs/">DFS 复习</a></h2>
+
+    <div class="post-meta">
+
+  <div>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>01 Feb 2022, 15:49</time>
+  </div>
+
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-folder fa-fw"></i>
+    
+      <a class="post-taxonomy-topic" href="https://airjunda.github.io/topics/techblog">TechBlog</a>
+    
+  </div>
+  
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-tags fa-fw"></i>
+    
+      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/algo">Algo</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/tech">Tech</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/lintcode">Lintcode</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/dfs">DFS</a>
+    
+  </div>
+  
+  
+
+</div>
+
+  </header>
+
+  <p>
+  DFS 这篇是记录下DFS相关的题写起来时候的一些注意事项。DFS个人觉得VO中考察少，主要是OA, 而且OA中的运用很多时候是找不到最优解时的暴力解的手段。但是通过pruning是可以加速这个暴力搜索的过程的。DFS题主要是2大类，排列和组合。其中一个我觉得的难点是面对有重复元素的array的排列和组合的去重问题。
+常见注意事项 DFS问题开始写代码之前，一定要先把问题抽象成一个图的遍历问题。然后再开始做。这样思路会清晰很多，也方便自己逻辑debug
+另外我觉得DFS题自己做的时候内心要问自己下面几个问题：
+ 原始输入需要排序吗？ 要去重吗？ 形成中的中间态序列是一个array还是string或者是个数字  排列 排列题需要一个hashamp叫visited, 记录哪些元素已经被选中了。 排列的个数是n！
+16 · 带重复元素的排列
+class Solution: &#34;&#34;&#34; @param nums: A list of integers @return: A list of unique permutations &#34;&#34;&#34; def permuteUnique(self, nums: List[int]) -&gt; List[List[int]]: # write your code here self.res = [] nums.sort() vis = [False] *len(nums) self.dfs(nums, [],vis) return self.res def dfs(self,nums,comb,visited): if len(comb) == len(nums): self.res.append(comb[:]) return for i in range(len(nums)): if visited[i] == True: continue # 去重做法 if i &gt;= 1 and nums[i-1] == nums[i] and visited[i-1] == False: continue comb.
+  </p>
+
+  
+  <footer>
+    <a href="https://airjunda.github.io/post/dfs/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
+  </footer>
+  
+</article>
+
+  
+    <article>
+  <header>
     <h2><a href="https://airjunda.github.io/post/binary_search/">Binary Search易错难点</a></h2>
 
     <div class="post-meta">
@@ -261,7 +325,33 @@
   
 
   
+  
+  
+  <div>
+    <i class="fa fa-folder fa-fw"></i>
+    
+      <a class="post-taxonomy-topic" href="https://airjunda.github.io/topics/techblog">TechBlog</a>
+    
+  </div>
+  
+  
 
+  
+  
+  
+  <div>
+    <i class="fa fa-tags fa-fw"></i>
+    
+      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/algo">Algo</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/tech">Tech</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/lintcode">Lintcode</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/binary-search">Binary Search</a>
+    
+  </div>
+  
   
 
 </div>
@@ -786,46 +876,6 @@ name: Deploy GitHub Page on: # 在push或pull请求事件上触发工作流 push
   
   <footer>
     <a href="https://airjunda.github.io/post/cicd-action/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
-  </footer>
-  
-</article>
-
-  
-    <article>
-  <header>
-    <h2><a href="https://airjunda.github.io/post/hugo/">那些Hugo踩过的坑</a></h2>
-
-    <div class="post-meta">
-
-  <div>
-    <i class="fa fa-calendar fa-fw"></i>
-    <time>04 Nov 2021, 22:39</time>
-  </div>
-
-  
-
-  
-
-  
-
-</div>
-
-  </header>
-
-  <p>
-  Preface 部署网站这事就是个ops的活。虽然我工作的部门也是做ops的，但是我其实是不太喜欢做ops。无论是编程还是以前做实验，做ops经常会手忙脚乱。那怕按照给的文章或者guide去做，我依然会遇到一些奇奇怪怪的hurdles。这篇文章就是记录下我第一次上线这个网站时踩过的坑。
-那些年踩过的坑 人类的本质是复读机。万事开头，先搜攻略。于是搜到了这2个，觉得比较有用。未来如果忘了hugo部署也可以直接从这2个攻略复习。
- 如何利用 GitHub Pages 和 Hugo 轻松搭建个人博客？ 使用 Hugo + Github 搭建个人博客  下面开始说按照上面的步骤时遇到的坑和注意事项。
-发布前的阶段 安装好hugo后，主要做的事情是导入自己喜欢的theme，和用MD写自己的文章，然后在本地跑起来，预览下网站效果。
- 导入theme  导入theme时，不同攻略中有2种方式：使用git submodule命令或者直接git clone。 建议使用 git submodule add 去导入。原因是如果使用action的CICD, 现有的yaml文件里需要指定theme文件是通过submodule去拉取。如果一开始没有添加theme路径为submodule, 在workflow的build阶段会报错找不到submodule theme/xxx。使用submodule的例子如下：   git submodule add https://github.com/dillonzq/LoveIt.git themes/LoveIt
-  创建新文章  命令是这样写的 hugo new posts/demo.md  但是很多theme默认文章是在 post/ 目录下。因此如果发现自己写的文章在网站启动后找不到，建议把上面命令里的posts改成post试一试。这个坑我搞了半个晚上才发现 XD    发布阶段 文章写好，本地调试后就要部署了。我们本地写的md文章其实是需要生成html,css,js等网页的文件然后才能发布成一个网站。不过这个任务就是Hugo去做了。Hugo解放了我们，让我们可以专心写md而不用管html这些细节。
-生成网站文件的命令是 hugo -D 默认是在当前根目录下生成一个public文件夹。这个public里的内容才是部署需要的。到这一步时，项目文件的结构应该是这样的：
-├── archetypes # 存放生成博客的模版 ├── assets # 存放被 Hugo Pipes 处理的文件 ├── config.
-  </p>
-
-  
-  <footer>
-    <a href="https://airjunda.github.io/post/hugo/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
   </footer>
   
 </article>

@@ -7,7 +7,7 @@
   <meta name="description" content="">
   <meta name="generator" content="Hugo 0.80.0" />
 
-  <title>Posts &middot; Air Junda Space</title>
+  <title>Binary Search &middot; Air Junda Space</title>
 
     
 
@@ -44,7 +44,7 @@
  
   
   <link rel="alternate" type="application/rss+xml" title="Air Junda Space"
-    href='https://airjunda.github.io/post/index.xml' />
+    href='https://airjunda.github.io/tags/binary-search/index.xml' />
   
 
   
@@ -133,7 +133,7 @@
 
     
     <li class="pure-menu-item">
-      <a class="pure-menu-link" href='https://airjunda.github.io/post/index.xml'><i
+      <a class="pure-menu-link" href='https://airjunda.github.io/tags/binary-search/index.xml'><i
           class="fas fa-rss fa-fw"></i>RSS</a>
     </li>
     
@@ -241,58 +241,76 @@
 
 
 <div class="header">
-  <h1>Posts</h1>
+  <h1>Binary Search</h1>
 </div>
+
 <div class="content">
   
-  <h2>2022</h2>
-  <ul>
-  
-    <li><time>01 Feb 2022, 15:49</time> - <a href="https://airjunda.github.io/post/dfs/">DFS 复习</a></li>
+    <article>
+  <header>
+    <h2><a href="https://airjunda.github.io/post/binary_search/">Binary Search易错难点</a></h2>
+
+    <div class="post-meta">
+
+  <div>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>25 Jan 2022, 18:10</time>
+  </div>
 
   
-    <li><time>25 Jan 2022, 18:10</time> - <a href="https://airjunda.github.io/post/binary_search/">Binary Search易错难点</a></li>
 
   
-    <li><time>12 Jan 2022, 18:38</time> - <a href="https://airjunda.github.io/post/comparator/">Python自定义Comparator</a></li>
+  
+  
+  <div>
+    <i class="fa fa-folder fa-fw"></i>
+    
+      <a class="post-taxonomy-topic" href="https://airjunda.github.io/topics/techblog">TechBlog</a>
+    
+  </div>
+  
+  
 
   
-  </ul>
   
-  <h2>2021</h2>
-  <ul>
   
-    <li><time>30 Dec 2021, 22:39</time> - <a href="https://airjunda.github.io/post/lru/">LRU算法复习笔记</a></li>
+  <div>
+    <i class="fa fa-tags fa-fw"></i>
+    
+      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/algo">Algo</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/tech">Tech</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/lintcode">Lintcode</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/binary-search">Binary Search</a>
+    
+  </div>
+  
+  
+
+</div>
+
+  </header>
+
+  <p>
+  二分法本身不难。不过有几类类问题我还不是特别熟练。容易卡住/出错。这个文章就是记录下相关的题。方便以后复习。
+倍增法  447 在大数组中查找  二分答案 二分答案容易出Hard. 这类题难的是要么想不到可以用二分法做，要么就是二分用的helper()不知道做什么。二分答案的helper()很多题里都是一种greedy的思路。
+931这题号称集二分法之大成的经典题
+二分答案合集
+旋转数组相关 寻找旋转排序数组中的最小值
+ 159 160  搜索旋转数组中的值
+ 62 63  159 寻找旋转排序数组中的最小值（无重复） 159这题 我觉得难点是思考的全面性。比如binary search里判断条件是 &gt; 还是 &gt;=；但是这题是假设no repeated elements, 所以其实不难。
+class Solution: &#34;&#34;&#34; @param nums: a rotated sorted array @return: the minimum number in the array &#34;&#34;&#34; def findMin(self, nums): # 159 solution l, r = 0, len(nums)-1 leftmin, rightmax = nums[0], nums[-1] while l + 1 &lt; r: m = (l + r) // 2 if nums[m] &gt;= rightmax: l = m elif nums[m] &lt; rightmax: r = m return min(nums[r],nums[l],leftmin) 160 寻找旋转排序数组中的最小值（有重复） 160这题的坑是这样的：如果沿用159的做法会错。因为有重复元素后，如果旋转点刚好是在一群repeated element中间。就会形成新的nums里nums[-1]==nums[0]
+  </p>
 
   
-    <li><time>18 Dec 2021, 22:39</time> - <a href="https://airjunda.github.io/post/docker_network/">Docker: Network</a></li>
-
+  <footer>
+    <a href="https://airjunda.github.io/post/binary_search/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
+  </footer>
   
-    <li><time>17 Dec 2021, 22:39</time> - <a href="https://airjunda.github.io/post/docker_mount/">Docker: Mount and Volume</a></li>
+</article>
 
-  
-    <li><time>29 Nov 2021, 21:10</time> - <a href="https://airjunda.github.io/post/win-terminal-setup/">Win Terminal Setup</a></li>
-
-  
-    <li><time>23 Nov 2021, 22:14</time> - <a href="https://airjunda.github.io/post/redis/">Redis Get Started on Windows 10</a></li>
-
-  
-    <li><time>11 Nov 2021, 00:53</time> - <a href="https://airjunda.github.io/post/go_path/">GoPath和Go的包管理</a></li>
-
-  
-    <li><time>07 Nov 2021, 22:39</time> - <a href="https://airjunda.github.io/post/cicd-action/">CICD Action</a></li>
-
-  
-    <li><time>04 Nov 2021, 22:39</time> - <a href="https://airjunda.github.io/post/hugo/">那些Hugo踩过的坑</a></li>
-
-  
-    <li><time>04 Nov 2021, 02:26</time> - <a href="https://airjunda.github.io/post/debut/">Where It All Began</a></li>
-
-  
-    <li><time>04 Nov 2021, 02:26</time> - <a href="https://airjunda.github.io/post/my-first-post/">My First Post</a></li>
-
-  
-  </ul>
   
 </div>
 
@@ -341,4 +359,3 @@
 
 </body>
 </html>
-

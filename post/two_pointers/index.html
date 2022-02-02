@@ -290,7 +290,7 @@
 <li>Two Sum 类（最多）</li>
 <li>Partition 类（较多）</li>
 </ol>
-<h5 id="reverse-类">Reverse 类</h5>
+<h4 id="reverse-类">Reverse 类</h4>
 <p>复习一下三步翻转法就好: <a href="https://www.lintcode.com/problem/1334/description">旋转数组</a></p>
 <p>图解如下：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">nums <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;-----&gt;--&gt;&#34;</span><span style="color:#f92672">;</span> k <span style="color:#f92672">=</span>3
@@ -298,7 +298,7 @@ result <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;--&
 reverse <span style="color:#e6db74">&#34;-----&gt;--&gt;&#34;</span> we can get <span style="color:#e6db74">&#34;&lt;--&lt;-----&#34;</span>
 reverse <span style="color:#e6db74">&#34;&lt;--&#34;</span> we can get <span style="color:#e6db74">&#34;--&gt;&lt;-----&#34;</span>
 reverse <span style="color:#e6db74">&#34;&lt;-----&#34;</span> we can get <span style="color:#e6db74">&#34;--&gt;-----&gt;&#34;</span>
-</code></pre></div><h5 id="two-sum-类">Two Sum 类</h5>
+</code></pre></div><h4 id="two-sum-类">Two Sum 类</h4>
 <p>TwoSum原题：给一组整数arr和目标值，是否存在任意一对数字之和等于这个值
 原题很简单，但是如果输入有重复元素应该如何处理呢？那么就看这题：
 <a href="https://www.lintcode.com/problem/587">Two Sum - Unique pairs</a></p>
@@ -353,7 +353,7 @@ reverse <span style="color:#e6db74">&#34;&lt;-----&#34;</span> we can get <span 
 <li><a href="https://www.lintcode.com/problem/609/">两数和-小于或等于目标值</a></li>
 <li><a href="https://www.lintcode.com/problem/59/"> 最接近的三数之和</a></li>
 </ul>
-<h5 id="partition-类">Partition 类</h5>
+<h4 id="partition-类">Partition 类</h4>
 <p>Partition类题目都会用到下面这个人质交换模板：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">while</span> i <span style="color:#f92672">&lt;=</span> j:
     <span style="color:#75715e"># 注意是 i &lt;=j, 不是 i &lt; j</span>
@@ -376,7 +376,7 @@ reverse <span style="color:#e6db74">&#34;&lt;-----&#34;</span> we can get <span 
 <li><a href="https://www.lintcode.com/problem/49/note">https://www.lintcode.com/problem/49/note</a></li>
 <li></li>
 </ul>
-<h6 id="quicksort">Quicksort</h6>
+<h5 id="quicksort">Quicksort</h5>
 <p>虽然也用到了上面的模板，但是不是非左即右，而是采用了pivot里外不是人的划分，下面是quicksort的代码：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">sortIntegers</span>(self, A):
         <span style="color:#75715e"># Write your code here</span>
@@ -420,7 +420,7 @@ reverse <span style="color:#e6db74">&#34;&lt;-----&#34;</span> we can get <span 
 遇到等于pivot的元素，2个帮派都把他当对方的人，遇到就拿去交换。那么最后这些散落的，重复的pivot就会随机的在2个帮派之间分摊掉。避免形成 [], 从而避免跳不出递归。</p>
 </li>
 </ul>
-<h6 id="quickselect">QuickSelect</h6>
+<h5 id="quickselect">QuickSelect</h5>
 <p>一个o(N)的find kth element的算法。用到了和quicksort一样的分区。思路就是通过快速排序算法的partition步骤，可以将小于pivot的值划分到pivot左边，大于pivot的值划分到pivot右边，所以可以直接得到pivot的rank。从而缩小范围继续找第k大的值。<a href="https://www.lintcode.com/problem/461/note">练习题</a></p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">kthSmallest</span>(self, k, nums):
         n <span style="color:#f92672">=</span> len(nums)
@@ -448,7 +448,31 @@ reverse <span style="color:#e6db74">&#34;&lt;-----&#34;</span> we can get <span 
             <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>partition(nums, left, end, k)
         <span style="color:#75715e"># 走到这，说明k不在左和右，只能是pivot的位置。</span>
         <span style="color:#66d9ef">return</span> pivot
-</code></pre></div>
+</code></pre></div><h5 id="3个pointers将array分成3端">3个Pointers将array分成3端</h5>
+<p>这个类型题目少一些。经典题是<a href="https://www.lintcode.com/problem/148/">Sort Colors</a>：
+给定一个包含红，白，蓝且长度为 n 的数组，将数组元素进行分类使相同颜色的元素相邻，并按照红、白、蓝的顺序进行排序。我们使用整数 0，1 和 2 分别代表红，白，蓝</p>
+<p>这题的思路是弄3个Pointers：
+left之前的(不包括left)都是0，right之后的(不包括right)都是2。i遍历整个array,遇到0就放到左边，遇到1就放到右边，每次放的操作完成后，需要相应的更新left,和right的位置以更新左右2个派系的边界</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">sortColors</span>(self, A):
+        left, index, right <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, len(A) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>
+        
+        <span style="color:#66d9ef">while</span> index <span style="color:#f92672">&lt;=</span> right:
+            <span style="color:#66d9ef">if</span> A[index] <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>:
+                index <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+            <span style="color:#66d9ef">elif</span> A[index] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+                <span style="color:#66d9ef">if</span> index <span style="color:#f92672">&gt;=</span> left:
+                    A[index], A[left] <span style="color:#f92672">=</span> A[left], A[index]
+                index <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+                left <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+            <span style="color:#66d9ef">elif</span> A[index] <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span>:
+                A[index], A[right] <span style="color:#f92672">=</span> A[right], A[index]
+                right <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1</span>
+
+</code></pre></div><p>Follow-Up: <a href="https://www.lintcode.com/problem/143/">当有K个颜色时，怎么做？</a></p>
+<h3 id="同向双指针">同向双指针</h3>
+<p>同向双指针这块需要未来慢慢补充。目前看下下面这题。</p>
+<p>上一节的交换人质模板适用的题里，如果题目提到要保留原有顺序，那交换人质就不能用了。就需要用同向双针来做。例题就是<a href="https://www.lintcode.com/problem/539/">Move Zeros</a></p>
+
   
   <h4><i class="fas fa-share-alt" aria-hidden="true"></i>&nbsp;Share!</h4>
 <ul class="share-buttons">

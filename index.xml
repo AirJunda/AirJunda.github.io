@@ -8,7 +8,7 @@
     <copyright>&amp;copy; 2021. All rights reserved.</copyright>
     <lastBuildDate>Tue, 01 Feb 2022 17:51:43 +0800</lastBuildDate><atom:link href="https://airjunda.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Two_pointers</title>
+      <title>Two Pointers复习</title>
       <link>https://airjunda.github.io/post/two_pointers/</link>
       <pubDate>Tue, 01 Feb 2022 17:51:43 +0800</pubDate>
       
@@ -19,7 +19,7 @@
  Reverse 类（较少） Two Sum 类（最多） Partition 类（较多）  Reverse 类 复习一下三步翻转法就好: 旋转数组
 图解如下：
 nums = &amp;#34;-----&amp;gt;--&amp;gt;&amp;#34;; k =3 result = &amp;#34;--&amp;gt;-----&amp;gt;&amp;#34;; reverse &amp;#34;-----&amp;gt;--&amp;gt;&amp;#34; we can get &amp;#34;&amp;lt;--&amp;lt;-----&amp;#34; reverse &amp;#34;&amp;lt;--&amp;#34; we can get &amp;#34;--&amp;gt;&amp;lt;-----&amp;#34; reverse &amp;#34;&amp;lt;-----&amp;#34; we can get &amp;#34;--&amp;gt;-----&amp;gt;&amp;#34; Two Sum 类 TwoSum原题：给一组整数arr和目标值，是否存在任意一对数字之和等于这个值 原题很简单，但是如果输入有重复元素应该如何处理呢？那么就看这题： Two Sum - Unique pairs
-def twoSum6(self, nums, target): # write your code here nums.</description>
+def twoSum6(self, nums, target): nums.sort() ans = 0 i,j = 0 , len(nums)-1 while i &amp;lt; j: tsum = nums[i] + nums[j] if tsum &amp;gt; target: j -= 1 elif tsum &amp;lt; target: i += 1 else: ans += 1 i += 1 j -= 1 while i &amp;lt; j and nums[i] == nums[i-1]: i += 1 while i &amp;lt; j and nums[j] == nums[j+1]: j -= 1 return ans 3Sum with repeated elements</description>
     </item>
     
     <item>

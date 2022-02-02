@@ -7,7 +7,7 @@
   <meta name="description" content="">
   <meta name="generator" content="Hugo 0.80.0" />
 
-  <title>Two_pointers &middot; Air Junda Space</title>
+  <title>Two Pointers复习 &middot; Air Junda Space</title>
 
     
 
@@ -233,7 +233,7 @@
 
 
 <div class="header">
-  <h1>Two_pointers</h1>
+  <h1>Two Pointers复习</h1>
   <h2></h2>
 </div>
 <div class="content">
@@ -303,7 +303,6 @@ reverse <span style="color:#e6db74">&#34;&lt;-----&#34;</span> we can get <span 
 原题很简单，但是如果输入有重复元素应该如何处理呢？那么就看这题：
 <a href="https://www.lintcode.com/problem/587">Two Sum - Unique pairs</a></p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">twoSum6</span>(self, nums, target):
-        <span style="color:#75715e"># write your code here</span>
         nums<span style="color:#f92672">.</span>sort()
         ans <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
         i,j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> , len(nums)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
@@ -355,7 +354,101 @@ reverse <span style="color:#e6db74">&#34;&lt;-----&#34;</span> we can get <span 
 <li><a href="https://www.lintcode.com/problem/59/"> 最接近的三数之和</a></li>
 </ul>
 <h5 id="partition-类">Partition 类</h5>
+<p>Partition类题目都会用到下面这个人质交换模板：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">while</span> i <span style="color:#f92672">&lt;=</span> j:
+    <span style="color:#75715e"># 注意是 i &lt;=j, 不是 i &lt; j</span>
+     <span style="color:#66d9ef">while</span> i <span style="color:#f92672">&lt;=</span> j <span style="color:#f92672">and</span> num[i]<span style="color:#960050;background-color:#1e0010">属于左侧帮派</span>:
+        i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+     <span style="color:#66d9ef">while</span> i <span style="color:#f92672">&lt;=</span> j <span style="color:#f92672">and</span> num[j]<span style="color:#960050;background-color:#1e0010">属于右侧帮派</span>:
+         j <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1</span>
+    <span style="color:#66d9ef">if</span> i <span style="color:#f92672">&lt;=</span> j:
+        <span style="color:#75715e"># 交换人质</span>
+         num[i], num[j] <span style="color:#f92672">=</span>  num[j],  num[i]
+        i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+        j <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1</span>
+</code></pre></div><p>尤其注意上面的模板里是用的  &lt;=。为什么是等于呢？因为如果i==j,那么最后一个元素依然需要鉴别是左右哪一边。</p>
+<ul>
+<li>上面的代码走完后，无论num长度是奇数个还是偶数个，i,j各自都在敌对帮派的第一个位置。</li>
+<li>人质划分后，是不保证原有的元素顺序的。只是保证同一帮派的在一边。（<strong>not stable</strong>）</li>
+</ul>
+<p>相关练习：</p>
+<ul>
+<li><a href="https://www.lintcode.com/problem/49/note">https://www.lintcode.com/problem/49/note</a></li>
+<li></li>
+</ul>
+<h6 id="quicksort">Quicksort</h6>
+<p>虽然也用到了上面的模板，但是不是非左即右，而是采用了pivot里外不是人的划分，下面是quicksort的代码：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">sortIntegers</span>(self, A):
+        <span style="color:#75715e"># Write your code here</span>
+        self<span style="color:#f92672">.</span>quickSort(A, <span style="color:#ae81ff">0</span>, len(A) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)
+    
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">quickSort</span>(self, A, start, end):
+        <span style="color:#66d9ef">if</span> start <span style="color:#f92672">&gt;=</span> end:
+            <span style="color:#66d9ef">return</span>
+        
+        left, right <span style="color:#f92672">=</span> start, end
+        pivot <span style="color:#f92672">=</span> A[(start <span style="color:#f92672">+</span> end) <span style="color:#f92672">//</span> <span style="color:#ae81ff">2</span>]
 
+        <span style="color:#75715e"># key point 2: every time you compare left &amp; right, it should be left &lt;= right not left &lt; right</span>
+        <span style="color:#66d9ef">while</span> left <span style="color:#f92672">&lt;=</span> right:
+            <span style="color:#66d9ef">while</span> left <span style="color:#f92672">&lt;=</span> right <span style="color:#f92672">and</span> A[left] <span style="color:#f92672">&lt;</span> pivot:
+                <span style="color:#75715e"># 注意啊！！是 &lt; pivot 不是 &lt;= pivot</span>
+                left <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+            
+            <span style="color:#66d9ef">while</span> left <span style="color:#f92672">&lt;=</span> right <span style="color:#f92672">and</span> A[right] <span style="color:#f92672">&gt;</span> pivot:
+                right <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1</span>
+            
+            <span style="color:#66d9ef">if</span> left <span style="color:#f92672">&lt;=</span> right:
+                A[left], A[right] <span style="color:#f92672">=</span> A[right], A[left]
+                left <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+                right <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1</span>
+
+        self<span style="color:#f92672">.</span>quickSort(A, start, right)  <span style="color:#75715e"># right是左派的前线</span>
+        self<span style="color:#f92672">.</span>quickSort(A, left, end)    <span style="color:#75715e"># left 是右派的前线</span>
+</code></pre></div><p><strong>关于3种划分的解释</strong></p>
+<ul>
+<li>
+<p>如果改成  A[left] &lt;= pivot， A[right] &gt; pivot 这种非左即右：     <br>
+遇到[2,2,2,2] 会分成 [], [2,2,2,2], 跳不出递归。</p>
+</li>
+<li>
+<p>如果改成 A[left] &lt;= pivot， A[right] &gt;= pivot 这种双面间谍：
+遇到[2,2,2,2] 还是会分成 [], [2,2,2,2], 跳不出递归。</p>
+</li>
+<li>
+<p>最后采用的 A[left] &lt; pivot， A[right] &gt; pivot 这种里外不是人的：
+遇到等于pivot的元素，2个帮派都把他当对方的人，遇到就拿去交换。那么最后这些散落的，重复的pivot就会随机的在2个帮派之间分摊掉。避免形成 [], 从而避免跳不出递归。</p>
+</li>
+</ul>
+<h6 id="quickselect">QuickSelect</h6>
+<p>一个o(N)的find kth element的算法。用到了和quicksort一样的分区。思路就是通过快速排序算法的partition步骤，可以将小于pivot的值划分到pivot左边，大于pivot的值划分到pivot右边，所以可以直接得到pivot的rank。从而缩小范围继续找第k大的值。<a href="https://www.lintcode.com/problem/461/note">练习题</a></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">kthSmallest</span>(self, k, nums):
+        n <span style="color:#f92672">=</span> len(nums)
+        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>partition(nums, <span style="color:#ae81ff">0</span>, n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, k <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)
+        
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">partition</span>(self, nums, start, end, k):
+        left, right <span style="color:#f92672">=</span> start, end
+        pindex <span style="color:#f92672">=</span> (left <span style="color:#f92672">+</span> right) <span style="color:#f92672">//</span> <span style="color:#ae81ff">2</span>
+        pivot <span style="color:#f92672">=</span> nums[pindex]
+        
+        <span style="color:#66d9ef">while</span> left <span style="color:#f92672">&lt;=</span> right:
+            <span style="color:#66d9ef">while</span> left <span style="color:#f92672">&lt;=</span> right <span style="color:#f92672">and</span> nums[left] <span style="color:#f92672">&lt;</span> pivot:
+                left <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+            <span style="color:#66d9ef">while</span> left <span style="color:#f92672">&lt;=</span> right <span style="color:#f92672">and</span> nums[right] <span style="color:#f92672">&gt;</span> pivot:
+                right <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1</span>
+            <span style="color:#66d9ef">if</span> left <span style="color:#f92672">&lt;=</span> right:
+                nums[left], nums[right] <span style="color:#f92672">=</span> nums[right], nums[left]
+                left <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+                right <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1</span>
+        
+        <span style="color:#75715e"># 如果第 k 小在右侧，搜索右边的范围，否则搜索左侧。</span>
+        <span style="color:#66d9ef">if</span> k <span style="color:#f92672">&lt;=</span> right:
+            <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>partition(nums, start, right, k)
+        <span style="color:#66d9ef">if</span> k <span style="color:#f92672">&gt;=</span> left:
+            <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>partition(nums, left, end, k)
+        <span style="color:#75715e"># 走到这，说明k不在左和右，只能是pivot的位置。</span>
+        <span style="color:#66d9ef">return</span> pivot
+</code></pre></div>
   
   <h4><i class="fas fa-share-alt" aria-hidden="true"></i>&nbsp;Share!</h4>
 <ul class="share-buttons">

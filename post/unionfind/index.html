@@ -7,7 +7,7 @@
   <meta name="description" content="">
   <meta name="generator" content="Hugo 0.80.0" />
 
-  <title>Topics &middot; Air Junda Space</title>
+  <title>Union Find 复习 &middot; Air Junda Space</title>
 
     
 
@@ -42,9 +42,6 @@
   <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
  
-  
-  <link rel="alternate" type="application/rss+xml" title="Air Junda Space"
-    href='https://airjunda.github.io/topics/index.xml' />
   
 
   
@@ -131,11 +128,6 @@
   <div class="pure-menu social">
   <ul class="pure-menu-list">
 
-    
-    <li class="pure-menu-item">
-      <a class="pure-menu-link" href='https://airjunda.github.io/topics/index.xml'><i
-          class="fas fa-rss fa-fw"></i>RSS</a>
-    </li>
     
 
     
@@ -241,18 +233,164 @@
 
 
 <div class="header">
-  <h1>Topics</h1>
+  <h1>Union Find 复习</h1>
+  <h2></h2>
 </div>
 <div class="content">
-  <ul>
+
+  <div class="post-meta">
+
+  <div>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>04 Feb 2022, 01:55</time>
+  </div>
+
+  
+
   
   
-    <li>
-      <a href="techblog">techblog</a>
-      <span>&#40;12&#41;</span>
-    </li>
   
-  </ul>
+  <div>
+    <i class="fa fa-folder fa-fw"></i>
+    
+      <a class="post-taxonomy-topic" href="https://airjunda.github.io/topics/techblog">TechBlog</a>
+    
+  </div>
+  
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-tags fa-fw"></i>
+    
+      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/algo">Algo</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/tech">Tech</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/lintcode">Lintcode</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/union-find">Union Find</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/graph">Graph</a>
+    
+  </div>
+  
+  
+
+</div>
+
+  <h2 id="union-find">Union Find</h2>
+<p>一种用于解决一个图的2个点是否相互连通的数据结构。比BFS高效。复习可以用下面这2题来回忆:
+<a href="https://www.lintcode.com/problem/589/description">589 连接图</a>
+<a href="https://www.lintcode.com/problem/590/description">590 连接图 II</a></p>
+<p>运用：
+<a href="https://www.lintcode.com/problem/434/">434 · 岛屿的个数II</a></p>
+<p>并查集原生操作：</p>
+<ul>
+<li>查询两个元素是否在同一个集合内</li>
+<li>合并两个元素所在的集合</li>
+</ul>
+<p>并查集的派生操作：</p>
+<ul>
+<li>查询某个元素所在集合的元素个数</li>
+<li>查询当前集合的个数</li>
+</ul>
+<p>To be continued</p>
+
+  
+  <h4><i class="fas fa-share-alt" aria-hidden="true"></i>&nbsp;Share!</h4>
+<ul class="share-buttons">
+	<li><a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fairjunda.github.io%2fpost%2funionfind%2f" target="_blank" title="Share on Facebook"><i class="fab fa-facebook" aria-hidden="true"></i><span class="sr-only">Share on Facebook</span></a>
+	</li>&nbsp;&nbsp;&nbsp;
+	<li><a href="https://twitter.com/intent/tweet?source=https%3a%2f%2fairjunda.github.io%2fpost%2funionfind%2f" target="_blank" title="Tweet"><i class="fab fa-twitter" aria-hidden="true"></i><span class="sr-only">Tweet</span></a>
+	</li>&nbsp;&nbsp;&nbsp;
+	<li><a href="https://plus.google.com/share?url=https%3a%2f%2fairjunda.github.io%2fpost%2funionfind%2f" target="_blank" title="Share on Google+"><i class="fab fa-google-plus" aria-hidden="true"></i><span class="sr-only">Share on Google+</span></a>
+	</li>&nbsp;&nbsp;&nbsp;
+	<li><a href="http://www.tumblr.com/share?v=3&u=https%3a%2f%2fairjunda.github.io%2fpost%2funionfind%2f" target="_blank" title="Post to Tumblr"><i class="fab fa-tumblr" aria-hidden="true"></i><span class="sr-only">Post to Tumblr</span></a>
+	</li>&nbsp;&nbsp;&nbsp;
+	<li><a href="http://pinterest.com/pin/create/button/?url=https%3a%2f%2fairjunda.github.io%2fpost%2funionfind%2f" target="_blank" title="Pin it"><i class="fab fa-pinterest-p" aria-hidden="true"></i><span class="sr-only">Pin it</span></a>
+	</li>&nbsp;&nbsp;&nbsp;
+	<li><a href="http://www.reddit.com/submit?url=https%3a%2f%2fairjunda.github.io%2fpost%2funionfind%2f" target="_blank" title="Submit to Reddit"><i class="fab fa-reddit-alien" aria-hidden="true"></i><span class="sr-only">Submit to Reddit</span></a>
+	</li>
+</ul>
+
+
+<style>
+	ul.share-buttons{
+	  list-style: none;
+	  padding: 0;
+	}
+
+	ul.share-buttons li{
+	  display: inline;
+	}
+
+	ul.share-buttons .sr-only{
+	  position: absolute;
+	  clip: rect(1px 1px 1px 1px);
+	  clip: rect(1px, 1px, 1px, 1px);
+	  padding: 0;
+	  border: 0;
+	  height: 1px;
+	  width: 1px;
+	  overflow: hidden;
+	}
+</style>
+
+
+  
+<div class="prev-next-post pure-g">
+  <div class="pure-u-1-24" style="text-align: left;">
+    
+    <a href="https://airjunda.github.io/post/two_pointers/"><i class="fa fa-chevron-left"></i></a>
+    
+  </div>
+  <div class="pure-u-10-24">
+    
+    <nav class="prev">
+      <a href="https://airjunda.github.io/post/two_pointers/">Two Pointers复习</a>
+    </nav>
+    
+  </div>
+  <div class="pure-u-2-24">
+    &nbsp;
+  </div>
+  <div class="pure-u-10-24">
+    
+  </div>
+  <div class="pure-u-1-24" style="text-align: right;">
+    
+  </div>
+</div>
+
+
+  
+  
+  
+  
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+
+(function() {
+    
+    
+    if (window.location.hostname == "localhost")
+        return;
+
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    var disqus_shortname = 'AirJunda';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+  
+
 </div>
 
 </div>
@@ -300,3 +438,4 @@
 
 </body>
 </html>
+

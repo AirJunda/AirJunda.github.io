@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Graph on Air Junda Space</title>
+    <link>https://airjunda.github.io/tags/graph/</link>
+    <description>Recent content in Graph on Air Junda Space</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>&amp;copy; 2021. All rights reserved.</copyright>
+    <lastBuildDate>Fri, 04 Feb 2022 01:55:43 +0800</lastBuildDate><atom:link href="https://airjunda.github.io/tags/graph/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Union Find 复习</title>
+      <link>https://airjunda.github.io/post/unionfind/</link>
+      <pubDate>Fri, 04 Feb 2022 01:55:43 +0800</pubDate>
+      
+      <guid>https://airjunda.github.io/post/unionfind/</guid>
+      <description>Union Find 一种用于解决一个图的2个点是否相互连通的数据结构。比BFS高效。复习可以用下面这2题来回忆: 589 连接图 590 连接图 II
+运用： 434 · 岛屿的个数II
+并查集原生操作：
+ 查询两个元素是否在同一个集合内 合并两个元素所在的集合  并查集的派生操作：
+ 查询某个元素所在集合的元素个数 查询当前集合的个数  To be continued</description>
+    </item>
+    
+  </channel>
+</rss>

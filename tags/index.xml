@@ -6,20 +6,29 @@
     <description>Recent content in Tags on Air Junda Space</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>&amp;copy; 2021. All rights reserved.</copyright>
-    <lastBuildDate>Tue, 01 Feb 2022 17:51:43 +0800</lastBuildDate><atom:link href="https://airjunda.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 04 Feb 2022 01:55:43 +0800</lastBuildDate><atom:link href="https://airjunda.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Algo</title>
       <link>https://airjunda.github.io/tags/algo/</link>
-      <pubDate>Tue, 01 Feb 2022 17:51:43 +0800</pubDate>
+      <pubDate>Fri, 04 Feb 2022 01:55:43 +0800</pubDate>
       
       <guid>https://airjunda.github.io/tags/algo/</guid>
       <description></description>
     </item>
     
     <item>
+      <title>Graph</title>
+      <link>https://airjunda.github.io/tags/graph/</link>
+      <pubDate>Fri, 04 Feb 2022 01:55:43 +0800</pubDate>
+      
+      <guid>https://airjunda.github.io/tags/graph/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Lintcode</title>
       <link>https://airjunda.github.io/tags/lintcode/</link>
-      <pubDate>Tue, 01 Feb 2022 17:51:43 +0800</pubDate>
+      <pubDate>Fri, 04 Feb 2022 01:55:43 +0800</pubDate>
       
       <guid>https://airjunda.github.io/tags/lintcode/</guid>
       <description></description>
@@ -28,9 +37,18 @@
     <item>
       <title>Tech</title>
       <link>https://airjunda.github.io/tags/tech/</link>
-      <pubDate>Tue, 01 Feb 2022 17:51:43 +0800</pubDate>
+      <pubDate>Fri, 04 Feb 2022 01:55:43 +0800</pubDate>
       
       <guid>https://airjunda.github.io/tags/tech/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Union Find</title>
+      <link>https://airjunda.github.io/tags/union-find/</link>
+      <pubDate>Fri, 04 Feb 2022 01:55:43 +0800</pubDate>
+      
+      <guid>https://airjunda.github.io/tags/union-find/</guid>
       <description></description>
     </item>
     

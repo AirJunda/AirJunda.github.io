@@ -299,11 +299,15 @@
   <p>
   Union Find 一种用于解决一个图的2个点是否相互连通的数据结构。比BFS高效。复习可以用下面这2题来回忆: 589 连接图 590 连接图 II
 运用： 434 · 岛屿的个数II
-并查集原生操作：
- 查询两个元素是否在同一个集合内 合并两个元素所在的集合  并查集的派生操作：
- 查询某个元素所在集合的元素个数 查询当前集合的个数  To be continued
+UnionFind的模板写法如下：
+class UnionFind: def __init__(self, N): self.root = [i for i in range(N)] self.cnt = N def find(self, k): if self.root[k] == k: return k self.root[k] = self.find(self.root[k]) return self.root[k] def union(self, a, b): x = self.find(a) y = self.find(b) if x != y: self.root[y] = x self.cnt -= 1 return 并查集原生操作：
+ 合并两个元素所在的集合 Union 查询元素的老大是谁 Find 查询两个元素是否在同一个帮派  并查集的派生操作：
   </p>
 
+  
+  <footer>
+    <a href="https://airjunda.github.io/post/unionfind/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
+  </footer>
   
 </article>
 

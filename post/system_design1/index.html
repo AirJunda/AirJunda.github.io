@@ -7,7 +7,7 @@
   <meta name="description" content="">
   <meta name="generator" content="Hugo 0.80.0" />
 
-  <title>Union Find 复习 &middot; Air Junda Space</title>
+  <title>System Design 备忘录 &middot; Air Junda Space</title>
 
     
 
@@ -233,7 +233,7 @@
 
 
 <div class="header">
-  <h1>Union Find 复习</h1>
+  <h1>System Design 备忘录</h1>
   <h2></h2>
 </div>
 <div class="content">
@@ -242,7 +242,7 @@
 
   <div>
     <i class="fa fa-calendar fa-fw"></i>
-    <time>04 Feb 2022, 01:55</time>
+    <time>07 Feb 2022, 23:33</time>
   </div>
 
   
@@ -265,15 +265,9 @@
   <div>
     <i class="fa fa-tags fa-fw"></i>
     
-      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/algo">Algo</a>&nbsp;&#47;
+      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/system-design">System Design</a>&nbsp;&#47;
     
-      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/tech">Tech</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/lintcode">Lintcode</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/union-find">Union Find</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/graph">Graph</a>
+      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/tech">Tech</a>
     
   </div>
   
@@ -281,69 +275,27 @@
 
 </div>
 
-  <h2 id="union-find">Union Find</h2>
-<p>一种用于解决一个图的2个点是否相互连通的数据结构。比BFS高效。复习可以用下面这2题来回忆:
-<a href="https://www.lintcode.com/problem/589/description">589 连接图</a>
-<a href="https://www.lintcode.com/problem/590/description">590 连接图 II</a></p>
-<p>运用：
-<a href="https://www.lintcode.com/problem/434/">434 · 岛屿的个数II</a></p>
-<p>UnionFind的模板写法如下：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UnionFind</span>:
-    <span style="color:#66d9ef">def</span> __init__(self, N):
-        self<span style="color:#f92672">.</span>root <span style="color:#f92672">=</span> [i <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(N)]
-        self<span style="color:#f92672">.</span>cnt <span style="color:#f92672">=</span> N
-        
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">find</span>(self, k):
-        <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>root[k] <span style="color:#f92672">==</span> k:
-            <span style="color:#66d9ef">return</span> k
-        self<span style="color:#f92672">.</span>root[k] <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>find(self<span style="color:#f92672">.</span>root[k])
-        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>root[k]
-    
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">union</span>(self, a, b):
-        x <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>find(a)
-        y <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>find(b)
-        <span style="color:#66d9ef">if</span> x <span style="color:#f92672">!=</span> y:
-            self<span style="color:#f92672">.</span>root[y] <span style="color:#f92672">=</span> x
-        self<span style="color:#f92672">.</span>cnt <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1</span>
-        <span style="color:#66d9ef">return</span>
-</code></pre></div><p>并查集原生操作：</p>
-<ul>
-<li>合并两个元素所在的集合 Union</li>
-<li>查询元素的老大是谁 Find
-查询两个元素是否在同一个帮派</li>
-</ul>
-<p>并查集的派生操作：</p>
-<ul>
-<li>查询某个元素所在集合的元素个数</li>
-<li>查询当前集合的个数</li>
-</ul>
-<h2 id="易错点">易错点</h2>
-<p>如果题目要求帮派的数量。有2种做法。</p>
-<ul>
-<li>用一个 self.cnt记录孤立帮派数量。每次调用union() 操作后，self.cnt -= 1，最后self.cnt的值就是帮派数量</li>
-<li>调用下面这个ngroup()</li>
-</ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">ngroup</span>(self):
-        uniq <span style="color:#f92672">=</span> set()
-        <span style="color:#66d9ef">for</span> p <span style="color:#f92672">in</span> self<span style="color:#f92672">.</span>root:
-            uniq<span style="color:#f92672">.</span>add(self<span style="color:#f92672">.</span>find(p))
-        <span style="color:#66d9ef">return</span> len(uniq)
-</code></pre></div><p>易错点涉及的题目：<a href="https://www.lintcode.com/problem/1179/note">1179 朋友圈</a></p>
+  <h2 id="系统设计文章收藏">系统设计文章收藏</h2>
+<p>系统设计想等我自己有空的时候在慢慢更新专门的笔记。这里暂时先记录一些我看到的不错的文章，做一些简单的标记和分类。</p>
+<h3 id="高可用">高可用</h3>
+<p>方法论上，高可用是通过冗余+自动故障转移来实现的。整个互联网分层系统架构的高可用，又是通过每一层的冗余+自动故障转移来综合实现的</p>
+<p><a href="https://zhuanlan.zhihu.com/p/43723276">什么是HA</a>
+<a href="http://www.xumenger.com/virtual-ip-20190220/">VIP技术</a></p>
 
   
   <h4><i class="fas fa-share-alt" aria-hidden="true"></i>&nbsp;Share!</h4>
 <ul class="share-buttons">
-	<li><a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fairjunda.github.io%2fpost%2funionfind%2f" target="_blank" title="Share on Facebook"><i class="fab fa-facebook" aria-hidden="true"></i><span class="sr-only">Share on Facebook</span></a>
+	<li><a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fairjunda.github.io%2fpost%2fsystem_design1%2f" target="_blank" title="Share on Facebook"><i class="fab fa-facebook" aria-hidden="true"></i><span class="sr-only">Share on Facebook</span></a>
 	</li>&nbsp;&nbsp;&nbsp;
-	<li><a href="https://twitter.com/intent/tweet?source=https%3a%2f%2fairjunda.github.io%2fpost%2funionfind%2f" target="_blank" title="Tweet"><i class="fab fa-twitter" aria-hidden="true"></i><span class="sr-only">Tweet</span></a>
+	<li><a href="https://twitter.com/intent/tweet?source=https%3a%2f%2fairjunda.github.io%2fpost%2fsystem_design1%2f" target="_blank" title="Tweet"><i class="fab fa-twitter" aria-hidden="true"></i><span class="sr-only">Tweet</span></a>
 	</li>&nbsp;&nbsp;&nbsp;
-	<li><a href="https://plus.google.com/share?url=https%3a%2f%2fairjunda.github.io%2fpost%2funionfind%2f" target="_blank" title="Share on Google+"><i class="fab fa-google-plus" aria-hidden="true"></i><span class="sr-only">Share on Google+</span></a>
+	<li><a href="https://plus.google.com/share?url=https%3a%2f%2fairjunda.github.io%2fpost%2fsystem_design1%2f" target="_blank" title="Share on Google+"><i class="fab fa-google-plus" aria-hidden="true"></i><span class="sr-only">Share on Google+</span></a>
 	</li>&nbsp;&nbsp;&nbsp;
-	<li><a href="http://www.tumblr.com/share?v=3&u=https%3a%2f%2fairjunda.github.io%2fpost%2funionfind%2f" target="_blank" title="Post to Tumblr"><i class="fab fa-tumblr" aria-hidden="true"></i><span class="sr-only">Post to Tumblr</span></a>
+	<li><a href="http://www.tumblr.com/share?v=3&u=https%3a%2f%2fairjunda.github.io%2fpost%2fsystem_design1%2f" target="_blank" title="Post to Tumblr"><i class="fab fa-tumblr" aria-hidden="true"></i><span class="sr-only">Post to Tumblr</span></a>
 	</li>&nbsp;&nbsp;&nbsp;
-	<li><a href="http://pinterest.com/pin/create/button/?url=https%3a%2f%2fairjunda.github.io%2fpost%2funionfind%2f" target="_blank" title="Pin it"><i class="fab fa-pinterest-p" aria-hidden="true"></i><span class="sr-only">Pin it</span></a>
+	<li><a href="http://pinterest.com/pin/create/button/?url=https%3a%2f%2fairjunda.github.io%2fpost%2fsystem_design1%2f" target="_blank" title="Pin it"><i class="fab fa-pinterest-p" aria-hidden="true"></i><span class="sr-only">Pin it</span></a>
 	</li>&nbsp;&nbsp;&nbsp;
-	<li><a href="http://www.reddit.com/submit?url=https%3a%2f%2fairjunda.github.io%2fpost%2funionfind%2f" target="_blank" title="Submit to Reddit"><i class="fab fa-reddit-alien" aria-hidden="true"></i><span class="sr-only">Submit to Reddit</span></a>
+	<li><a href="http://www.reddit.com/submit?url=https%3a%2f%2fairjunda.github.io%2fpost%2fsystem_design1%2f" target="_blank" title="Submit to Reddit"><i class="fab fa-reddit-alien" aria-hidden="true"></i><span class="sr-only">Submit to Reddit</span></a>
 	</li>
 </ul>
 
@@ -375,13 +327,13 @@
 <div class="prev-next-post pure-g">
   <div class="pure-u-1-24" style="text-align: left;">
     
-    <a href="https://airjunda.github.io/post/two_pointers/"><i class="fa fa-chevron-left"></i></a>
+    <a href="https://airjunda.github.io/post/unionfind/"><i class="fa fa-chevron-left"></i></a>
     
   </div>
   <div class="pure-u-10-24">
     
     <nav class="prev">
-      <a href="https://airjunda.github.io/post/two_pointers/">Two Pointers复习</a>
+      <a href="https://airjunda.github.io/post/unionfind/">Union Find 复习</a>
     </nav>
     
   </div>
@@ -390,14 +342,8 @@
   </div>
   <div class="pure-u-10-24">
     
-    <nav class="next">
-      <a href="https://airjunda.github.io/post/system_design1/">System Design 备忘录</a>
-    </nav>
-    
   </div>
   <div class="pure-u-1-24" style="text-align: right;">
-    
-    <a href="https://airjunda.github.io/post/system_design1/"><i class="fa fa-chevron-right"></i></a>
     
   </div>
 </div>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>System Design on Air Junda Space</title>
+    <link>https://airjunda.github.io/tags/system-design/</link>
+    <description>Recent content in System Design on Air Junda Space</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>&amp;copy; 2021. All rights reserved.</copyright>
+    <lastBuildDate>Mon, 07 Feb 2022 23:33:17 +0800</lastBuildDate><atom:link href="https://airjunda.github.io/tags/system-design/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>System Design 备忘录</title>
+      <link>https://airjunda.github.io/post/system_design1/</link>
+      <pubDate>Mon, 07 Feb 2022 23:33:17 +0800</pubDate>
+      
+      <guid>https://airjunda.github.io/post/system_design1/</guid>
+      <description>系统设计文章收藏 系统设计想等我自己有空的时候在慢慢更新专门的笔记。这里暂时先记录一些我看到的不错的文章，做一些简单的标记和分类。
+高可用 方法论上，高可用是通过冗余+自动故障转移来实现的。整个互联网分层系统架构的高可用，又是通过每一层的冗余+自动故障转移来综合实现的
+什么是HA VIP技术</description>
+    </item>
+    
+  </channel>
+</rss>

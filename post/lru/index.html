@@ -511,6 +511,28 @@ LRU 的全称是 Least Recently Used，也就是说我们认为最近使用过�
             self<span style="color:#f92672">.</span>cache<span style="color:#f92672">.</span>addFirst(new_item)
             self<span style="color:#f92672">.</span>map[key] <span style="color:#f92672">=</span> new_item
 
+</code></pre></div><h2 id="链表的debug">链表的Debug</h2>
+<p>为了更方便的debug，我写了一些链表debug的utils.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">debug</span>(head):
+    <span style="color:#75715e"># print the list</span>
+    arr <span style="color:#f92672">=</span> []
+    strs <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
+    <span style="color:#66d9ef">while</span> head:
+        arr<span style="color:#f92672">.</span>append(head<span style="color:#f92672">.</span>val)
+        <span style="color:#66d9ef">print</span>( str(head<span style="color:#f92672">.</span>val),<span style="color:#e6db74">&#34;-&gt;&#34;</span>, end<span style="color:#f92672">=</span><span style="color:#e6db74">&#34; &#34;</span>)
+        head <span style="color:#f92672">=</span> head<span style="color:#f92672">.</span>next
+    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;null&#39;</span>)
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">build</span>(arr):
+    <span style="color:#75715e"># genereate linked-list from array</span>
+    dummy <span style="color:#f92672">=</span> ListNode(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
+    h <span style="color:#f92672">=</span> dummy
+    <span style="color:#66d9ef">for</span> v <span style="color:#f92672">in</span> arr:
+        newnode <span style="color:#f92672">=</span> ListNode(v)
+        h<span style="color:#f92672">.</span>next <span style="color:#f92672">=</span> newnode
+        h <span style="color:#f92672">=</span> h<span style="color:#f92672">.</span>next
+    <span style="color:#66d9ef">return</span> dummy<span style="color:#f92672">.</span>next
 </code></pre></div>
   
   <h4><i class="fas fa-share-alt" aria-hidden="true"></i>&nbsp;Share!</h4>

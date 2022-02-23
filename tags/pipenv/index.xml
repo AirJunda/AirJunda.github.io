@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Python on Air Junda Space</title>
-    <link>https://airjunda.github.io/tags/python/</link>
-    <description>Recent content in Python on Air Junda Space</description>
+    <title>pipenv on Air Junda Space</title>
+    <link>https://airjunda.github.io/tags/pipenv/</link>
+    <description>Recent content in pipenv on Air Junda Space</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>&amp;copy; 2021. All rights reserved.</copyright>
-    <lastBuildDate>Wed, 23 Feb 2022 18:39:17 +0800</lastBuildDate><atom:link href="https://airjunda.github.io/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 23 Feb 2022 18:39:17 +0800</lastBuildDate><atom:link href="https://airjunda.github.io/tags/pipenv/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Python 虚拟环境设置和使用</title>
       <link>https://airjunda.github.io/post/python_venv/</link>
@@ -22,18 +22,6 @@ pip3 install pipenv 如果是windows中安装需要添加如下的环境变量�
 “C:\Users\XXX\AppData\Roaming\Python\Python38\Scripts” pipenv常用命令： pipenv --two # 使用当前系统中的Python2 创建环境 pipenv --three # 使用当前系统中的Python3 创建环境 pipenv --python 3 # 指定使用Python3创建环境 pipenv --python 3.6 # 指定使用Python3.6创建环境 pipenv --python 2.7.14 # 指定使用Python2.7.14创建环境 pipenv --rm # 删除当前目录下的虚拟环境 激活虚拟环境
 cd project_folder pipenv shell 注意：
  创建环境时应使用系统中已经安装的、能够在环境变量中搜索到的Python 版本，否则会报错。 每次创建环境都会在当前目录下生成一个名为Pipfile文件，用来记录刚创建的环境信息，如果当前目录下之前存在该文件，会将其覆盖。  Reference https://zhuanlan.zhihu.com/p/163023998 https://blog.csdn.net/weixin_40922744/article/details/103723069</description>
-    </item>
-    
-    <item>
-      <title>Python自定义Comparator</title>
-      <link>https://airjunda.github.io/post/comparator/</link>
-      <pubDate>Wed, 12 Jan 2022 18:38:33 +0800</pubDate>
-      
-      <guid>https://airjunda.github.io/post/comparator/</guid>
-      <description>Python中自定义comparator 有的题目需要排序时基于自定义的规则去排序。自定义规则通过手写comparator去实现。sorted(), sort()都可以传入自定义的compartor, 但是python3的使用上有点点不一样。因为没有了cmp参数。
-Lintcode相关题目  184 Largest Number  comparator 对于函数 comp(left, right)：
- return a negative value (&amp;lt; 0) when the left item should be sorted before the right item return a positive value (&amp;gt; 0) when the left item should be sorted after the right item return 0 if left and right input is equal  实战（184 最大数） 给出一组非负整数，重新排列他们的顺序把他们组成一个最大的整数。
-Input: [1, 20, 23, 4, 8] Output: &amp;#34;8423201&amp;#34; Python2</description>
     </item>
     
   </channel>

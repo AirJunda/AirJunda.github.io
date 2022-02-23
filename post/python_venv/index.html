@@ -7,7 +7,7 @@
   <meta name="description" content="">
   <meta name="generator" content="Hugo 0.80.0" />
 
-  <title>Python &middot; Air Junda Space</title>
+  <title>Python 虚拟环境设置和使用 &middot; Air Junda Space</title>
 
     
 
@@ -42,9 +42,6 @@
   <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
  
-  
-  <link rel="alternate" type="application/rss+xml" title="Air Junda Space"
-    href='https://airjunda.github.io/tags/python/index.xml' />
   
 
   
@@ -131,11 +128,6 @@
   <div class="pure-menu social">
   <ul class="pure-menu-list">
 
-    
-    <li class="pure-menu-item">
-      <a class="pure-menu-link" href='https://airjunda.github.io/tags/python/index.xml'><i
-          class="fas fa-rss fa-fw"></i>RSS</a>
-    </li>
     
 
     
@@ -241,16 +233,12 @@
 
 
 <div class="header">
-  <h1>Python</h1>
+  <h1>Python 虚拟环境设置和使用</h1>
+  <h2></h2>
 </div>
-
 <div class="content">
-  
-    <article>
-  <header>
-    <h2><a href="https://airjunda.github.io/post/python_venv/">Python 虚拟环境设置和使用</a></h2>
 
-    <div class="post-meta">
+  <div class="post-meta">
 
   <div>
     <i class="fa fa-calendar fa-fw"></i>
@@ -291,86 +279,134 @@
 
 </div>
 
-  </header>
-
-  <p>
-  为什么需要虚拟环境？ 在使用Python语言时，通过pip（pip3）来安装第三方包，但是由于pip的特性，系统中只能安装每个包的一个版本。但是在实际项目开发中，不同项目可能需要第三方包的不同版本，迫使我们需要根据实际需求不断进行更新或卸载相应的包，而如果我们直接使用本地的Python环境，会导致整体的开发环境相当混乱而不易管理，这时候我们就需要开辟一个独立干净的空间进行开发和部署，虚拟环境就孕育而生。
-Python虚拟环境搭建工具 Python的虚拟环境工具有好几个。一般接触的多的有virtualenv, venv, pipenv, conda; 我目前学习的是pipenv，对virtualenv有初步接触。未来可以在本文中继续补充相应的教程。
-Pipenv pipenv所解决的问题:
- requirements.txt 依赖管理的局限 多个项目依赖不同第三方库、包版本问题 依赖分析  pipenv集成了pip，virtualenv两者的功能，且完善了两者的一些缺陷。 过去用virtualenv管理requirements.txt文件可能会有问题，Pipenv使用Pipfile和Pipfile.lock，后者存放将包的依赖关系，查看依赖关系是十分方便。
-pipenv的安装方式如下:
-pip3 install pipenv 如果是windows中安装需要添加如下的环境变量，才能在安装完后直接从cmd运行。注意下面路径中的xxx表示当前用户名，Python38是假定本机使用的python是3.8。
-“C:\Users\XXX\AppData\Roaming\Python\Python38\Scripts” pipenv常用命令： pipenv --two # 使用当前系统中的Python2 创建环境 pipenv --three # 使用当前系统中的Python3 创建环境 pipenv --python 3 # 指定使用Python3创建环境 pipenv --python 3.6 # 指定使用Python3.6创建环境 pipenv --python 2.7.14 # 指定使用Python2.7.14创建环境 pipenv --rm # 删除当前目录下的虚拟环境 激活虚拟环境
-cd project_folder pipenv shell 注意：
- 创建环境时应使用系统中已经安装的、能够在环境变量中搜索到的Python 版本，否则会报错。 每次创建环境都会在当前目录下生成一个名为Pipfile文件，用来记录刚创建的环境信息，如果当前目录下之前存在该文件，会将其覆盖。  Reference https://zhuanlan.zhihu.com/p/163023998 https://blog.csdn.net/weixin_40922744/article/details/103723069
-  </p>
+  <h2 id="为什么需要虚拟环境">为什么需要虚拟环境？</h2>
+<p>在使用Python语言时，通过pip（pip3）来安装第三方包，但是由于pip的特性，系统中只能安装每个包的一个版本。但是在实际项目开发中，不同项目可能需要第三方包的不同版本，迫使我们需要根据实际需求不断进行更新或卸载相应的包，而如果我们直接使用本地的Python环境，会导致整体的开发环境相当混乱而不易管理，这时候我们就需要开辟一个独立干净的空间进行开发和部署，虚拟环境就孕育而生。</p>
+<h2 id="python虚拟环境搭建工具">Python虚拟环境搭建工具</h2>
+<p>Python的虚拟环境工具有好几个。一般接触的多的有virtualenv, venv, pipenv, conda; 我目前学习的是pipenv，对virtualenv有初步接触。未来可以在本文中继续补充相应的教程。</p>
+<h3 id="pipenv">Pipenv</h3>
+<p>pipenv所解决的问题:</p>
+<ul>
+<li>requirements.txt 依赖管理的局限</li>
+<li>多个项目依赖不同第三方库、包版本问题
+依赖分析</li>
+</ul>
+<p>pipenv集成了pip，virtualenv两者的功能，且完善了两者的一些缺陷。
+过去用virtualenv管理requirements.txt文件可能会有问题，Pipenv使用Pipfile和Pipfile.lock，后者存放将包的依赖关系，查看依赖关系是十分方便。</p>
+<p>pipenv的安装方式如下:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">pip3 install pipenv
+</code></pre></div><p>如果是windows中安装需要添加如下的环境变量，才能在安装完后直接从cmd运行。注意下面路径中的xxx表示当前用户名，Python38是假定本机使用的python是3.8。</p>
+<pre><code>“C:\Users\XXX\AppData\Roaming\Python\Python38\Scripts”
+</code></pre><h4 id="pipenv常用命令">pipenv常用命令：</h4>
+<pre><code>pipenv --two  # 使用当前系统中的Python2 创建环境
+pipenv --three  # 使用当前系统中的Python3 创建环境
+pipenv --python 3  # 指定使用Python3创建环境
+pipenv --python 3.6  # 指定使用Python3.6创建环境
+pipenv --python 2.7.14  # 指定使用Python2.7.14创建环境
+pipenv --rm # 删除当前目录下的虚拟环境
+</code></pre><p>激活虚拟环境</p>
+<pre><code>cd project_folder
+pipenv shell
+</code></pre><p><strong>注意：</strong></p>
+<ul>
+<li>创建环境时应使用系统中已经安装的、能够在环境变量中搜索到的Python 版本，否则会报错。</li>
+<li>每次创建环境都会在当前目录下生成一个名为Pipfile文件，用来记录刚创建的环境信息，如果当前目录下之前存在该文件，会将其覆盖。</li>
+</ul>
+<h2 id="reference">Reference</h2>
+<p><a href="https://zhuanlan.zhihu.com/p/163023998">https://zhuanlan.zhihu.com/p/163023998</a>
+<a href="https://blog.csdn.net/weixin_40922744/article/details/103723069">https://blog.csdn.net/weixin_40922744/article/details/103723069</a></p>
 
   
-</article>
+  <h4><i class="fas fa-share-alt" aria-hidden="true"></i>&nbsp;Share!</h4>
+<ul class="share-buttons">
+	<li><a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fairjunda.github.io%2fpost%2fpython_venv%2f" target="_blank" title="Share on Facebook"><i class="fab fa-facebook" aria-hidden="true"></i><span class="sr-only">Share on Facebook</span></a>
+	</li>&nbsp;&nbsp;&nbsp;
+	<li><a href="https://twitter.com/intent/tweet?source=https%3a%2f%2fairjunda.github.io%2fpost%2fpython_venv%2f" target="_blank" title="Tweet"><i class="fab fa-twitter" aria-hidden="true"></i><span class="sr-only">Tweet</span></a>
+	</li>&nbsp;&nbsp;&nbsp;
+	<li><a href="https://plus.google.com/share?url=https%3a%2f%2fairjunda.github.io%2fpost%2fpython_venv%2f" target="_blank" title="Share on Google+"><i class="fab fa-google-plus" aria-hidden="true"></i><span class="sr-only">Share on Google+</span></a>
+	</li>&nbsp;&nbsp;&nbsp;
+	<li><a href="http://www.tumblr.com/share?v=3&u=https%3a%2f%2fairjunda.github.io%2fpost%2fpython_venv%2f" target="_blank" title="Post to Tumblr"><i class="fab fa-tumblr" aria-hidden="true"></i><span class="sr-only">Post to Tumblr</span></a>
+	</li>&nbsp;&nbsp;&nbsp;
+	<li><a href="http://pinterest.com/pin/create/button/?url=https%3a%2f%2fairjunda.github.io%2fpost%2fpython_venv%2f" target="_blank" title="Pin it"><i class="fab fa-pinterest-p" aria-hidden="true"></i><span class="sr-only">Pin it</span></a>
+	</li>&nbsp;&nbsp;&nbsp;
+	<li><a href="http://www.reddit.com/submit?url=https%3a%2f%2fairjunda.github.io%2fpost%2fpython_venv%2f" target="_blank" title="Submit to Reddit"><i class="fab fa-reddit-alien" aria-hidden="true"></i><span class="sr-only">Submit to Reddit</span></a>
+	</li>
+</ul>
+
+
+<style>
+	ul.share-buttons{
+	  list-style: none;
+	  padding: 0;
+	}
+
+	ul.share-buttons li{
+	  display: inline;
+	}
+
+	ul.share-buttons .sr-only{
+	  position: absolute;
+	  clip: rect(1px 1px 1px 1px);
+	  clip: rect(1px, 1px, 1px, 1px);
+	  padding: 0;
+	  border: 0;
+	  height: 1px;
+	  width: 1px;
+	  overflow: hidden;
+	}
+</style>
+
 
   
-    <article>
-  <header>
-    <h2><a href="https://airjunda.github.io/post/comparator/">Python自定义Comparator</a></h2>
-
-    <div class="post-meta">
-
-  <div>
-    <i class="fa fa-calendar fa-fw"></i>
-    <time>12 Jan 2022, 18:38</time>
+<div class="prev-next-post pure-g">
+  <div class="pure-u-1-24" style="text-align: left;">
+    
+    <a href="https://airjunda.github.io/post/system_design1/"><i class="fa fa-chevron-left"></i></a>
+    
   </div>
-
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-folder fa-fw"></i>
+  <div class="pure-u-10-24">
     
-      <a class="post-taxonomy-topic" href="https://airjunda.github.io/topics/techblog">TechBlog</a>
+    <nav class="prev">
+      <a href="https://airjunda.github.io/post/system_design1/">System Design 备忘录</a>
+    </nav>
     
   </div>
-  
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-tags fa-fw"></i>
-    
-      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/algo">Algo</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/tech">Tech</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/lintcode">Lintcode</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/python">Python</a>
+  <div class="pure-u-2-24">
+    &nbsp;
+  </div>
+  <div class="pure-u-10-24">
     
   </div>
-  
-  
-
+  <div class="pure-u-1-24" style="text-align: right;">
+    
+  </div>
 </div>
 
-  </header>
-
-  <p>
-  Python中自定义comparator 有的题目需要排序时基于自定义的规则去排序。自定义规则通过手写comparator去实现。sorted(), sort()都可以传入自定义的compartor, 但是python3的使用上有点点不一样。因为没有了cmp参数。
-Lintcode相关题目  184 Largest Number  comparator 对于函数 comp(left, right)：
- return a negative value (&lt; 0) when the left item should be sorted before the right item return a positive value (&gt; 0) when the left item should be sorted after the right item return 0 if left and right input is equal  实战（184 最大数） 给出一组非负整数，重新排列他们的顺序把他们组成一个最大的整数。
-Input: [1, 20, 23, 4, 8] Output: &#34;8423201&#34; Python2
-  </p>
 
   
-  <footer>
-    <a href="https://airjunda.github.io/post/comparator/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
-  </footer>
   
-</article>
+  
+  
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+
+(function() {
+    
+    
+    if (window.location.hostname == "localhost")
+        return;
+
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    var disqus_shortname = 'AirJunda';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
 
   
+
 </div>
 
 </div>
@@ -414,7 +450,11 @@ Input: [1, 20, 23, 4, 8] Output: &#34;8423201&#34; Python2
 
 
 
+<script src="https://airjunda.github.io/js/math-code.js"></script>
+  <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  
 
 
 </body>
 </html>
+

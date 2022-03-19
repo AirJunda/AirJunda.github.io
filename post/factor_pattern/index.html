@@ -7,7 +7,7 @@
   <meta name="description" content="">
   <meta name="generator" content="Hugo 0.80.0" />
 
-  <title>Python 虚拟环境设置和使用 &middot; Air Junda Space</title>
+  <title>Golang之工厂模式 &middot; Air Junda Space</title>
 
     
 
@@ -233,7 +233,7 @@
 
 
 <div class="header">
-  <h1>Python 虚拟环境设置和使用</h1>
+  <h1>Golang之工厂模式</h1>
   <h2></h2>
 </div>
 <div class="content">
@@ -242,7 +242,7 @@
 
   <div>
     <i class="fa fa-calendar fa-fw"></i>
-    <time>23 Feb 2022, 18:39</time>
+    <time>16 Jan 2022, 02:08</time>
   </div>
 
   
@@ -265,13 +265,13 @@
   <div>
     <i class="fa fa-tags fa-fw"></i>
     
-      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/python">Python</a>&nbsp;&#47;
+      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/oop">OOP</a>&nbsp;&#47;
     
       <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/tech">Tech</a>&nbsp;&#47;
     
-      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/virtual-env">Virtual Env</a>&nbsp;&#47;
+      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/design-pattern">Design Pattern</a>&nbsp;&#47;
     
-      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/pipenv">pipenv</a>
+      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/go">Go</a>
     
   </div>
   
@@ -279,56 +279,22 @@
 
 </div>
 
-  <h2 id="为什么需要虚拟环境">为什么需要虚拟环境？</h2>
-<p>在使用Python语言时，通过pip（pip3）来安装第三方包，但是由于pip的特性，系统中只能安装每个包的一个版本。但是在实际项目开发中，不同项目可能需要第三方包的不同版本，迫使我们需要根据实际需求不断进行更新或卸载相应的包，而如果我们直接使用本地的Python环境，会导致整体的开发环境相当混乱而不易管理，这时候我们就需要开辟一个独立干净的空间进行开发和部署，虚拟环境就孕育而生。</p>
-<h2 id="python虚拟环境搭建工具">Python虚拟环境搭建工具</h2>
-<p>Python的虚拟环境工具有好几个。一般接触的多的有virtualenv, venv, pipenv, conda; 我目前学习的是pipenv，对virtualenv有初步接触。未来可以在本文中继续补充相应的教程。</p>
-<h3 id="pipenv">Pipenv</h3>
-<p>pipenv所解决的问题:</p>
-<ul>
-<li>requirements.txt 依赖管理的局限</li>
-<li>多个项目依赖不同第三方库、包版本问题
-依赖分析</li>
-</ul>
-<p>pipenv集成了pip，virtualenv两者的功能，且完善了两者的一些缺陷。
-过去用virtualenv管理requirements.txt文件可能会有问题，Pipenv使用Pipfile和Pipfile.lock，后者存放将包的依赖关系，查看依赖关系是十分方便。</p>
-<p>pipenv的安装方式如下:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">pip3 install pipenv
-</code></pre></div><p>如果是windows中安装需要添加如下的环境变量，才能在安装完后直接从cmd运行。注意下面路径中的xxx表示当前用户名，Python38是假定本机使用的python是3.8。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">“C:<span style="color:#ae81ff">\U</span>sers<span style="color:#ae81ff">\X</span>XX<span style="color:#ae81ff">\A</span>ppData<span style="color:#ae81ff">\R</span>oaming<span style="color:#ae81ff">\P</span>ython<span style="color:#ae81ff">\P</span>ython38<span style="color:#ae81ff">\S</span>cripts”
-</code></pre></div><h4 id="pipenv常用命令">pipenv常用命令：</h4>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">pipenv --two  <span style="color:#75715e"># 使用当前系统中的Python2 创建环境</span>
-pipenv --three  <span style="color:#75715e"># 使用当前系统中的Python3 创建环境</span>
-pipenv --python <span style="color:#ae81ff">3</span>  <span style="color:#75715e"># 指定使用Python3创建环境</span>
-pipenv --python 3.6  <span style="color:#75715e"># 指定使用Python3.6创建环境</span>
-pipenv --python 2.7.14  <span style="color:#75715e"># 指定使用Python2.7.14创建环境</span>
-pipenv --rm <span style="color:#75715e"># 删除当前目录下的虚拟环境</span>
-</code></pre></div><p>激活虚拟环境</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">cd project_folder
-pipenv shell
-</code></pre></div><p><strong>注意：</strong></p>
-<ul>
-<li>创建环境时应使用系统中已经安装的、能够在环境变量中搜索到的Python 版本，否则会报错。</li>
-<li>每次创建环境都会在当前目录下生成一个名为Pipfile文件，用来记录刚创建的环境信息，如果当前目录下之前存在该文件，会将其覆盖。</li>
-</ul>
-<h2 id="reference">Reference</h2>
-<p><a href="https://zhuanlan.zhihu.com/p/163023998">https://zhuanlan.zhihu.com/p/163023998</a>
-<a href="https://blog.csdn.net/weixin_40922744/article/details/103723069">https://blog.csdn.net/weixin_40922744/article/details/103723069</a></p>
+  <h2 id="heading"></h2>
 
   
   <h4><i class="fas fa-share-alt" aria-hidden="true"></i>&nbsp;Share!</h4>
 <ul class="share-buttons">
-	<li><a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fairjunda.github.io%2fpost%2fpython_venv%2f" target="_blank" title="Share on Facebook"><i class="fab fa-facebook" aria-hidden="true"></i><span class="sr-only">Share on Facebook</span></a>
+	<li><a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fairjunda.github.io%2fpost%2ffactor_pattern%2f" target="_blank" title="Share on Facebook"><i class="fab fa-facebook" aria-hidden="true"></i><span class="sr-only">Share on Facebook</span></a>
 	</li>&nbsp;&nbsp;&nbsp;
-	<li><a href="https://twitter.com/intent/tweet?source=https%3a%2f%2fairjunda.github.io%2fpost%2fpython_venv%2f" target="_blank" title="Tweet"><i class="fab fa-twitter" aria-hidden="true"></i><span class="sr-only">Tweet</span></a>
+	<li><a href="https://twitter.com/intent/tweet?source=https%3a%2f%2fairjunda.github.io%2fpost%2ffactor_pattern%2f" target="_blank" title="Tweet"><i class="fab fa-twitter" aria-hidden="true"></i><span class="sr-only">Tweet</span></a>
 	</li>&nbsp;&nbsp;&nbsp;
-	<li><a href="https://plus.google.com/share?url=https%3a%2f%2fairjunda.github.io%2fpost%2fpython_venv%2f" target="_blank" title="Share on Google+"><i class="fab fa-google-plus" aria-hidden="true"></i><span class="sr-only">Share on Google+</span></a>
+	<li><a href="https://plus.google.com/share?url=https%3a%2f%2fairjunda.github.io%2fpost%2ffactor_pattern%2f" target="_blank" title="Share on Google+"><i class="fab fa-google-plus" aria-hidden="true"></i><span class="sr-only">Share on Google+</span></a>
 	</li>&nbsp;&nbsp;&nbsp;
-	<li><a href="http://www.tumblr.com/share?v=3&u=https%3a%2f%2fairjunda.github.io%2fpost%2fpython_venv%2f" target="_blank" title="Post to Tumblr"><i class="fab fa-tumblr" aria-hidden="true"></i><span class="sr-only">Post to Tumblr</span></a>
+	<li><a href="http://www.tumblr.com/share?v=3&u=https%3a%2f%2fairjunda.github.io%2fpost%2ffactor_pattern%2f" target="_blank" title="Post to Tumblr"><i class="fab fa-tumblr" aria-hidden="true"></i><span class="sr-only">Post to Tumblr</span></a>
 	</li>&nbsp;&nbsp;&nbsp;
-	<li><a href="http://pinterest.com/pin/create/button/?url=https%3a%2f%2fairjunda.github.io%2fpost%2fpython_venv%2f" target="_blank" title="Pin it"><i class="fab fa-pinterest-p" aria-hidden="true"></i><span class="sr-only">Pin it</span></a>
+	<li><a href="http://pinterest.com/pin/create/button/?url=https%3a%2f%2fairjunda.github.io%2fpost%2ffactor_pattern%2f" target="_blank" title="Pin it"><i class="fab fa-pinterest-p" aria-hidden="true"></i><span class="sr-only">Pin it</span></a>
 	</li>&nbsp;&nbsp;&nbsp;
-	<li><a href="http://www.reddit.com/submit?url=https%3a%2f%2fairjunda.github.io%2fpost%2fpython_venv%2f" target="_blank" title="Submit to Reddit"><i class="fab fa-reddit-alien" aria-hidden="true"></i><span class="sr-only">Submit to Reddit</span></a>
+	<li><a href="http://www.reddit.com/submit?url=https%3a%2f%2fairjunda.github.io%2fpost%2ffactor_pattern%2f" target="_blank" title="Submit to Reddit"><i class="fab fa-reddit-alien" aria-hidden="true"></i><span class="sr-only">Submit to Reddit</span></a>
 	</li>
 </ul>
 
@@ -360,13 +326,13 @@ pipenv shell
 <div class="prev-next-post pure-g">
   <div class="pure-u-1-24" style="text-align: left;">
     
-    <a href="https://airjunda.github.io/post/system_design1/"><i class="fa fa-chevron-left"></i></a>
+    <a href="https://airjunda.github.io/post/comparator/"><i class="fa fa-chevron-left"></i></a>
     
   </div>
   <div class="pure-u-10-24">
     
     <nav class="prev">
-      <a href="https://airjunda.github.io/post/system_design1/">System Design 备忘录</a>
+      <a href="https://airjunda.github.io/post/comparator/">Python自定义Comparator</a>
     </nav>
     
   </div>
@@ -376,13 +342,13 @@ pipenv shell
   <div class="pure-u-10-24">
     
     <nav class="next">
-      <a href="https://airjunda.github.io/post/django/">Django Get Started</a>
+      <a href="https://airjunda.github.io/post/binary_search/">Binary Search易错难点</a>
     </nav>
     
   </div>
   <div class="pure-u-1-24" style="text-align: right;">
     
-    <a href="https://airjunda.github.io/post/django/"><i class="fa fa-chevron-right"></i></a>
+    <a href="https://airjunda.github.io/post/binary_search/"><i class="fa fa-chevron-right"></i></a>
     
   </div>
 </div>
@@ -456,9 +422,6 @@ pipenv shell
 
 
 
-<script src="https://airjunda.github.io/js/math-code.js"></script>
-  <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-  
 
 
 </body>

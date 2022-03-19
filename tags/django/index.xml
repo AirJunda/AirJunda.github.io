@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Django on Air Junda Space</title>
+    <link>https://airjunda.github.io/tags/django/</link>
+    <description>Recent content in Django on Air Junda Space</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>&amp;copy; 2021. All rights reserved.</copyright>
+    <lastBuildDate>Wed, 23 Feb 2022 23:40:26 +0800</lastBuildDate><atom:link href="https://airjunda.github.io/tags/django/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Django Get Started</title>
+      <link>https://airjunda.github.io/post/django/</link>
+      <pubDate>Wed, 23 Feb 2022 23:40:26 +0800</pubDate>
+      
+      <guid>https://airjunda.github.io/post/django/</guid>
+      <description>Django 本文主要是记录一些Django的初始概念。适用于第一次接触Django或者好久没碰Django后重新捡起来的复习。
+新建Django Project django-admin startproject project_name 新建Django App python manage.py startapp app_name Django Project vs Django App 初学Django这两个概念我有点懵，Gin或者Flask是没有类似Django里类似的划分的。我目前对Django Project vs Django App的理解是下面这样的。
+首先是Django官网的解释： An app is a web application that does something – e.g., a blog system, a database of public records or a small poll app. A project is a collection of configuration and apps for a particular website. A project can contain multiple apps. An app can be in multiple projects.</description>
+    </item>
+    
+  </channel>
+</rss>

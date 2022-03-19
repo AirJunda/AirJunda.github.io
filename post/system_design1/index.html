@@ -277,12 +277,20 @@
 
   <h2 id="系统设计文章收藏">系统设计文章收藏</h2>
 <p>系统设计想等我自己有空的时候在慢慢更新专门的笔记。这里暂时先记录一些我看到的不错的文章，做一些简单的标记和分类。</p>
-<h3 id="高可用">高可用</h3>
+<h3 id="high-availability">High Availability</h3>
 <p>方法论上，高可用是通过冗余+自动故障转移来实现的。整个互联网分层系统架构的高可用，又是通过每一层的冗余+自动故障转移来综合实现的</p>
 <ul>
 <li><a href="https://zhuanlan.zhihu.com/p/43723276">什么是HA</a></li>
 <li><a href="http://www.xumenger.com/virtual-ip-20190220/">VIP技术</a></li>
 </ul>
+<h3 id="availability-vs-reliability">Availability vs Reliability</h3>
+<p>Reliability is availability over time considering the full range of possible real-world conditions that can occur. If a system is reliable, it is available. However, if it is available, it is not necessarily reliable</p>
+<p><a href="https://pastebin.ubuntu.com/p/nstvfbnqYz/">https://pastebin.ubuntu.com/p/nstvfbnqYz/</a></p>
+<h3 id="优化写">优化写</h3>
+<p>Write-back cache: Under this scheme, data is written to cache alone, and completion is immediately confirmed to the client. The write to the permanent storage is done after specified intervals or under certain conditions. This results in low-latency and high-throughput for write-intensive applications; however, this speed comes with the risk of data loss in case of a crash or other adverse event because the only copy of the written data is in the cache.</p>
+<p>Redundancy plays a key role in removing the single points of failure in the system and provides backups if needed in a crisis</p>
+<h2 id="微博关注列表的数据存储实现">微博关注列表的数据存储实现</h2>
+<p><a href="https://cloud.tencent.com/developer/article/1451238">https://cloud.tencent.com/developer/article/1451238</a></p>
 
   
   <h4><i class="fas fa-share-alt" aria-hidden="true"></i>&nbsp;Share!</h4>

@@ -248,6 +248,134 @@
   
     <article>
   <header>
+    <h2><a href="https://airjunda.github.io/post/celery/">那些年 Celery 踩过的坑</a></h2>
+
+    <div class="post-meta">
+
+  <div>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>19 Mar 2022, 21:30</time>
+  </div>
+
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-folder fa-fw"></i>
+    
+      <a class="post-taxonomy-topic" href="https://airjunda.github.io/topics/techblog">TechBlog</a>
+    
+  </div>
+  
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-tags fa-fw"></i>
+    
+      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/celery">Celery</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/python">Python</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/tech">Tech</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/linux">Linux</a>
+    
+  </div>
+  
+  
+
+</div>
+
+  </header>
+
+  <p>
+  初见Celery 下一家公司要用Celery, 于是决定在家自学。结果没想到看着官方文档很简单，其实有不少隐藏的坑。这篇文章就是记录下自己踩过的坑和排查经历。至于Celery是什么的内容，不在本文介绍。
+Celery教程： https://www.celerycn.io/ru-men/celery-chu-ci-shi-yong
+Windows的坑 在参考上面的教程时，我用的redis做broker。启动celery worker后，发现terminal显示了message received, 但是worker不执行相应的消息处理。搜索Google的解决方案，发现加上下面的 -P solo 参数启动worker可以解决：
+celery -A tasks worker --loglevel=info -P solo 但是worker只能执行一次消息的处理。后续的消息都没反应。并且用ctrl + c无法终止worker, 会挂死，只能关掉terminal。
+排查结论 最后发现有人提到了celery对windows的支持已经没了。celery &gt;= 4的版本在windows下看起来是有bug的。并且感觉这个bug和win下的celery并行有关。于是决定试一试Linux下celery行不行。
+Ubuntu的坑 改用Ubuntu的VM并不是一帆风顺的，遇到了好几个问题。最后都解决了。
+Python3的版本 之前的vagrantfile一直用的Ubuntu 16的版本，但是16的版本呢，python3装的是3.5。我尝试网上的教程安装3.8，但是就死活说找不到 python3.8. 有人说是因为16的版本太旧了。装不了3.8和3.9。 而3.5的话，import新的celery会报语法错误。于是最后折腾了半天只好卸载了python3.5,装了3.6。然而这个带来了另一问题，就是pip3也卸载了。而重新装pip3会主动安装python3.5-minimum. 最后的解决方案是单独装pip3.6, 之后py3的包都用pip3.6而不是pip3去管理，或者设置soft link让pip3指向pip3.6。 这个过程涉及了好几个步骤，记录如下：
+安装python3.6 apt-key adv --refresh-keys --keyserver keyserver.ubuntu.com apt-get -y install software-properties-common add-apt-repository ppa:deadsnakes/ppa apt get update apt-get -y install python3.6 apt remove python3.5-minimal -y #有人说不建议删除3.5，有些系统工具会用不了。我当时是删了。  指定python3为python3.6 设置soft link, 让python3指向python3.6的bin
+which python #找出python的bin path, 一般在/usr/bin ln -sf /usr/bin/python3.
+  </p>
+
+  
+  <footer>
+    <a href="https://airjunda.github.io/post/celery/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
+  </footer>
+  
+</article>
+
+  
+    <article>
+  <header>
+    <h2><a href="https://airjunda.github.io/post/django/">Django Get Started</a></h2>
+
+    <div class="post-meta">
+
+  <div>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>23 Feb 2022, 23:40</time>
+  </div>
+
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-folder fa-fw"></i>
+    
+      <a class="post-taxonomy-topic" href="https://airjunda.github.io/topics/techblog">TechBlog</a>
+    
+  </div>
+  
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-tags fa-fw"></i>
+    
+      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/algo">Algo</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/tech">Tech</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/django">Django</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/python">Python</a>
+    
+  </div>
+  
+  
+
+</div>
+
+  </header>
+
+  <p>
+  Django 本文主要是记录一些Django的初始概念。适用于第一次接触Django或者好久没碰Django后重新捡起来的复习。
+新建Django Project django-admin startproject project_name 新建Django App python manage.py startapp app_name Django Project vs Django App 初学Django这两个概念我有点懵，Gin或者Flask是没有类似Django里类似的划分的。我目前对Django Project vs Django App的理解是下面这样的。
+首先是Django官网的解释： An app is a web application that does something – e.g., a blog system, a database of public records or a small poll app. A project is a collection of configuration and apps for a particular website. A project can contain multiple apps. An app can be in multiple projects.
+  </p>
+
+  
+  <footer>
+    <a href="https://airjunda.github.io/post/django/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
+  </footer>
+  
+</article>
+
+  
+    <article>
+  <header>
     <h2><a href="https://airjunda.github.io/post/python_venv/">Python 虚拟环境设置和使用</a></h2>
 
     <div class="post-meta">
@@ -354,10 +482,16 @@ cd project_folder pipenv shell 注意：
 
   <p>
   系统设计文章收藏 系统设计想等我自己有空的时候在慢慢更新专门的笔记。这里暂时先记录一些我看到的不错的文章，做一些简单的标记和分类。
-高可用 方法论上，高可用是通过冗余+自动故障转移来实现的。整个互联网分层系统架构的高可用，又是通过每一层的冗余+自动故障转移来综合实现的
- 什么是HA VIP技术  
+High Availability 方法论上，高可用是通过冗余+自动故障转移来实现的。整个互联网分层系统架构的高可用，又是通过每一层的冗余+自动故障转移来综合实现的
+ 什么是HA VIP技术  Availability vs Reliability Reliability is availability over time considering the full range of possible real-world conditions that can occur. If a system is reliable, it is available. However, if it is available, it is not necessarily reliable
+https://pastebin.ubuntu.com/p/nstvfbnqYz/
+优化写 Write-back cache: Under this scheme, data is written to cache alone, and completion is immediately confirmed to the client. The write to the permanent storage is done after specified intervals or under certain conditions.
   </p>
 
+  
+  <footer>
+    <a href="https://airjunda.github.io/post/system_design1/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
+  </footer>
   
 </article>
 
@@ -618,6 +752,61 @@ class Solution: &#34;&#34;&#34; @param nums: a rotated sorted array @return: the
   <footer>
     <a href="https://airjunda.github.io/post/binary_search/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
   </footer>
+  
+</article>
+
+  
+    <article>
+  <header>
+    <h2><a href="https://airjunda.github.io/post/factor_pattern/">Golang之工厂模式</a></h2>
+
+    <div class="post-meta">
+
+  <div>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>16 Jan 2022, 02:08</time>
+  </div>
+
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-folder fa-fw"></i>
+    
+      <a class="post-taxonomy-topic" href="https://airjunda.github.io/topics/techblog">TechBlog</a>
+    
+  </div>
+  
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-tags fa-fw"></i>
+    
+      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/oop">OOP</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/tech">Tech</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/design-pattern">Design Pattern</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/go">Go</a>
+    
+  </div>
+  
+  
+
+</div>
+
+  </header>
+
+  <p>
+   
+  </p>
+
   
 </article>
 

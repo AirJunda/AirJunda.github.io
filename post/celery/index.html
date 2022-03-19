@@ -313,12 +313,12 @@ sudo ln -sf /usr/local/bin/pip3.6 /usr/bin/pip3 <span style="color:#75715e">#留
 </code></pre></div><h3 id="windows下的pycharm设置vm中的运行环境">Windows下的Pycharm设置VM中的运行环境</h3>
 <p>上面搞完了后，我们的VM是ok了。但是我们需要在Pycharm里设置项目的interperter 为vagrant创建的VM中的python3.6的bin path。
 <a href="https://iswbm.com/357.html">教程</a></p>
-<p>####项目文件夹同步
-我目前是把project folder放在vagrantfile所在的目录下。我尝试去把windows下的任意位置和VM中的路径做同步绑定。但是没成功。这个等以后成功了，再在这里补充。</p>
-<h3 id="vm访问host的服务">VM访问Host的服务</h3>
+<h4 id="项目文件夹同步">项目文件夹同步</h4>
+<p>我目前是把project folder放在vagrantfile所在的目录下。我尝试去把windows下的任意位置和VM中的路径做同步绑定。但是没成功。这个等以后成功了，再在这里补充。</p>
+<h4 id="vm访问host的服务">VM访问Host的服务</h4>
 <p>我的redis是跑在Win上的。那么linux里运行的celery的broker地址就不能用localhost了。因此需要找出host的地址。但是我这里卡住了，我在VM里用Ifconfig找host的地址，但试了几个都对。我最后是通过在host启动了一个flask app, 并设置app.run(host=&ldquo;0.0.0.0&rdquo;)，允许所有host访问当前的flask。这样flask启动后console里会打印出host的地址。我当时显示的host地址是 http://192.168.1.42:5000/
 最后就用这个host地址去配置celery的conf</p>
-<h3 id="配置redis允许所有host访问">配置Redis允许所有host访问</h3>
+<h4 id="配置redis允许所有host访问">配置Redis允许所有host访问</h4>
 <p>Win下的Redis安装目录下有2个conf文件。网上说只要改redis.windows-service.conf就行。我当时是2个都改了。修改如下</p>
 <pre><code>1- bind 0.0.0.0 instead of 127.0.0.1
 

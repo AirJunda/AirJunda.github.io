@@ -273,15 +273,6 @@ name: Deploy GitHub Page on: # 在push或pull请求事件上触发工作流 push
     </item>
     
     <item>
-      <title>My First Post</title>
-      <link>https://airjunda.github.io/post/my-first-post/</link>
-      <pubDate>Thu, 04 Nov 2021 02:26:03 +0800</pubDate>
-      
-      <guid>https://airjunda.github.io/post/my-first-post/</guid>
-      <description>Hello Hugo! 你好 Hugo! </description>
-    </item>
-    
-    <item>
       <title>Where It All Began</title>
       <link>https://airjunda.github.io/post/debut/</link>
       <pubDate>Thu, 04 Nov 2021 02:26:03 +0800</pubDate>

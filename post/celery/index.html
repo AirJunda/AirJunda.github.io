@@ -314,7 +314,7 @@ sudo ln -sf /usr/local/bin/pip3.6 /usr/bin/pip3 <span style="color:#75715e">#留
 <p>上面搞完了后，我们的VM是ok了。但是我们需要在Pycharm里设置项目的interperter 为vagrant创建的VM中的python3.6的bin path。
 <a href="https://iswbm.com/357.html">教程</a></p>
 <h4 id="项目文件夹同步">项目文件夹同步</h4>
-<p>我目前是把project folder放在vagrantfile所在的目录下。我尝试去把windows下的任意位置和VM中的路径做同步绑定。但是遇到些奇怪的bug。这个未来会单独开一篇文章讲解。</p>
+<p>我目前是把project folder放在vagrantfile所在的目录下。我尝试去把windows下的任意位置和VM中的路径做同步绑定。但是遇到些奇怪的bug。未来单独开文讲吧。</p>
 <h4 id="vm访问host的服务">VM访问Host的服务</h4>
 <p>我的redis是跑在Win上的。那么linux里运行的celery的broker地址就不能用localhost了。因此需要找出host的地址。但是我这里卡住了，我在VM里用Ifconfig找host的地址，但试了几个都对。我最后是通过在host启动了一个flask app, 并设置app.run(host=&ldquo;0.0.0.0&rdquo;)，允许所有host访问当前的flask。这样flask启动后console里会打印出host的地址。我当时显示的host地址是 http://192.168.1.42:5000/
 最后就用这个host地址去配置celery的conf</p>
@@ -323,8 +323,28 @@ sudo ln -sf /usr/local/bin/pip3.6 /usr/bin/pip3 <span style="color:#75715e">#留
 <pre><code>1- bind 0.0.0.0 instead of 127.0.0.1
 
 2- Change protected-mode to no
-</code></pre><h3 id="it-works">It Works!</h3>
-<p>到这里，我的celery demo终于成功跑起来了。并且在vm的terminal里能看到消息被消费执行后输出的结果。在producer那边也能看到没有被阻塞。</p>
+</code></pre><h3 id="it-works-but-not-with-django">It Works! But not with Django</h3>
+<p>到这里，我的celery demo终于成功跑起来了。并且在vm的terminal里能看到消息被消费执行后输出的结果。在producer那边也能看到没有被阻塞。然而在结合django使用时遇到了新的坑。</p>
+<h4 id="django-celery">Django Celery</h4>
+<p>在之前看的慕课网教程里，提到了一个pip package叫django-celery。这个能让manage.py里支持celery相关的操作。但是那个课程是2018年录的。django-celery最新版是3.3.1，但是只支持celery &lt; 4.0 and &gt;=3.1.15. 而我2022年当时装的是celery==5.12. 我尝试在ubuntu 18的机子上安装3.1.15但是失败了。于是最后只能放弃使用django-celery, 直接使用celery的command去启动worker。 关于这个问题，我收藏了下面的几个可能的解决方案，未来如果有时间可以尝试看是否能在使用celery &gt; 5的情况下依然使用django-celery。</p>
+<p><a href="https://github.com/celery/celery/commit/bda678b9cd3a4ea47bfdd4c33aaabffb678de883">solution1</a>
+<a href="https://blog.csdn.net/sevensolo/article/details/106409751">solution2</a></p>
+<h4 id="task的写法">Task的写法</h4>
+<p>慕课网演示了继承类的方法去定义task:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python3" data-lang="python3"><span style="color:#f92672">from</span> celery <span style="color:#66d9ef">import</span> Task
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CourseTask</span>(Task):
+    name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;course-task&#39;</span>
+    <span style="color:#75715e"># mooc课用这种继承改写run的方法去demo,我本地试验失败。提示‘Received unregistered task of type &#39;course-task’</span>
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">run</span>(self, <span style="color:#f92672">*</span>args, <span style="color:#f92672">**</span>kwargs):
+        now <span style="color:#f92672">=</span> datetime<span style="color:#f92672">.</span>now()
+        current_time <span style="color:#f92672">=</span> now<span style="color:#f92672">.</span>strftime(<span style="color:#e6db74">&#34;%H:%M:%S&#34;</span>)
+        print(<span style="color:#e6db74">&#34;ready to execute </span><span style="color:#e6db74">{}</span><span style="color:#e6db74"> at time </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">.</span>format(<span style="color:#e6db74">&#34;add()&#34;</span>, str(current_time)))
+
+        time<span style="color:#f92672">.</span>sleep(<span style="color:#ae81ff">3</span>)
+        endtime <span style="color:#f92672">=</span> now<span style="color:#f92672">.</span>strftime(<span style="color:#e6db74">&#34;%H:%M:%S&#34;</span>)
+        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;task done at:&#34;</span> <span style="color:#f92672">+</span> str(endtime )
+</code></pre></div><p>但是会出现‘Received unregistered task of type &lsquo;course-task’的错误。于是目前还是用function based task.</p>
 
   
   <h4><i class="fas fa-share-alt" aria-hidden="true"></i>&nbsp;Share!</h4>

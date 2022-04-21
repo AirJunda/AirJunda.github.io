@@ -1182,9 +1182,14 @@ VOLUME [&#34;/var/lib/mysql&#34;]Bind Mount 这种方式就是指定host上的�
 如果想添加额外的color preset方案可以从github上导入。比如想导入下面的这个方案，可以看readme里的说明。 https://github.com/QuentinWatt/dark-flat-iterm-colors
 可选设置 箭头里面路径太长的解决方式：
 vim ~/.oh-my-zsh/themes/agnoster.zsh-theme 把下面代码里的%~修改成%1d 即可 prompt_dir() { prompt_segment green $CURRENT_FG &lsquo;%~&rsquo; }
-Extra Reading  额外可选配置 Customize Iterm 2 with ZSH and Powerlevel10k  
+VS Code乱码 按上面步骤设置了iterm后，Vscode的 integrated terminal 中agnoster主题的符号会显示乱码。这我们就需要额外配置下vscode中 terminal font
+在VS Code的settings里搜索terminal font, 找到Integrated: Font Family Controls the font family of the terminal, this defaults to Editor: Font Family&rsquo;s value.
   </p>
 
+  
+  <footer>
+    <a href="https://airjunda.github.io/post/mac_terminal/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
+  </footer>
   
 </article>
 

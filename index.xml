@@ -6,7 +6,20 @@
     <description>Recent content on Air Junda Space</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>&amp;copy; 2021. All rights reserved.</copyright>
-    <lastBuildDate>Sat, 19 Mar 2022 21:30:36 +0800</lastBuildDate><atom:link href="https://airjunda.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 21 Apr 2022 21:10:13 +0800</lastBuildDate><atom:link href="https://airjunda.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Mac上快速打开项目文件的设置</title>
+      <link>https://airjunda.github.io/post/vsc_jetbrain/</link>
+      <pubDate>Thu, 21 Apr 2022 21:10:13 +0800</pubDate>
+      
+      <guid>https://airjunda.github.io/post/vsc_jetbrain/</guid>
+      <description>背景 本文主要是补充一些macbook上的额外设置。这些设置实现的功能在Windows是自带的功能。但是在Mac上却需要额外的设置才能实现。
+Vscode and Pycharm   Automatically Open the Current Directory in VS Code From Terminal
+  Launch Pycharm from CLI 这个教程里我是用到Jetbrain Toolbox去实现的。
+  Finder中显示路径 打开任意文件夹, 然后点击左上角 View &amp;gt; Show Path Bar, 就可以在finder底部显示路径。如果要copy filepath,右击file 同时长按opt.
+右键文件夹在VS Code/Pycharm中打开  Open Automator File &amp;gt; New Select Quick Action Click Choose Select &amp;ldquo;Workflow receives current files or folders in Finder&amp;rdquo; From the left hand side pane in Automator, drag-drop Library &amp;gt; Utilities &amp;gt; Run Shell Script into the right hand pane Ensure Pass input is set to &amp;ldquo;as arguments&amp;rdquo; Then paste the below text:  for f in &amp;#34;$@&amp;#34;; do open -a &amp;#39;Visual Studio Code&amp;#39; &amp;#34;$@&amp;#34; done Click File &amp;gt; Save  如果是想open folder as a pycharm project，请用下面这段script.</description>
+    </item>
+    
     <item>
       <title>那些年 Celery 踩过的坑</title>
       <link>https://airjunda.github.io/post/celery/</link>

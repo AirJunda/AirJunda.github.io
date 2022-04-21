@@ -248,6 +248,73 @@
   
     <article>
   <header>
+    <h2><a href="https://airjunda.github.io/post/vsc_jetbrain/">Mac上快速打开项目文件的设置</a></h2>
+
+    <div class="post-meta">
+
+  <div>
+    <i class="fa fa-calendar fa-fw"></i>
+    <time>21 Apr 2022, 21:10</time>
+  </div>
+
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-folder fa-fw"></i>
+    
+      <a class="post-taxonomy-topic" href="https://airjunda.github.io/topics/techblog">TechBlog</a>
+    
+  </div>
+  
+  
+
+  
+  
+  
+  <div>
+    <i class="fa fa-tags fa-fw"></i>
+    
+      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/terminal">Terminal</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/tech">Tech</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/mac">Mac</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/setup">Setup</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/vscode">Vscode</a>&nbsp;&#47;
+    
+      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/pycharm">“Pycharm”</a>
+    
+  </div>
+  
+  
+
+</div>
+
+  </header>
+
+  <p>
+  背景 本文主要是补充一些macbook上的额外设置。这些设置实现的功能在Windows是自带的功能。但是在Mac上却需要额外的设置才能实现。
+Vscode and Pycharm   Automatically Open the Current Directory in VS Code From Terminal
+  Launch Pycharm from CLI 这个教程里我是用到Jetbrain Toolbox去实现的。
+  Finder中显示路径 打开任意文件夹, 然后点击左上角 View &gt; Show Path Bar, 就可以在finder底部显示路径。如果要copy filepath,右击file 同时长按opt.
+右键文件夹在VS Code/Pycharm中打开  Open Automator File &gt; New Select Quick Action Click Choose Select &ldquo;Workflow receives current files or folders in Finder&rdquo; From the left hand side pane in Automator, drag-drop Library &gt; Utilities &gt; Run Shell Script into the right hand pane Ensure Pass input is set to &ldquo;as arguments&rdquo; Then paste the below text:  for f in &#34;$@&#34;; do open -a &#39;Visual Studio Code&#39; &#34;$@&#34; done Click File &gt; Save  如果是想open folder as a pycharm project，请用下面这段script.
+  </p>
+
+  
+  <footer>
+    <a href="https://airjunda.github.io/post/vsc_jetbrain/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
+  </footer>
+  
+</article>
+
+  
+    <article>
+  <header>
     <h2><a href="https://airjunda.github.io/post/mac_terminal/">Mac Terminal Setup</a></h2>
 
     <div class="post-meta">

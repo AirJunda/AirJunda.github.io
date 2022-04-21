@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Mac on Air Junda Space</title>
-    <link>https://airjunda.github.io/tags/mac/</link>
-    <description>Recent content in Mac on Air Junda Space</description>
+    <title>“Pycharm” on Air Junda Space</title>
+    <link>https://airjunda.github.io/tags/pycharm/</link>
+    <description>Recent content in “Pycharm” on Air Junda Space</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>&amp;copy; 2021. All rights reserved.</copyright>
-    <lastBuildDate>Thu, 21 Apr 2022 21:10:13 +0800</lastBuildDate><atom:link href="https://airjunda.github.io/tags/mac/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 21 Apr 2022 21:10:13 +0800</lastBuildDate><atom:link href="https://airjunda.github.io/tags/pycharm/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Mac上快速打开项目文件的设置</title>
       <link>https://airjunda.github.io/post/vsc_jetbrain/</link>
@@ -18,21 +18,6 @@ Vscode and Pycharm   Automatically Open the Current Directory in VS Code From Te
   Launch Pycharm from CLI 这个教程里我是用到Jetbrain Toolbox去实现的。
   Finder中显示路径 打开任意文件夹, 然后点击左上角 View &amp;gt; Show Path Bar, 就可以在finder底部显示路径。如果要copy filepath,右击file 同时长按opt.
 右键文件夹在VS Code/Pycharm中打开  Open Automator File &amp;gt; New Select Quick Action Click Choose Select &amp;ldquo;Workflow receives current files or folders in Finder&amp;rdquo; From the left hand side pane in Automator, drag-drop Library &amp;gt; Utilities &amp;gt; Run Shell Script into the right hand pane Ensure Pass input is set to &amp;ldquo;as arguments&amp;rdquo; Then paste the below text:  for f in &amp;#34;$@&amp;#34;; do open -a &amp;#39;Visual Studio Code&amp;#39; &amp;#34;$@&amp;#34; done Click File &amp;gt; Save  如果是想open folder as a pycharm project，请用下面这段script.</description>
-    </item>
-    
-    <item>
-      <title>Mac Terminal Setup</title>
-      <link>https://airjunda.github.io/post/mac_terminal/</link>
-      <pubDate>Mon, 29 Nov 2021 21:10:13 +0800</pubDate>
-      
-      <guid>https://airjunda.github.io/post/mac_terminal/</guid>
-      <description>Mac Terminal 美化工程 这篇记录下mac上美化Terminal的步骤。本文是win terminal设置的姐妹篇。
-他山之石  视频讲解 iTerm2 + Oh My Zsh 打造舒适终端体验  记录 参考第二个link里的文章完成了setup。我没有做原文中的“安装配色方案”，其他都做了。
-我选agnoster theme, 这个是我一直想要的theme。但是这个theme初始效果蓝色会比较深色。可以在iterm的preferences -&amp;gt; profiles -&amp;gt; colors -&amp;gt; color preset 里去调节整体的颜色方案。我最后选了pastel
-如果想添加额外的color preset方案可以从github上导入。比如想导入下面的这个方案，可以看readme里的说明。 https://github.com/QuentinWatt/dark-flat-iterm-colors
-可选设置 箭头里面路径太长的解决方式：
-vim ~/.oh-my-zsh/themes/agnoster.zsh-theme 把下面代码里的%~修改成%1d 即可 prompt_dir() { prompt_segment green $CURRENT_FG &amp;lsquo;%~&amp;rsquo; }
-Extra Reading  额外可选配置 Customize Iterm 2 with ZSH and Powerlevel10k  </description>
     </item>
     
   </channel>

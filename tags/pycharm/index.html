@@ -7,7 +7,7 @@
   <meta name="description" content="">
   <meta name="generator" content="Hugo 0.80.0" />
 
-  <title>Terminal &middot; Air Junda Space</title>
+  <title>“Pycharm” &middot; Air Junda Space</title>
 
     
 
@@ -44,7 +44,7 @@
  
   
   <link rel="alternate" type="application/rss+xml" title="Air Junda Space"
-    href='https://airjunda.github.io/tags/terminal/index.xml' />
+    href='https://airjunda.github.io/tags/pycharm/index.xml' />
   
 
   
@@ -133,7 +133,7 @@
 
     
     <li class="pure-menu-item">
-      <a class="pure-menu-link" href='https://airjunda.github.io/tags/terminal/index.xml'><i
+      <a class="pure-menu-link" href='https://airjunda.github.io/tags/pycharm/index.xml'><i
           class="fas fa-rss fa-fw"></i>RSS</a>
     </li>
     
@@ -241,7 +241,7 @@
 
 
 <div class="header">
-  <h1>Terminal</h1>
+  <h1>“Pycharm”</h1>
 </div>
 
 <div class="content">
@@ -308,132 +308,6 @@ Vscode and Pycharm   Automatically Open the Current Directory in VS Code From Te
   
   <footer>
     <a href="https://airjunda.github.io/post/vsc_jetbrain/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
-  </footer>
-  
-</article>
-
-  
-    <article>
-  <header>
-    <h2><a href="https://airjunda.github.io/post/mac_terminal/">Mac Terminal Setup</a></h2>
-
-    <div class="post-meta">
-
-  <div>
-    <i class="fa fa-calendar fa-fw"></i>
-    <time>29 Nov 2021, 21:10</time>
-  </div>
-
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-folder fa-fw"></i>
-    
-      <a class="post-taxonomy-topic" href="https://airjunda.github.io/topics/techblog">TechBlog</a>
-    
-  </div>
-  
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-tags fa-fw"></i>
-    
-      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/terminal">Terminal</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/tech">Tech</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/mac">Mac</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/setup">Setup</a>
-    
-  </div>
-  
-  
-
-</div>
-
-  </header>
-
-  <p>
-  Mac Terminal 美化工程 这篇记录下mac上美化Terminal的步骤。本文是win terminal设置的姐妹篇。
-他山之石  视频讲解 iTerm2 + Oh My Zsh 打造舒适终端体验  记录 参考第二个link里的文章完成了setup。我没有做原文中的“安装配色方案”，其他都做了。
-我选agnoster theme, 这个是我一直想要的theme。但是这个theme初始效果蓝色会比较深色。可以在iterm的preferences -&gt; profiles -&gt; colors -&gt; color preset 里去调节整体的颜色方案。我最后选了pastel
-如果想添加额外的color preset方案可以从github上导入。比如想导入下面的这个方案，可以看readme里的说明。 https://github.com/QuentinWatt/dark-flat-iterm-colors
-可选设置 箭头里面路径太长的解决方式：
-vim ~/.oh-my-zsh/themes/agnoster.zsh-theme 把下面代码里的%~修改成%1d 即可 prompt_dir() { prompt_segment green $CURRENT_FG &lsquo;%~&rsquo; }
-Extra Reading  额外可选配置 Customize Iterm 2 with ZSH and Powerlevel10k  
-  </p>
-
-  
-</article>
-
-  
-    <article>
-  <header>
-    <h2><a href="https://airjunda.github.io/post/win-terminal-setup/">Win Terminal Setup</a></h2>
-
-    <div class="post-meta">
-
-  <div>
-    <i class="fa fa-calendar fa-fw"></i>
-    <time>29 Nov 2021, 21:10</time>
-  </div>
-
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-folder fa-fw"></i>
-    
-      <a class="post-taxonomy-topic" href="https://airjunda.github.io/topics/techblog">TechBlog</a>
-    
-  </div>
-  
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-tags fa-fw"></i>
-    
-      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/terminal">Terminal</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/tech">Tech</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/windows">Windows</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="https://airjunda.github.io/tags/setup">Setup</a>
-    
-  </div>
-  
-  
-
-</div>
-
-  </header>
-
-  <p>
-  Win10 Terminal 美化工程 这篇记录下win10上美化Terminal的步骤。
-他山之石  攻略 Windows Terminal 主题美化  记录  先按上文第一篇安装了字体。解压后进入ttf文件夹。打开CascadiaMonoPL安装就好 然后powershell里执行下面3个命令  Install-Module posh-git -Scope CurrentUser Install-Module oh-my-posh -Scope CurrentUser Get-PoshThemes 输入下面这个命令可以随时替换theme;但是terminal重启后就失效。
-Set-PoshPrompt -Theme agnoster # 我现在用的paradox 要想不失效，需要手动修改下面这个配置文件, 在cmd里敲  notepad $PROFILE 然后profile文件里添加这3行 Import-Module posh-git Import-Module oh-my-posh Set-Theme Agnoster/paradox/你想要的theme name
-到这一步遇到的坑 设置完发现有乱码。paradox好一些，只有error符号乱码。其他主题连 ~ 都显示不出。试了各种PL字体都没用。最后解决方案是安装了Nerd字体就解决了。参考的是这篇：攻略。其中windows 官方攻略也提到了安装nerd字体库可以解决。nerd网站下有很多字体，我最后安装的是Caskaydia Cove Nerd Font
-Windows Terminal的进一步配置 原文攻略还有后续的。但是我就没就继续做了。因为对目前效果已经满意。
-Side Effect 修改了windows terminal的样式会导致IDE中的集成terminal出现色彩不协调或者乱码。需要单独设置。
-VS Code中Terminal乱码解决 需要在File/Preference/Settings中设置Terminal Font. 在settings的搜索box中输入Terminal Font就能找到填写字体的框框。我Win Terminal用的是CaskaydiaCove NF，所以我在VS Code中也设置的是这个字体。但是也可以使用其他的。设置教程可以参考这篇： 解决 VScode 终端 Zsh 主题乱码的问题
-  </p>
-
-  
-  <footer>
-    <a href="https://airjunda.github.io/post/win-terminal-setup/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
   </footer>
   
 </article>
